@@ -228,6 +228,7 @@ public class Character : MonoBehaviour
     public bool SWMovement()
     {
         nextPos = new Vector2(currPos.x - gridX, currPos.y - gridY);
+        characterAnim.SetInteger("Direction", 3);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -241,15 +242,17 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 3);
-        characterAnim.Play("Walk");
         characterAnim.SetInteger("Idle", 0);
+        characterAnim.Play("Walk");
+        
         return true;
     }
     public bool SEMovement()
     {
 
         nextPos = new Vector2(currPos.x + gridX, currPos.y - gridY);
+        characterAnim.SetInteger("Direction", 4);
+
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -263,14 +266,15 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 4);
-        characterAnim.Play("Walk_SE");
         characterAnim.SetInteger("Idle", 0);
+        characterAnim.Play("Walk_SE");
+
         return true;
     }
     public bool NWMovement()
     {
         nextPos = new Vector2(currPos.x - gridX, currPos.y + gridY);
+        characterAnim.SetInteger("Direction", 1);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -284,7 +288,7 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 1);
+
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
         return true;
@@ -293,6 +297,7 @@ public class Character : MonoBehaviour
     public bool NEMovement()
     {
         nextPos = new Vector2(currPos.x + gridX, currPos.y + gridY);
+        characterAnim.SetInteger("Direction", 2);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -306,7 +311,6 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 2);
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
         return true;

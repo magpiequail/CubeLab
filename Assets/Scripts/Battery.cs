@@ -97,7 +97,6 @@ public class Battery : MonoBehaviour
         {
             movesforEmotion -= 1;
             firstPercent =  (float)movesforEmotion/ s.firstBattery;
-            Debug.Log((float)movesforEmotion / s.firstBattery);
         }
         else if(movesforEmotion == 0 && movesforStageClear != 0)
         {
