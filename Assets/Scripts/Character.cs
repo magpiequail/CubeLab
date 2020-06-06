@@ -185,14 +185,14 @@ public class Character : MonoBehaviour
 
 
         if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
-            {
-                transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
-            }
-            if (Vector3.Distance(transform.position, nextPos) < 0.01f)
-            {
-                currPos = nextPos;
-                characterAnim.SetInteger("Idle", 1);
-            }
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
+        }
+        if (Vector3.Distance(transform.position, nextPos) < 0.01f)
+        {
+            currPos = nextPos;
+            characterAnim.SetInteger("Idle", 1);
+        }
 
         /*if (isInputAllowed)
         {
@@ -219,7 +219,7 @@ public class Character : MonoBehaviour
                 //footAnim.Play("Foot_NE");
             }
         }*/
-        
+
 
 
 

@@ -13,6 +13,14 @@ public class Teleporter : MonoBehaviour
     public int posX;
     public int posY;
 
+    public int teleported = 0;
+
+    private void Awake()
+    {
+
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +40,16 @@ public class Teleporter : MonoBehaviour
             characterColl.transform.parent.gameObject.transform.position = otherTele.transform.position;
             characterColl.GetComponentInParent<Character>().currPos = otherTele.transform.position;
             characterColl.GetComponentInParent<Character>().nextPos = otherTele.transform.position;
+
+            if(teleported == 0)
+            {
+                teleported = 1;
+            }
+            else
+            {
+                teleported = 0;
+            }
+            Debug.Log("teleported = " + teleported);
             //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
             // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
         }
