@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridTest : MonoBehaviour
 {
-    Grid grid;
+    public Grid grid;
     float gridX;
     float gridY;
     Vector3Int clickedTilePos;
@@ -18,7 +18,6 @@ public class GridTest : MonoBehaviour
     public float speed = 3f;
     Battery b;
 
-    Teleporter t;
     GameObject char1;
     GameObject char2;
 
@@ -39,7 +38,6 @@ public class GridTest : MonoBehaviour
         b = FindObjectOfType<Battery>();
 
         halfScreen = Screen.width * 0.5f;
-        t = FindObjectOfType<Teleporter>();
 
         char1 = character1;
         char2 = character2;
@@ -57,21 +55,9 @@ public class GridTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (t)
-        {
-            if (t.teleported == 0)
-            {
-                character1 = char1;
-                character2 = char2;
-            }
-            else if (t.teleported == 1)
-            {
-                character1 = char2;
-                character2 = char1;
-            }
-        }
 
-        if (CharactersMovement.isInputAllowed)
+
+        if (CharactersMovement.isInputAllowed && Options.input == 1)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -97,7 +83,7 @@ public class GridTest : MonoBehaviour
 
                 if (clickedTilePos.x == currentCharPos.x && clickedTilePos.y == currentCharPos.y + 1)
                 {
-                    currentChar.GetComponent<Character>().nextPos = tileWorldPos;
+                    //currentChar.GetComponent<Character>().nextPos = tileWorldPos;
                     currentCharPos = clickedTilePos;
                     Debug.Log("NW");
                     for (int i = 0; i < characters.Length; i++)
@@ -109,7 +95,7 @@ public class GridTest : MonoBehaviour
                 //NE
                 else if (clickedTilePos.x == currentCharPos.x + 1 && clickedTilePos.y == currentCharPos.y)
                 {
-                    currentChar.GetComponent<Character>().nextPos = tileWorldPos;
+                    //currentChar.GetComponent<Character>().nextPos = tileWorldPos;
                     currentCharPos = clickedTilePos;
                     for (int i = 0; i < characters.Length; i++)
                     {
@@ -120,7 +106,7 @@ public class GridTest : MonoBehaviour
                 //SW
                 else if (clickedTilePos.x == currentCharPos.x - 1 && clickedTilePos.y == currentCharPos.y)
                 {
-                    currentChar.GetComponent<Character>().nextPos = tileWorldPos;
+                    //currentChar.GetComponent<Character>().nextPos = tileWorldPos;
                     currentCharPos = clickedTilePos;
                     for (int i = 0; i < characters.Length; i++)
                     {
@@ -131,7 +117,7 @@ public class GridTest : MonoBehaviour
                 //SE
                 else if (clickedTilePos.x == currentCharPos.x && clickedTilePos.y == currentCharPos.y - 1)
                 {
-                    currentChar.GetComponent<Character>().nextPos = tileWorldPos;
+                    //currentChar.GetComponent<Character>().nextPos = tileWorldPos;
                     currentCharPos = clickedTilePos;
                     for (int i = 0; i < characters.Length; i++)
                     {

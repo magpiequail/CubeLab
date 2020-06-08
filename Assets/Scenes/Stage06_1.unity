@@ -2203,6 +2203,16 @@ PrefabInstance:
       propertyPath: thirdBattery
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 9067573108205874946, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: leftCam
+      value: 
+      objectReference: {fileID: 989648634}
+    - target: {fileID: 9067573108205874946, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: rightCam
+      value: 
+      objectReference: {fileID: 1035058834}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2efce5601ff403488ef0a435d3cc06e, type: 3}
 --- !u!1 &68821907 stripped
@@ -3173,6 +3183,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TempPrefabForClickMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497246514393399801, guid: 5ce86e3f8bbe58548b906791d86b2a9e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce86e3f8bbe58548b906791d86b2a9e, type: 3}

@@ -22,6 +22,7 @@ public class SceneController : MonoBehaviour
     GameObject pauseUI;
 
 
+
     private void Awake()
     {
         gameOver = GameObject.FindGameObjectWithTag("Game Over");

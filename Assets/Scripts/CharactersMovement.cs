@@ -5,21 +5,30 @@ using UnityEngine;
 public class CharactersMovement : MonoBehaviour
 {
     Character[] charactersArray;
-    //public int remainingMoves = 50;
+    Grid grid;
+    public Vector3 tileWorldPos;
+    public Vector3Int clickedTilePos;
 
     static public bool isInputAllowed = true;
     Battery b;
+
+    float halfScreen;
+    public Camera leftCam;
+    public Camera rightCam;
+    public static Camera currentCam;
 
     private void Awake()
     {
         charactersArray = FindObjectsOfType<Character>();
         b = FindObjectOfType<Battery>();
+        grid = FindObjectOfType<Grid>();
+        halfScreen = Screen.width * 0.5f;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,14 +37,14 @@ public class CharactersMovement : MonoBehaviour
         if (Door.isAllOpen)
         {
             isInputAllowed = false;
-            
+
         }
         else
         {
             isInputAllowed = true;
         }
 
-        if (isInputAllowed && Battery.movesTillGameover >0)
+        if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 0)
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
@@ -66,6 +75,66 @@ public class CharactersMovement : MonoBehaviour
                 {
                     b.MinusOneMove();
                 }
+            }
+        }
+        //mouse
+        if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 1)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Input.mousePosition.x < halfScreen)
+                {
+                    currentCam = leftCam;
+                }
+                else
+                {
+                    currentCam = rightCam;
+                }
+                for( int i= 0;i < charactersArray.Length; i++)
+                {
+                    charactersArray[i].currentCharPos = grid.WorldToCell(charactersArray[i].gameObject.transform.position);
+                    Debug.Log("character" + i + " = " + charactersArray[i].currentCharPos);
+                }
+
+                Debug.Log("current Cam = " + currentCam);
+                //currentCharPos = grid.WorldToCell(currentChar.transform.position);
+                clickedTilePos = grid.WorldToCell(currentCam.ScreenToWorldPoint(Input.mousePosition));
+                tileWorldPos = grid.GetCellCenterWorld(clickedTilePos);
+
+                if (isCheckingNW())
+                {
+                    for (int i = 0; i < charactersArray.Length; i++)
+                    {
+                        charactersArray[i].GetComponent<Character>().NWMovement();
+                    }
+                    b.MinusOneMove();
+                }
+                if (isCheckingNE())
+                {
+                    for (int i = 0; i < charactersArray.Length; i++)
+                    {
+                        charactersArray[i].GetComponent<Character>().NEMovement();
+                    }
+                    b.MinusOneMove();
+                }
+                if (isCheckingSW())
+                {
+                    for (int i = 0; i < charactersArray.Length; i++)
+                    {
+                        charactersArray[i].GetComponent<Character>().SWMovement();
+                    }
+                    b.MinusOneMove();
+                }
+                if (isCheckingSE())
+                {
+                    for (int i = 0; i < charactersArray.Length; i++)
+                    {
+                        charactersArray[i].GetComponent<Character>().SEMovement();
+                    }
+                    b.MinusOneMove();
+                }
+
+                //Debug.Log("clickedTilePos = " + clickedTilePos + "currentCharPos = " + currentCharPos);
             }
         }
     }
@@ -113,5 +182,55 @@ public class CharactersMovement : MonoBehaviour
             }
         }
         return true;
+    }
+
+    ////////////////////
+    bool isCheckingNW()
+    {
+        foreach (Character c in charactersArray)
+        {
+            if (c.isCharCanMoveNW())
+            {
+                return true;
+            }
+           
+        }
+        return false;
+    }
+    bool isCheckingNE()
+    {
+        foreach (Character c in charactersArray)
+        {
+            if (c.isCharCanMoveNE())
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+    bool isCheckingSW()
+    {
+        foreach (Character c in charactersArray)
+        {
+            if (c.isCharCanMoveSW())
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+    bool isCheckingSE()
+    {
+        foreach (Character c in charactersArray)
+        {
+            if (c.isCharCanMoveSE())
+            {
+                return true;
+            }
+
+        }
+        return false;
     }
 }

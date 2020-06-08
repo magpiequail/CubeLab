@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TempPrefabForClickMovement
       objectReference: {fileID: 0}
+    - target: {fileID: 8497246514393399801, guid: 5ce86e3f8bbe58548b906791d86b2a9e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ce86e3f8bbe58548b906791d86b2a9e, type: 3}
 --- !u!1001 &257128040
@@ -252,6 +257,11 @@ PrefabInstance:
     - target: {fileID: 3383126324353759123, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_TileAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951089421063579382, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7558515723401617921, guid: e2efce5601ff403488ef0a435d3cc06e,
@@ -319,6 +329,16 @@ PrefabInstance:
       propertyPath: firstBattery
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 9067573108205874946, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: leftCam
+      value: 
+      objectReference: {fileID: 1434638903}
+    - target: {fileID: 9067573108205874946, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: rightCam
+      value: 
+      objectReference: {fileID: 268805606}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2efce5601ff403488ef0a435d3cc06e, type: 3}
 --- !u!1 &257128041 stripped

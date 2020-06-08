@@ -13,7 +13,8 @@ public class Teleporter : MonoBehaviour
     public int posX;
     public int posY;
 
-    public int teleported = 0;
+
+
 
     private void Awake()
     {
@@ -41,15 +42,6 @@ public class Teleporter : MonoBehaviour
             characterColl.GetComponentInParent<Character>().currPos = otherTele.transform.position;
             characterColl.GetComponentInParent<Character>().nextPos = otherTele.transform.position;
 
-            if(teleported == 0)
-            {
-                teleported = 1;
-            }
-            else
-            {
-                teleported = 0;
-            }
-            Debug.Log("teleported = " + teleported);
             //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
             // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
         }

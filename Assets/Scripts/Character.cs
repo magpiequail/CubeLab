@@ -29,6 +29,10 @@ public class Character : MonoBehaviour
     float gridX;
     float gridY;
     public Vector2 currPos;
+    public Vector3Int currentCharPos;
+    Vector3Int clickedTilePos;
+
+    CharactersMovement cm;
 
     public LayerMask accessible;
     TilemapColor tmc;
@@ -42,6 +46,7 @@ public class Character : MonoBehaviour
         currPos = transform.position;
         nextPos = transform.position;
         tmc = FindObjectOfType<TilemapColor>();
+        cm = FindObjectOfType<CharactersMovement>();
     }
 
     // Start is called before the first frame update
@@ -194,33 +199,6 @@ public class Character : MonoBehaviour
             characterAnim.SetInteger("Idle", 1);
         }
 
-        /*if (isInputAllowed)
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                SWMovement();
-                //footAnim.Play("Foot_SW");
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                SEMovement();
-                //footAnim.Play("Foot_SE");
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                NWMovement();
-                //footAnim.Play("Foot_NW");
-            }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                NEMovement();
-                //footAnim.Play("Foot_NE");
-            }
-        }*/
-
-
 
 
     }
@@ -330,5 +308,50 @@ tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
         }
     }
 
+
+    public bool isCharCanMoveNW()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool isCharCanMoveNE()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x+1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool isCharCanMoveSW()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x -1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool isCharCanMoveSE()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y - 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
