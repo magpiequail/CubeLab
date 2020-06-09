@@ -33,7 +33,7 @@ void Start()
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Character" && collision.GetComponentInParent<CharacterMovement>().isHavingRoundKey)
+        if (collision.tag == "Character" && collision.GetComponentInParent<Character>().isHavingRoundKey)
         {
             isOpened = true;
         }

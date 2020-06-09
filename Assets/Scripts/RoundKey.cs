@@ -29,14 +29,14 @@ public class RoundKey : MonoBehaviour
     {
         if (isCharOn)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && character.GetComponent<CharacterMovement>().isHavingTriangleKey == false 
-                && character.GetComponent<CharacterMovement>().isHavingRoundKey == false)
+            if (Input.GetKeyDown(KeyCode.Space) && character.GetComponent<Character>().isHavingTriangleKey == false 
+                && character.GetComponent<Character>().isHavingRoundKey == false)
             {
                 isWithChar = true;
                 roundKeyAnim.SetInteger("State", 2);
                 gameObject.transform.SetParent(character.transform);
                 gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-                character.GetComponent<CharacterMovement>().isHavingRoundKey = true;
+                character.GetComponent<Character>().isHavingRoundKey = true;
 
             }
         }

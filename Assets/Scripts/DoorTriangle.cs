@@ -33,7 +33,7 @@ public class DoorTriangle : Door
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Character" && collision.GetComponentInParent<CharacterMovement>().isHavingTriangleKey)
+        if (collision.tag == "Character" && collision.GetComponentInParent<Character>().isHavingTriangleKey)
         {
             isOpened = true;
 

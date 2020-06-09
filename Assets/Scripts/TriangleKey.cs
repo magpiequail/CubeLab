@@ -30,14 +30,14 @@ public class TriangleKey : MonoBehaviour
     {
         if (isCharOn)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && character.GetComponent<CharacterMovement>().isHavingRoundKey == false
-                 && character.GetComponent<CharacterMovement>().isHavingTriangleKey == false)
+            if (Input.GetKeyDown(KeyCode.Space) && character.GetComponent<Character>().isHavingRoundKey == false
+                 && character.GetComponent<Character>().isHavingTriangleKey == false)
             {
                 triangleKeyAnim.SetInteger("State", 2);
                 isWithChar = true;
                 gameObject.transform.SetParent(character.transform);
                 gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-                character.GetComponent<CharacterMovement>().isHavingTriangleKey = true;
+                character.GetComponent<Character>().isHavingTriangleKey = true;
             }
         }
         

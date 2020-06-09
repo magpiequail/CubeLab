@@ -646,7 +646,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -39, y: -57, z: 0}
   m_Size: {x: 87, y: 79, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -702,7 +702,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1287517597
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.005319178, y: 0.005319178, z: 0}
@@ -1205,7 +1205,7 @@ PrefabInstance:
     - target: {fileID: 7929229091053239925, guid: dfe2cbc1a342a0c458b8ac6a017024fa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.25
       objectReference: {fileID: 0}
     - target: {fileID: 7929229091053239925, guid: dfe2cbc1a342a0c458b8ac6a017024fa,
         type: 3}
@@ -1410,7 +1410,7 @@ PrefabInstance:
     - target: {fileID: 7929229091053239925, guid: dfe2cbc1a342a0c458b8ac6a017024fa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.25
       objectReference: {fileID: 0}
     - target: {fileID: 7929229091053239925, guid: dfe2cbc1a342a0c458b8ac6a017024fa,
         type: 3}
@@ -1477,6 +1477,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7558515723401617921}
     m_Modifications:
+    - target: {fileID: 1008796377, guid: 2194fc7d9764c714cb1d413b3d7c7033, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722142155, guid: 2194fc7d9764c714cb1d413b3d7c7033, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 616937822375028943, guid: 2194fc7d9764c714cb1d413b3d7c7033,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1532,10 +1540,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1642274024103366373, guid: 2194fc7d9764c714cb1d413b3d7c7033,
+        type: 3}
+      propertyPath: orthographic size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4382760527108926579, guid: 2194fc7d9764c714cb1d413b3d7c7033,
         type: 3}
       propertyPath: m_Name
       value: 2 Cameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851966515889460222, guid: 2194fc7d9764c714cb1d413b3d7c7033,
+        type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2194fc7d9764c714cb1d413b3d7c7033, type: 3}
