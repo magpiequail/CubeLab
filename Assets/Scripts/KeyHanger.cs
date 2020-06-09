@@ -46,36 +46,68 @@ public class KeyHanger : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && isCharOn)
         {
-            if (hangerState == HangerState.Empty)
+            if (hangerState == HangerState.Empty && isRoundKey && !isTriangleKey)
             {
                 characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
                 characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
+                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = false;
+                hangerState = HangerState.RoundKey;
             }
-            else if (hangerState == HangerState.RoundKey)
+            else if (hangerState == HangerState.Empty && isTriangleKey && !isRoundKey)
+            {
+                characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
+                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
+                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = false;
+                hangerState = HangerState.TriangleKey;
+            }
+            else if (hangerState == HangerState.RoundKey && !isRoundKey && !isTriangleKey)
             {
                 characterColl.GetComponentInParent<Character>().isHavingRoundKey = true;
                 characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
+                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = true;
+                hangerState = HangerState.Empty;
             }
-            else if (hangerState == HangerState.TriangleKey)
+            else if (hangerState == HangerState.RoundKey && !isRoundKey && isTriangleKey)
+            {
+                characterColl.GetComponentInParent<Character>().isHavingRoundKey = true;
+                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
+                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = true;
+                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = false;
+                hangerState = HangerState.TriangleKey;
+            }
+            else if (hangerState == HangerState.TriangleKey && !isRoundKey && !isTriangleKey)
             {
                 characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
                 characterColl.GetComponentInParent<Character>().isHavingTriangleKey = true;
-            }
-            if (isRoundKey)
-            {
-                hangerState = HangerState.RoundKey;
-
-            }
-            else if(isTriangleKey)
-            {
-                hangerState = HangerState.TriangleKey;
-            }
-            else if(!isRoundKey && !isTriangleKey)
-            {
+                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = true;
                 hangerState = HangerState.Empty;
             }
+            else if (hangerState == HangerState.TriangleKey && isRoundKey && !isTriangleKey)
+            {
+                characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
+                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = true;
+                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = false;
+                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = true;
+                hangerState = HangerState.RoundKey;
+            }
 
-            
+            //
+            if (characterColl.transform.parent.GetComponent<Character>().isHavingRoundKey == true)
+            {
+                isTriangleKey = false;
+                isRoundKey = true;
+            }
+            else if (characterColl.transform.parent.GetComponent<Character>().isHavingTriangleKey == true)
+            {
+                isRoundKey = false;
+                isTriangleKey = true;
+            }
+            else
+            {
+                isRoundKey = false;
+                isTriangleKey = false;
+            }
+            //
 
             ChangeHangerSprite();
         }
@@ -102,8 +134,8 @@ public class KeyHanger : MonoBehaviour
                 isRoundKey = false;
                 isTriangleKey = false;
             }
-            
 
+            Debug.Log("triggerstay called");
         }
 
     }

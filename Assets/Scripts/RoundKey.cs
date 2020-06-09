@@ -7,7 +7,7 @@ public class RoundKey : MonoBehaviour
     public float keyPosition;
     Animator roundKeyAnim;
     Vector2 originPos;
-    SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     bool isWithChar = false;
     bool isCharOn=false;
     GameObject character;

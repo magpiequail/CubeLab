@@ -8,7 +8,7 @@ public class TriangleKey : MonoBehaviour
     Animator triangleKeyAnim;
     bool isWithChar = false;
     Vector2 originPos;
-    SpriteRenderer sprite;
+    public SpriteRenderer sprite;
     bool isCharOn = false;
     GameObject character;
 
@@ -38,6 +38,7 @@ public class TriangleKey : MonoBehaviour
                 gameObject.transform.SetParent(character.transform);
                 gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
                 character.GetComponent<Character>().isHavingTriangleKey = true;
+                isCharOn = false;
             }
         }
         
