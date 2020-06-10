@@ -51,6 +51,10 @@ public class Door :MonoBehaviour
                 return false;
             }
         }
+        if (doorsArray.Length == 0)
+        {
+            return false;
+        }
         return true;
     }
 

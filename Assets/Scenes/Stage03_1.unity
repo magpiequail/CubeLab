@@ -316,6 +316,10 @@ PrefabInstance:
       propertyPath: m_ChunkCullingBounds.x
       value: 0.005319178
       objectReference: {fileID: 0}
+    - target: {fileID: 2076856608, guid: ace1135be174d7e4c9c98b10c5b70765, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2076856609, guid: ace1135be174d7e4c9c98b10c5b70765, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 50
@@ -974,7 +978,17 @@ PrefabInstance:
     - target: {fileID: 8237618780991783691, guid: ace1135be174d7e4c9c98b10c5b70765,
         type: 3}
       propertyPath: firstBattery
-      value: 11
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237618780991783691, guid: ace1135be174d7e4c9c98b10c5b70765,
+        type: 3}
+      propertyPath: secondBattery
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237618780991783691, guid: ace1135be174d7e4c9c98b10c5b70765,
+        type: 3}
+      propertyPath: thirdBattery
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8672316114802105179, guid: ace1135be174d7e4c9c98b10c5b70765,
         type: 3}

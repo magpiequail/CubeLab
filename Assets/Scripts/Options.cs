@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Options : MonoBehaviour
 {
-    public static int input = 0; //0 = keyboard, 1 = mouse
+    public static int input; //0 = keyboard, 1 = mouse
     Dropdown d;
 
     private void Awake()
@@ -20,12 +20,13 @@ public class Options : MonoBehaviour
         {
             ChangeInput(d);
         });
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ChangeInput(Dropdown d)

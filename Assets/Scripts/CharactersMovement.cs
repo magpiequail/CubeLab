@@ -43,6 +43,10 @@ public class CharactersMovement : MonoBehaviour
         {
             isInputAllowed = true;
         }
+        if(SceneController.gameState == GameState.GameOver)
+        {
+            isInputAllowed = false;
+        }
 
         if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 0)
         {

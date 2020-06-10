@@ -11,6 +11,7 @@ public class TriangleKey : MonoBehaviour
     public SpriteRenderer sprite;
     bool isCharOn = false;
     GameObject character;
+    public Animator effectAnim;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class TriangleKey : MonoBehaviour
                  && character.GetComponent<Character>().isHavingTriangleKey == false)
             {
                 triangleKeyAnim.SetInteger("State", 2);
+                effectAnim.SetTrigger("EffectTrigger");
                 isWithChar = true;
                 gameObject.transform.SetParent(character.transform);
                 gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);

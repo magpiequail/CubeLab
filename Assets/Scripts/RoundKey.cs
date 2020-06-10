@@ -11,6 +11,7 @@ public class RoundKey : MonoBehaviour
     bool isWithChar = false;
     bool isCharOn=false;
     GameObject character;
+    public Animator effectAnim;
 
     private void Awake()
     {
@@ -34,6 +35,8 @@ public class RoundKey : MonoBehaviour
             {
                 isWithChar = true;
                 roundKeyAnim.SetInteger("State", 2);
+                effectAnim.SetTrigger("EffectTrigger");
+
                 gameObject.transform.SetParent(character.transform);
                 gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
                 character.GetComponent<Character>().isHavingRoundKey = true;
