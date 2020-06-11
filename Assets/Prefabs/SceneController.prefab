@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: {fileID: 0}
   delayTillGameOver: 0
-  delayTillUI: 0
+  delayTillUI: 2
 --- !u!114 &-92846712665676191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,3 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613c9978bf420544786611814159ec83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileWorldPos: {x: 0, y: 0, z: 0}
+  clickedTilePos: {x: 0, y: 0, z: 0}
+  leftCam: {fileID: 0}
+  rightCam: {fileID: 0}

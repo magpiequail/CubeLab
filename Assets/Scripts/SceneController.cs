@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour
     public GameObject gameOver;
     GameObject gameOverUI;
     public float delayTillGameOver = 0.5f;
-    public float delayTillUI = 1.0f;
+    public float delayTillUI = 2.0f;
     bool isGameOver = false;
     GameObject pauseUI;
 

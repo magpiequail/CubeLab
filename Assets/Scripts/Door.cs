@@ -66,7 +66,7 @@ public class Door :MonoBehaviour
     
     IEnumerator Open()
     {
-        if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.Space))
+        if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.W)/*Input.GetKeyDown(KeyCode.Space)*/)
         {
             isAllOpen = true;
 
@@ -77,6 +77,7 @@ public class Door :MonoBehaviour
             {
                 doors.PlayOpenAnim();
             }
+
 
             yield return new WaitForSeconds(delayTillStageClear);
             text.SetActive(true);

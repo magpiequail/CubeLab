@@ -29,24 +29,40 @@ public class TriangleKey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isCharOn)
+        /*if (isCharOn)
         {
             if (Input.GetKeyDown(KeyCode.Space) && character.GetComponent<Character>().isHavingRoundKey == false
                  && character.GetComponent<Character>().isHavingTriangleKey == false)
             {
-                triangleKeyAnim.SetInteger("State", 2);
-                effectAnim.SetTrigger("EffectTrigger");
-                isWithChar = true;
-                gameObject.transform.SetParent(character.transform);
-                gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-                character.GetComponent<Character>().isHavingTriangleKey = true;
-                isCharOn = false;
+                GetKey();
             }
-        }
-        
+        }*/
+
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void GetKey()
+    {
+        if (character.GetComponent<Character>().isHavingRoundKey == false
+                 && character.GetComponent<Character>().isHavingTriangleKey == false)
+        {
+            triangleKeyAnim.SetInteger("State", 2);
+            effectAnim.SetTrigger("EffectTrigger");
+            character.GetComponentInChildren<Animator>().SetTrigger("Joy");
+            if (character.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+            {
+                character.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+            }
+
+            isWithChar = true;
+            gameObject.transform.SetParent(character.transform);
+            gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
+            character.GetComponent<Character>().isHavingTriangleKey = true;
+            isCharOn = false;
+        }
+
+    }
+
+    /*private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Character")
         {
@@ -56,7 +72,7 @@ public class TriangleKey : MonoBehaviour
             character = other.transform.parent.gameObject;
             
         }
-    }
+    }*/
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Character" && !isWithChar)
@@ -64,6 +80,18 @@ public class TriangleKey : MonoBehaviour
             isCharOn = false;
             triangleKeyAnim.SetInteger("State", 0);
             sprite.gameObject.transform.position = originPos;
+        }
+    }
+   private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Character")
+        {
+            isCharOn = true;
+            triangleKeyAnim.SetInteger("State", 1);
+            //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
+            character = collision.transform.parent.gameObject;
+            GetKey();
+
         }
     }
 }

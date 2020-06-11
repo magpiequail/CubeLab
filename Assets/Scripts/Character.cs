@@ -67,8 +67,9 @@ public class Character : MonoBehaviour
     {
         if (Door.isAllOpen)
         {
-            characterAnim.Play("Idle_NE");
+            //characterAnim.Play("Idle_NE");
             characterAnim.SetInteger("Direction", 2);
+            characterAnim.Play("StageClear");
         }
         else
         {

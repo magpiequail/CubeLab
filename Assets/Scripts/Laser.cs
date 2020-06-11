@@ -43,6 +43,7 @@ public class Laser : MonoBehaviour
         {
             if (collision.CompareTag("Character"))
             {
+                collision.transform.parent.GetComponentInChildren<Animator>().Play("Electrocuted");
                 SceneController.gameState = GameState.GameOver;
             }
         }
