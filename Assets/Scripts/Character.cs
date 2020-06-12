@@ -69,7 +69,8 @@ public class Character : MonoBehaviour
         {
             //characterAnim.Play("Idle_NE");
             characterAnim.SetInteger("Direction", 2);
-            characterAnim.Play("StageClear");
+            //characterAnim.Play("StageClear");
+            characterAnim.SetTrigger("StageClear");
         }
         else
         {

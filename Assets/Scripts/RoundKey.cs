@@ -37,6 +37,10 @@ public class RoundKey : MonoBehaviour
 
             }
         }
+        if (Door.isAllOpen)
+        {
+            sprite.enabled = false;
+        }
 
     }
 
@@ -63,7 +67,7 @@ public class RoundKey : MonoBehaviour
        
     }
 
-    /*private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Character")
         {
@@ -73,8 +77,8 @@ public class RoundKey : MonoBehaviour
             character = other.transform.parent.gameObject;
 
         }
-    }*/
-    /*private void OnTriggerExit2D(Collider2D collision)
+    }
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Character" && !isWithChar)
         {
@@ -82,8 +86,8 @@ public class RoundKey : MonoBehaviour
             roundKeyAnim.SetInteger("State", 0);
             sprite.gameObject.transform.position = originPos;
         }
-    }*/
-    private void OnTriggerEnter2D(Collider2D collision)
+    }
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Character")
         {
@@ -94,6 +98,6 @@ public class RoundKey : MonoBehaviour
 
             GetKey();
         }
-    }
+    }*/
 
 }
