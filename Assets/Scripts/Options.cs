@@ -7,10 +7,12 @@ public class Options : MonoBehaviour
 {
     public static int input; //0 = keyboard, 1 = mouse
     Dropdown d;
+    InteractionButton interaction;
 
     private void Awake()
     {
         d = GetComponentInChildren<Dropdown>();
+        interaction = FindObjectOfType<InteractionButton>();
     }
 
     // Start is called before the first frame update
@@ -34,10 +36,12 @@ public class Options : MonoBehaviour
         if(d.value == 0)
         {
             input = 0;
+            interaction.ChangeButtonState();
         }
         else if(d.value == 1)
         {
             input = 1;
+            interaction.ChangeButtonState();
         }
     }
     

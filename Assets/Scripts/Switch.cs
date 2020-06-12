@@ -39,14 +39,16 @@ public class Switch : MonoBehaviour
                 }
                 foreach (Laser laser in controlledLasers)
                 {
-                    if (laser.isLaserActive)
+
+                    laser.LaserActivation();
+                    /*if (laser.isLaserActive)
                     {
                         laser.isLaserActive = false;
                     }
                     else
                     {
                         laser.isLaserActive = true;
-                    }
+                    }*/
                 }
             }
         }

@@ -335,7 +335,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Teleporter_left_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 934521449077711633, guid: 93aaad027258d3b4e985e6c0db5ad5df,
+        type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1174909476261869395, guid: 93aaad027258d3b4e985e6c0db5ad5df, type: 3}
+    - {fileID: 934521449077711633, guid: 93aaad027258d3b4e985e6c0db5ad5df, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 93aaad027258d3b4e985e6c0db5ad5df, type: 3}
 --- !u!1001 &307389105
 PrefabInstance:
