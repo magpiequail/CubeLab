@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8919928263712000049}
   - component: {fileID: 8411945306214464855}
   m_Layer: 0
-  m_Name: Laser_Flipped
+  m_Name: Laser_Flipped_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLaserActive: 1
+  animationName: Electrocuted_Red
 --- !u!60 &8411945306214464855
 PolygonCollider2D:
   m_ObjectHideFlags: 0

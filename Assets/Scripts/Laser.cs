@@ -10,6 +10,7 @@ public class Laser : MonoBehaviour
     //SpriteRenderer laserSprite;
     PolygonCollider2D laserCollider;
     Animator laserAnim;
+    public string animationName;
 
     private void Awake()
     {
@@ -54,7 +55,7 @@ public class Laser : MonoBehaviour
         {
             if (collision.CompareTag("Character"))
             {
-                collision.transform.parent.GetComponentInChildren<Animator>().Play("Electrocuted");
+                collision.transform.parent.GetComponentInChildren<Animator>().Play(animationName);
                 //SceneController.gameState = GameState.GameOver;
             }
         }
