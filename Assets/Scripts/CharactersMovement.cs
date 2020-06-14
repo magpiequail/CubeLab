@@ -39,11 +39,11 @@ public class CharactersMovement : MonoBehaviour
             isInputAllowed = false;
 
         }
-        else
+        else if(!Door.isAllOpen && /*SceneController.gameState != GameState.GameOver && */SceneController.gameState == GameState.Running)
         {
             isInputAllowed = true;
         }
-        if(SceneController.gameState == GameState.GameOver)
+        if(SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
         {
             isInputAllowed = false;
         }
@@ -147,6 +147,11 @@ public class CharactersMovement : MonoBehaviour
     {
         foreach (Character c in charactersArray)
         {
+            c.characterAnim.SetInteger("Direction", 3);
+        }
+        foreach (Character c in charactersArray)
+        {
+            c.characterAnim.SetInteger("Direction", 3);
             if (!c.SWMovement())
             {
                 return false;
@@ -156,6 +161,10 @@ public class CharactersMovement : MonoBehaviour
     }
     bool isAllCharMovedSE()
     {
+        foreach (Character c in charactersArray)
+        {
+            c.characterAnim.SetInteger("Direction", 4);
+        }
         foreach (Character c in charactersArray)
         {
             if (!c.SEMovement())
@@ -169,6 +178,10 @@ public class CharactersMovement : MonoBehaviour
     {
         foreach (Character c in charactersArray)
         {
+            c.characterAnim.SetInteger("Direction", 1);
+        }
+        foreach (Character c in charactersArray)
+        {
             if (!c.NWMovement())
             {
                 return false;
@@ -178,6 +191,10 @@ public class CharactersMovement : MonoBehaviour
     }
     bool isAllCharMovedNE()
     {
+        foreach (Character c in charactersArray)
+        {
+            c.characterAnim.SetInteger("Direction", 2);
+        }
         foreach (Character c in charactersArray)
         {
             if (!c.NEMovement())

@@ -12,13 +12,15 @@ public class Teleporter : MonoBehaviour
     GameObject characterColl;
     public int posX;
     public int posY;
+    Animator teleAnim;
 
-
-
+    public GameObject interactionPrefab;
+    GameObject interactionObj;
+    public string interactionMsg = "사용";
 
     private void Awake()
     {
-
+        teleAnim = GetComponentInChildren<Animator>();
 
     }
 
@@ -38,9 +40,14 @@ public class Teleporter : MonoBehaviour
             ////캐릭터의 플로어 스크립트 변경
             //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
             //캐릭터의 위치 변경
-            characterColl.transform.parent.gameObject.transform.position = otherTele.transform.position;
+
+            //이펙트 재생
+            teleAnim.Play("TeleportSend");
+
+
+            /*characterColl.transform.parent.gameObject.transform.position = otherTele.transform.position;
             characterColl.GetComponentInParent<Character>().currPos = otherTele.transform.position;
-            characterColl.GetComponentInParent<Character>().nextPos = otherTele.transform.position;
+            characterColl.GetComponentInParent<Character>().nextPos = otherTele.transform.position;*/
 
             //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
             // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
@@ -49,6 +56,7 @@ public class Teleporter : MonoBehaviour
         {
             isSpacePressed = false;
         }
+
     }
 
     //private void OnTriggerStay2D(Collider2D other)
@@ -81,7 +89,41 @@ public class Teleporter : MonoBehaviour
         if (collision.tag == "Character")
         {
             isActivated = false;
+            if (GetComponentInChildren<InteractionButton>())
+            {
+                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
+            }
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Character")
+        {
+            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
+            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+        }
+    }
+
+
+
+    //AnimEvent
+    public void CharacterSpriteOn()
+    {
+        characterColl.GetComponentInChildren<SpriteRenderer>().enabled = true;
+    }
+    public void CharacterSpriteOff()
+    {
+        characterColl.GetComponentInChildren<SpriteRenderer>().enabled = false;
+    }
+    public void SendCharacterToOther()
+    {
+        characterColl.transform.position = otherTele.transform.position;
+        characterColl.GetComponent<Character>().currPos = otherTele.transform.position;
+        characterColl.GetComponent<Character>().nextPos = otherTele.transform.position;
+    }
+    public void PlayReceive()
+    {
+        otherTele.GetComponentInChildren<Animator>().Play("TeleportReceive");
     }
 
 }

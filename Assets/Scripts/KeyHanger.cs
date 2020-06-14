@@ -27,7 +27,9 @@ public class KeyHanger : MonoBehaviour
     GameObject characterColl;
     bool isCharOn = false;
 
-
+    public GameObject interactionPrefab;
+    GameObject interactionObj;
+    public string interactionMsg = "사용";
 
     private void Awake()
     {
@@ -46,58 +48,77 @@ public class KeyHanger : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && isCharOn)
         {
+            
             if (hangerState == HangerState.Empty && isRoundKey && !isTriangleKey)
             {
-                characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
-                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
-                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = false;
+                characterColl.GetComponent<Character>().isHavingRoundKey = false;
+                characterColl.GetComponent<Character>().isHavingTriangleKey = false;
+                characterColl.GetComponentInChildren<RoundKey>().sprite.enabled = false;
                 hangerState = HangerState.RoundKey;
+
+                isRoundKey = false;
+                isTriangleKey = false;
             }
             else if (hangerState == HangerState.Empty && isTriangleKey && !isRoundKey)
             {
-                characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
-                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
-                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = false;
+                characterColl.GetComponent<Character>().isHavingRoundKey = false;
+                characterColl.GetComponent<Character>().isHavingTriangleKey = false;
+                characterColl.GetComponentInChildren<TriangleKey>().sprite.enabled = false;
                 hangerState = HangerState.TriangleKey;
+
+                isRoundKey = false;
+                isTriangleKey = false;
             }
             else if (hangerState == HangerState.RoundKey && !isRoundKey && !isTriangleKey)
             {
-                characterColl.GetComponentInParent<Character>().isHavingRoundKey = true;
-                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
-                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = true;
+                characterColl.GetComponent<Character>().isHavingRoundKey = true;
+                characterColl.GetComponent<Character>().isHavingTriangleKey = false;
+                characterColl.GetComponentInChildren<RoundKey>().sprite.enabled = true;
                 hangerState = HangerState.Empty;
+
+                isTriangleKey = false;
+                isRoundKey = true;
             }
             else if (hangerState == HangerState.RoundKey && !isRoundKey && isTriangleKey)
             {
-                characterColl.GetComponentInParent<Character>().isHavingRoundKey = true;
-                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = false;
-                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = true;
-                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = false;
+                characterColl.GetComponent<Character>().isHavingRoundKey = true;
+                characterColl.GetComponent<Character>().isHavingTriangleKey = false;
+                characterColl.GetComponentInChildren<RoundKey>().sprite.enabled = true;
+                characterColl.GetComponentInChildren<TriangleKey>().sprite.enabled = false;
                 hangerState = HangerState.TriangleKey;
+
+                isTriangleKey = false;
+                isRoundKey = true;
             }
             else if (hangerState == HangerState.TriangleKey && !isRoundKey && !isTriangleKey)
             {
-                characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
-                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = true;
-                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = true;
+                characterColl.GetComponent<Character>().isHavingRoundKey = false;
+                characterColl.GetComponent<Character>().isHavingTriangleKey = true;
+                characterColl.GetComponentInChildren<TriangleKey>().sprite.enabled = true;
                 hangerState = HangerState.Empty;
+
+                isRoundKey = false;
+                isTriangleKey = true;
             }
             else if (hangerState == HangerState.TriangleKey && isRoundKey && !isTriangleKey)
             {
-                characterColl.GetComponentInParent<Character>().isHavingRoundKey = false;
-                characterColl.GetComponentInParent<Character>().isHavingTriangleKey = true;
-                characterColl.transform.parent.GetComponentInChildren<RoundKey>().sprite.enabled = false;
-                characterColl.transform.parent.GetComponentInChildren<TriangleKey>().sprite.enabled = true;
+                characterColl.GetComponent<Character>().isHavingRoundKey = false;
+                characterColl.GetComponent<Character>().isHavingTriangleKey = true;
+                characterColl.GetComponentInChildren<RoundKey>().sprite.enabled = false;
+                characterColl.GetComponentInChildren<TriangleKey>().sprite.enabled = true;
                 hangerState = HangerState.RoundKey;
+
+                isRoundKey = false;
+                isTriangleKey = true;
             }
 
             //
-            if (characterColl.transform.parent.GetComponent<Character>().isHavingRoundKey == true)
+            /*if (characterColl.GetComponent<Character>().isHavingRoundKey == true)
             {
                 isTriangleKey = false;
                 isRoundKey = true;
             }
-            else if (characterColl.transform.parent.GetComponent<Character>().isHavingTriangleKey == true)
+            else if (characterColl.GetComponent<Character>().isHavingTriangleKey == true)
             {
                 isRoundKey = false;
                 isTriangleKey = true;
@@ -106,11 +127,27 @@ public class KeyHanger : MonoBehaviour
             {
                 isRoundKey = false;
                 isTriangleKey = false;
-            }
+            }*/
             //
+            /*if (characterColl.GetComponent<Character>().isHavingRoundKey == true)
+            {
+                isTriangleKey = false;
+                isRoundKey = true;
+            }
+            else if (characterColl.GetComponent<Character>().isHavingTriangleKey == true)
+            {
+                isRoundKey = false;
+                isTriangleKey = true;
+            }
+            else
+            {
+                isRoundKey = false;
+                isTriangleKey = false;
+            }*/
 
             ChangeHangerSprite();
         }
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -119,12 +156,13 @@ public class KeyHanger : MonoBehaviour
         {
             isCharOn = true;
             characterColl = collision.gameObject;
-            if (collision.transform.parent.GetComponent<Character>().isHavingRoundKey == true)
+
+            if (characterColl.GetComponent<Character>().isHavingRoundKey == true)
             {
                 isTriangleKey = false;
                 isRoundKey = true;
             }
-            else if (collision.transform.parent.GetComponent<Character>().isHavingTriangleKey == true)
+            else if (characterColl.GetComponent<Character>().isHavingTriangleKey == true)
             {
                 isRoundKey = false;
                 isTriangleKey = true;
@@ -134,8 +172,6 @@ public class KeyHanger : MonoBehaviour
                 isRoundKey = false;
                 isTriangleKey = false;
             }
-
-            Debug.Log("triggerstay called");
         }
 
     }
@@ -144,6 +180,18 @@ public class KeyHanger : MonoBehaviour
         if (collision.tag == "Character")
         {
             isCharOn = false;
+            if (GetComponentInChildren<InteractionButton>())
+            {
+                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Character")
+        {
+            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
+            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
         }
     }
 

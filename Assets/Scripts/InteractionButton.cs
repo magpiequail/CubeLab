@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class InteractionButton : MonoBehaviour
 {
     Button interaction;
-    Text buttonText;
+    public Text buttonText;
+    public string keyInputString = "SPACE";
+    public string mouseInputString;
 
     private void Awake()
     {
@@ -30,12 +32,12 @@ public class InteractionButton : MonoBehaviour
         if (Options.input == 0)
         {
             interaction.interactable = false;
-            buttonText.text = "SPACE";
+            buttonText.text = keyInputString;
         }
         if (Options.input == 1)
         {
             interaction.interactable = true;
-            buttonText.text = "획득";
+            buttonText.text = mouseInputString;
         }
     }
 }

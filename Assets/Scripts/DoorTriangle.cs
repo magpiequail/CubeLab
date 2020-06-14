@@ -6,6 +6,10 @@ public class DoorTriangle : Door
 {
      Animator triDoorAnim;
 
+    public GameObject interactionPrefab;
+    GameObject interactionObj;
+    public string interactionMsg = "사용";
+
     private void Awake()
     {
         isOpened = false;
@@ -33,9 +37,14 @@ public class DoorTriangle : Door
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Character" && collision.GetComponentInParent<Character>().isHavingTriangleKey)
+        if (collision.tag == "Character" /*&& collision.GetComponent<Character>().isHavingTriangleKey*/)
         {
-            isOpened = true;
+            if (collision.GetComponent<Character>().isHavingTriangleKey)
+            {
+                isOpened = true;
+            }
+            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
+            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
 
         }
     }
@@ -44,7 +53,10 @@ public class DoorTriangle : Door
         if (collision.tag == "Character")
         {
             isOpened = false;
-
+            if (GetComponentInChildren<InteractionButton>())
+            {
+                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
+            }
         }
     }
 

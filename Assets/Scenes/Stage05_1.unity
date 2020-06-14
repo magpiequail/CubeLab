@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 4613454617083497876, guid: ace1135be174d7e4c9c98b10c5b70765,
         type: 3}
       propertyPath: delayTillGameOver
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6681205600344148697, guid: ace1135be174d7e4c9c98b10c5b70765,
         type: 3}
@@ -247,8 +247,24 @@ PrefabInstance:
       propertyPath: thirdBattery
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 8895431092840612284, guid: ace1135be174d7e4c9c98b10c5b70765,
+        type: 3}
+      propertyPath: leftCam
+      value: 
+      objectReference: {fileID: 140635676}
+    - target: {fileID: 8895431092840612284, guid: ace1135be174d7e4c9c98b10c5b70765,
+        type: 3}
+      propertyPath: rightCam
+      value: 
+      objectReference: {fileID: 140635676}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ace1135be174d7e4c9c98b10c5b70765, type: 3}
+--- !u!20 &140635676 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2300720172094016766, guid: ace1135be174d7e4c9c98b10c5b70765,
+    type: 3}
+  m_PrefabInstance: {fileID: 140635675}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &181492490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1259508877, guid: ace1135be174d7e4c9c98b10c5b70765,
@@ -385,6 +401,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7508322650398985896, guid: 2e88410aa1560b64ca4559193613a1b5,
+        type: 3}
+      propertyPath: isLaserActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8026495607081896292, guid: 2e88410aa1560b64ca4559193613a1b5,
         type: 3}

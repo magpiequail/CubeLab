@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 842361093630813733}
   - component: {fileID: 842361093630813732}
   m_Layer: 2
-  m_Name: Teleporter_Blue_left
+  m_Name: Teleporter_Blue_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,6 +117,9 @@ MonoBehaviour:
   isActivated: 0
   posX: 2
   posY: 4
+  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+    type: 3}
+  interactionMsg: "\uC0AC\uC6A9"
 --- !u!1 &6103629977296330566
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,13 +131,14 @@ GameObject:
   - component: {fileID: 1150038196286349364}
   - component: {fileID: 5637546187357931521}
   - component: {fileID: 1174909476261869395}
+  - component: {fileID: 4628941821253704302}
   m_Layer: 2
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1150038196286349364
 Transform:
   m_ObjectHideFlags: 0
@@ -143,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6103629977296330566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 842361093630813734}
@@ -185,15 +189,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 905724561
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 2070166501
+  m_SortingLayer: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6556604, g: 0.9744934, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.97, y: 2.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -218,3 +222,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4628941821253704302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103629977296330566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a9356c6b85a584893da5287199cb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

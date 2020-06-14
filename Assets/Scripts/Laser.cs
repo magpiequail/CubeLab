@@ -55,7 +55,8 @@ public class Laser : MonoBehaviour
         {
             if (collision.CompareTag("Character"))
             {
-                collision.transform.parent.GetComponentInChildren<Animator>().Play(animationName);
+                SceneController.gameState = GameState.Died;
+                collision.GetComponentInChildren<Animator>().Play(animationName);
                 //SceneController.gameState = GameState.GameOver;
             }
         }

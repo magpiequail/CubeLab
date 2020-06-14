@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Character : MonoBehaviour
 {
-    Animator characterAnim;
+    public Animator characterAnim;
     bool isUnitMoveAllowed = true;
     bool isInputAllowed = true;
     public bool isHavingRoundKey = false;
@@ -197,8 +197,14 @@ public class Character : MonoBehaviour
         }
         if (Vector3.Distance(transform.position, nextPos) < 0.01f)
         {
+            isUnitMoveAllowed = true;
             currPos = nextPos;
             characterAnim.SetInteger("Idle", 1);
+        }
+        else
+        {
+            isUnitMoveAllowed = false;
+            Debug.Log("unitmove not allowed");
         }
 
 
@@ -355,5 +361,7 @@ tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
             return false;
         }
     }
+
+
 
 }

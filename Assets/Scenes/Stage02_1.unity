@@ -232,8 +232,24 @@ PrefabInstance:
       propertyPath: thirdBattery
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 8895431092840612284, guid: ace1135be174d7e4c9c98b10c5b70765,
+        type: 3}
+      propertyPath: leftCam
+      value: 
+      objectReference: {fileID: 140635676}
+    - target: {fileID: 8895431092840612284, guid: ace1135be174d7e4c9c98b10c5b70765,
+        type: 3}
+      propertyPath: rightCam
+      value: 
+      objectReference: {fileID: 140635676}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ace1135be174d7e4c9c98b10c5b70765, type: 3}
+--- !u!20 &140635676 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2300720172094016766, guid: ace1135be174d7e4c9c98b10c5b70765,
+    type: 3}
+  m_PrefabInstance: {fileID: 140635675}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &181492490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1259508877, guid: ace1135be174d7e4c9c98b10c5b70765,

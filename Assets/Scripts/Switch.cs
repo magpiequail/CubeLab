@@ -10,6 +10,10 @@ public class Switch : MonoBehaviour
     public Sprite sprite1;
     public Sprite sprite2;
 
+    public GameObject interactionPrefab;
+    GameObject interactionObj;
+    public string interactionMsg = "사용";
+
     private void Awake()
     {
         currentSprite = GetComponent<SpriteRenderer>();
@@ -57,10 +61,22 @@ public class Switch : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isSwitchActive = true;
+        if (collision.tag == "Character")
+        {
+            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
+            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         isSwitchActive = false;
+        if (collision.tag == "Character")
+        {
+            if (GetComponentInChildren<InteractionButton>())
+            {
+                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
+            }
+        }
     }
 
 }

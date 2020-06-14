@@ -13,6 +13,10 @@ public class TriangleKey : MonoBehaviour
     GameObject character;
     public Animator effectAnim;
 
+    public GameObject interactionPrefab;
+    GameObject interactionObj;
+    public string interactionMsg = "획득";
+
     private void Awake()
     {
         triangleKeyAnim = GetComponentInChildren<Animator>();
@@ -66,6 +70,15 @@ public class TriangleKey : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Character")
+        {
+            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
+            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Character")
@@ -73,18 +86,27 @@ public class TriangleKey : MonoBehaviour
             isCharOn = true;
             triangleKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            character = other.transform.parent.gameObject;
+            character = other.gameObject;
             
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Character" && !isWithChar)
+        if (collision.tag == "Character" /*&& !isWithChar*/)
         {
-            isCharOn = false;
-            triangleKeyAnim.SetInteger("State", 0);
-            sprite.gameObject.transform.position = originPos;
+            if (!isWithChar)
+            {
+                isCharOn = false;
+                triangleKeyAnim.SetInteger("State", 0);
+                sprite.gameObject.transform.position = originPos;
+            }
+            
+            if (GetComponentInChildren<InteractionButton>())
+            {
+                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
+            }
         }
+
     }
    /*private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -93,7 +115,7 @@ public class TriangleKey : MonoBehaviour
             isCharOn = true;
             triangleKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            character = collision.transform.parent.gameObject;
+            character = collision.gameObject;
             GetKey();
 
         }

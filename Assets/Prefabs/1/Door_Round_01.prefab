@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 905724561
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -8
   m_Sprite: {fileID: 21300000, guid: b61a5aa9b2936bb4eb9304b6d0c9d752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,8 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82506da2416e97c479fabdbcac4c0fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delaySeconds: 1
+  delayTillDoorOpen: 0.5
+  delayTillStageClear: 2
+  delayTillNextStage: 2.5
   isOpened: 1
+  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+    type: 3}
+  interactionMsg: "\uC0AC\uC6A9"
 --- !u!58 &107505662872914265
 CircleCollider2D:
   m_ObjectHideFlags: 0

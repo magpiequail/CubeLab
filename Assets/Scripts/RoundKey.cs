@@ -13,6 +13,10 @@ public class RoundKey : MonoBehaviour
     GameObject character;
     public Animator effectAnim;
 
+    public GameObject interactionPrefab;
+    GameObject interactionObj;
+    public string interactionMsg = "획득";
+
     private void Awake()
     {
         roundKeyAnim = GetComponentInChildren<Animator>();
@@ -62,9 +66,18 @@ public class RoundKey : MonoBehaviour
             gameObject.transform.SetParent(character.transform);
             gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition); //keyPosition not working properly. shifting position with animation
             character.GetComponent<Character>().isHavingRoundKey = true;
+            isCharOn = false;
         }
             
        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Character")
+        {
+            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
+            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -74,17 +87,25 @@ public class RoundKey : MonoBehaviour
             isCharOn = true;
             roundKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            character = other.transform.parent.gameObject;
+            character = other.gameObject;
 
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Character" && !isWithChar)
+        if (collision.tag == "Character" )
         {
-            isCharOn = false;
-            roundKeyAnim.SetInteger("State", 0);
-            sprite.gameObject.transform.position = originPos;
+            if (!isWithChar)
+            {
+                isCharOn = false;
+                roundKeyAnim.SetInteger("State", 0);
+                sprite.gameObject.transform.position = originPos;
+            }
+            if (GetComponentInChildren<InteractionButton>())
+            {
+                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
+            }
+
         }
     }
     /*private void OnTriggerEnter2D(Collider2D collision)
@@ -94,7 +115,7 @@ public class RoundKey : MonoBehaviour
             isCharOn = true;
             roundKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            character = collision.transform.parent.gameObject;
+            character = collision.gameObject;
 
             GetKey();
         }
