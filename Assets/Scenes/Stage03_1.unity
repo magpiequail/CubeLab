@@ -331,6 +331,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator_Up
       objectReference: {fileID: 0}
+    - target: {fileID: 6489002656652045706, guid: 9d4c03b4253c4de4fa647f84e9426ebe,
+        type: 3}
+      propertyPath: otherElevator
+      value: 
+      objectReference: {fileID: 1123641948}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d4c03b4253c4de4fa647f84e9426ebe, type: 3}
 --- !u!1001 &234459983
@@ -405,6 +410,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Elevator_Down
       objectReference: {fileID: 0}
+    - target: {fileID: 8886235729858506308, guid: 4eb7ef7198ec3b749bb0e34ab5076c36,
+        type: 3}
+      propertyPath: otherElevator
+      value: 
+      objectReference: {fileID: 566812769}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eb7ef7198ec3b749bb0e34ab5076c36, type: 3}
 --- !u!1 &307083014 stripped

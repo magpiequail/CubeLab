@@ -20,4 +20,12 @@ public class CharacterAnimEvent : MonoBehaviour
     {
         SceneController.gameState = GameState.GameOver;
     }
+    public void AllowMovement()
+    {
+        CharactersMovement.isInputAllowed = true;
+    }
+    public void DisableMovement()
+    {
+        CharactersMovement.isInputAllowed = false;
+    }
 }

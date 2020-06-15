@@ -103,7 +103,7 @@ public class SceneController : MonoBehaviour
     public void NewGame()
     {
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene("Stage Select");
+        SceneManager.LoadScene("Intro01");
     }
 
     IEnumerator GameOver()
