@@ -39,10 +39,10 @@ public class CharactersMovement : MonoBehaviour
             isInputAllowed = false;
 
         }
-        else if(!Door.isAllOpen && /*SceneController.gameState != GameState.GameOver && */SceneController.gameState == GameState.Running)
-        {
-            isInputAllowed = true;
-        }
+        //else if(!Door.isAllOpen && /*SceneController.gameState != GameState.GameOver && */SceneController.gameState == GameState.Running)
+        //{
+        //    isInputAllowed = true;
+        //}
         if(SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
         {
             isInputAllowed = false;

@@ -207,15 +207,13 @@ public class Character : MonoBehaviour
             Debug.Log("unitmove not allowed");
         }
 
-
-
     }
 
     public bool SWMovement()
     {
         nextPos = new Vector2(currPos.x - gridX, currPos.y - gridY);
         characterAnim.SetInteger("Direction", 3);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
         {
             nextPos = currPos;
             return false;
@@ -239,7 +237,7 @@ public class Character : MonoBehaviour
         nextPos = new Vector2(currPos.x + gridX, currPos.y - gridY);
         characterAnim.SetInteger("Direction", 4);
 
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
         {
             nextPos = currPos;
             return false;
@@ -261,7 +259,7 @@ public class Character : MonoBehaviour
     {
         nextPos = new Vector2(currPos.x - gridX, currPos.y + gridY);
         characterAnim.SetInteger("Direction", 1);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
         {
             nextPos = currPos;
             return false;
@@ -284,7 +282,7 @@ public class Character : MonoBehaviour
     {
         nextPos = new Vector2(currPos.x + gridX, currPos.y + gridY);
         characterAnim.SetInteger("Direction", 2);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
         {
             nextPos = currPos;
             return false;

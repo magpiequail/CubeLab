@@ -81,10 +81,12 @@ public class SceneController : MonoBehaviour
     public void BackToLobby()
     {
         SceneManager.LoadScene("Lobby");
+        CharactersMovement.isInputAllowed = true;
     }
     public void BackToTitle()
     {
         SceneManager.LoadScene("Title");
+        CharactersMovement.isInputAllowed = true;
     }
     public void Restart()
     {

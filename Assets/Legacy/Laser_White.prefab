@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7508322650398985896}
   - component: {fileID: 4229099609689849901}
   m_Layer: 0
-  m_Name: Laser
+  m_Name: Laser_White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLaserActive: 1
+  animationName: 
 --- !u!60 &4229099609689849901
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -92,6 +93,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteSortPoint
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493610441863221570, guid: 9f9c2ac730449ab4684c824e274e6364,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.043137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493610441863221570, guid: 9f9c2ac730449ab4684c824e274e6364,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.19215687
       objectReference: {fileID: 0}
     - target: {fileID: 3493610441863221571, guid: 9f9c2ac730449ab4684c824e274e6364,
         type: 3}

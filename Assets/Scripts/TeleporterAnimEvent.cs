@@ -40,4 +40,15 @@ public class TeleporterAnimEvent : MonoBehaviour
         t.PlayReceive();
     }
 
+    public void AllowMovement()
+    {
+        CharactersMovement.isInputAllowed = true;
+        //Debug.Log("AllowMovement , isInputAllowed = " + CharactersMovement.isInputAllowed);
+
+    }
+    public void DisableMovement()
+    {
+        CharactersMovement.isInputAllowed = false;
+    }
+
 }
