@@ -112,6 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047f905bd5f413c478dd441f6fdfa98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonText: {fileID: 0}
+  keyInputString: SPACE
+  mouseInputString: 
 --- !u!1 &3645496390986071501
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +232,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7088419930025085697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8635268759068965494}
+        m_MethodName: InteractionClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8038494150915657956
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elevator : MonoBehaviour
+public class Elevator : Interactables
 {
     public GameObject otherElevator;
     //public GameObject attachedFloor;
-    bool isSpacePressed = false;
     //bool isCharOn;
     public bool isActivated = false;
     GameObject characterColl;
 
 
-    public GameObject interactionPrefab;
-    GameObject interactionObj;
-    public string interactionMsg = "사용";
 
     private void Awake()
     {
@@ -30,7 +26,7 @@ public class Elevator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isActivated)
+        if (Input.GetKeyDown(KeyCode.Space) /*&& isActivated*/)
         {
             ////캐릭터가 속한 플로어 바꾸기
             //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
@@ -41,17 +37,12 @@ public class Elevator : MonoBehaviour
             //이펙트 재생
 
 
-            characterColl.transform.position = otherElevator.transform.position;
-            characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
-            characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
+            StartInteraction();
 
             //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
             // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
         }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            isSpacePressed = false;
-        }
+
 
     }
 
@@ -72,6 +63,19 @@ public class Elevator : MonoBehaviour
     //    }
 
     //}
+
+    public override void StartInteraction()
+    {
+        base.StartInteraction();
+        if (isActivated)
+        {
+            characterColl.transform.position = otherElevator.transform.position;
+            characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
+            characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
+        }
+        
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Character")
@@ -85,18 +89,14 @@ public class Elevator : MonoBehaviour
         if (collision.tag == "Character")
         {
             isActivated = false;
-            if (GetComponentInChildren<InteractionButton>())
-            {
-                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
-            }
+            HideInteractionUI();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Character")
         {
-            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
-            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+            ShowInteractionUI();
         }
     }
 

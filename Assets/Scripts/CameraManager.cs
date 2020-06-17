@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    float halfScreen;
-    public Camera leftCam;
-    public Camera rightCam;
+    float halfWidth;
+    float halfHeight;
+    public Camera topLeftCam;
+    public Camera bottomLeftCam;
+    public Camera topRightCam;
+    public Camera bottomRightCam;
     public static Camera currentCam;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        halfScreen = Screen.width *0.5f;
-        currentCam = leftCam;
+        halfWidth = Screen.width * 0.5f;
+        halfHeight = Screen.height * 0.5f;
+        //currentCam = leftCam;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-        if (Input.GetMouseButton(0))
+
+        if (Input.GetMouseButtonDown(0))
         {
             DetectCurrentCamera();
 
@@ -38,13 +39,21 @@ public class CameraManager : MonoBehaviour
     }
     private void DetectCurrentCamera()
     {
-        if (Input.mousePosition.x < halfScreen)
+        if (Input.mousePosition.x < halfWidth && Input.mousePosition.y > halfHeight)
         {
-            currentCam = leftCam;
+            currentCam = topLeftCam;
         }
-        else
+        else if(Input.mousePosition.x < halfWidth && Input.mousePosition.y < halfHeight)
         {
-            currentCam = rightCam;
+            currentCam = bottomLeftCam;
+        }
+        else if (Input.mousePosition.x > halfWidth && Input.mousePosition.y > halfHeight)
+        {
+            currentCam = topRightCam;
+        }
+        else if(Input.mousePosition.x > halfWidth && Input.mousePosition.y < halfHeight)
+        {
+            currentCam = bottomRightCam;
         }
     }
     

@@ -6,9 +6,9 @@ public class DoorRound : Door
 {
      Animator roundDoorAnim;
 
-    public GameObject interactionPrefab;
+    /*public GameObject interactionPrefab;
     GameObject interactionObj;
-    public string interactionMsg = "사용";
+    public string interactionMsg = "사용";*/
 
     private void Awake()
     {
@@ -43,9 +43,8 @@ void Start()
             {
                 isOpened = true;
             }
-            
-            interactionObj = Instantiate(interactionPrefab, gameObject.transform);
-            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+
+            ShowInteractionUI();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -53,10 +52,7 @@ void Start()
         if (collision.tag == "Character")
         {
             isOpened = false;
-            if (GetComponentInChildren<InteractionButton>())
-            {
-                Destroy(GetComponentInChildren<InteractionButton>().gameObject);
-            }
+            HideInteractionUI();
         }
     }
 

@@ -40,5 +40,11 @@ public class InteractionButton : MonoBehaviour
             buttonText.text = mouseInputString;
         }
     }
+    public void InteractionClick()
+    {
+        GetComponentInParent<Interactables>().StartInteraction();
+        Debug.Log("Button Clicked");
+    }
+    
 }
 

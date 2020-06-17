@@ -1683,9 +1683,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7165008810461948503}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &2322340475766225321 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4851966515889460222, guid: 03905a5d68a256649a9822687cfb7f8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7165008810461948503}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2414400089246873064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4822956747957985215, guid: 03905a5d68a256649a9822687cfb7f8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7165008810461948503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &8477390828965766322 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1642274024103366373, guid: 03905a5d68a256649a9822687cfb7f8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7165008810461948503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2005339957719442943 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8699652229786980264, guid: 03905a5d68a256649a9822687cfb7f8e,
     type: 3}
   m_PrefabInstance: {fileID: 7165008810461948503}
   m_PrefabAsset: {fileID: 0}
@@ -1702,6 +1720,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3918135498915204628}
     m_Modifications:
+    - target: {fileID: 4676232670409894582, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
+        type: 3}
+      propertyPath: topLeftCam
+      value: 
+      objectReference: {fileID: 2322340475766225321}
+    - target: {fileID: 4676232670409894582, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
+        type: 3}
+      propertyPath: bottomLeftCam
+      value: 
+      objectReference: {fileID: 2322340475766225321}
+    - target: {fileID: 4676232670409894582, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
+        type: 3}
+      propertyPath: topRightCam
+      value: 
+      objectReference: {fileID: 8477390828965766322}
+    - target: {fileID: 4676232670409894582, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
+        type: 3}
+      propertyPath: bottomRightCam
+      value: 
+      objectReference: {fileID: 2005339957719442943}
     - target: {fileID: 5026729243466328649, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
         type: 3}
       propertyPath: delayTillGameOver

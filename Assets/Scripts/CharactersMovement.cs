@@ -12,17 +12,12 @@ public class CharactersMovement : MonoBehaviour
     static public bool isInputAllowed = true;
     Battery b;
 
-    float halfScreen;
-    public Camera leftCam;
-    public Camera rightCam;
-    public static Camera currentCam;
 
     private void Awake()
     {
         charactersArray = FindObjectsOfType<Character>();
         b = FindObjectOfType<Battery>();
         grid = FindObjectOfType<Grid>();
-        halfScreen = Screen.width * 0.5f;
     }
 
     // Start is called before the first frame update
@@ -86,23 +81,23 @@ public class CharactersMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Input.mousePosition.x < halfScreen)
+                /*if (Input.mousePosition.x < halfScreen)
                 {
                     currentCam = leftCam;
                 }
                 else
                 {
                     currentCam = rightCam;
-                }
+                }*/
                 for( int i= 0;i < charactersArray.Length; i++)
                 {
                     charactersArray[i].currentCharPos = grid.WorldToCell(charactersArray[i].gameObject.transform.position);
                     Debug.Log("character" + i + " = " + charactersArray[i].currentCharPos);
                 }
 
-                Debug.Log("current Cam = " + currentCam);
+                Debug.Log("current Cam = " + CameraManager.currentCam);
                 //currentCharPos = grid.WorldToCell(currentChar.transform.position);
-                clickedTilePos = grid.WorldToCell(currentCam.ScreenToWorldPoint(Input.mousePosition));
+                clickedTilePos = grid.WorldToCell(CameraManager.currentCam.ScreenToWorldPoint(Input.mousePosition));
                 tileWorldPos = grid.GetCellCenterWorld(clickedTilePos);
 
                 if (isCheckingNW())

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Door :MonoBehaviour
+public class Door :Interactables
 {
     public float delayTillDoorOpen = 0.5f;
     public float delayTillStageClear=2.0f;
@@ -34,12 +34,25 @@ public class Door :MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        StartCoroutine(Open());
+        if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Open());
+        }
+            
         if (IsAllDoorsOpen())
         {
 
         }
+    }
+
+    public override void StartInteraction()
+    {
+        base.StartInteraction();
+        if(IsAllDoorsOpen() == true)
+        {
+            StartCoroutine(Open());
+        }
+        
     }
 
     private bool IsAllDoorsOpen()
@@ -66,36 +79,34 @@ public class Door :MonoBehaviour
     
     IEnumerator Open()
     {
-        if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.Space))
+
+        isAllOpen = true;
+
+
+
+        yield return new WaitForSeconds(0);
+        foreach (Door doors in doorsArray)
         {
-            isAllOpen = true;
-
-
-
-            yield return new WaitForSeconds(0);
-            foreach(Door doors in doorsArray)
-            {
-                doors.PlayOpenAnim();
-            }
-
-
-            yield return new WaitForSeconds(delayTillStageClear);
-            text.SetActive(true);
-            ShowStars();
-
-            yield return new WaitForSeconds(delayTillNextStage);
-
-
-            Rate();
-            isAllOpen = false;
-            if (SceneManager.GetActiveScene().buildIndex == 6)
-            {
-                SceneManager.LoadScene("Lobby");
-            }
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            
+            doors.PlayOpenAnim();
         }
+
+
+        yield return new WaitForSeconds(delayTillStageClear);
+        text.SetActive(true);
+        ShowStars();
+
+        yield return new WaitForSeconds(delayTillNextStage);
+
+
+        Rate();
+        isAllOpen = false;
+        if (SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            SceneManager.LoadScene("Lobby");
+        }
+        CharactersMovement.isInputAllowed = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
     public void Rate()
     {

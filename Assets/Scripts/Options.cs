@@ -36,11 +36,13 @@ public class Options : MonoBehaviour
         if(d.value == 0)
         {
             input = 0;
-            interaction.ChangeButtonState();
         }
         else if(d.value == 1)
         {
             input = 1;
+        }
+        if (interaction)
+        {
             interaction.ChangeButtonState();
         }
     }

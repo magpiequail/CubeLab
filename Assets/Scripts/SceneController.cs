@@ -80,22 +80,27 @@ public class SceneController : MonoBehaviour
     }
     public void BackToLobby()
     {
+        gameState = GameState.Running;
         SceneManager.LoadScene("Lobby");
         CharactersMovement.isInputAllowed = true;
     }
     public void BackToTitle()
     {
+        gameState = GameState.Running;
         SceneManager.LoadScene("Title");
         CharactersMovement.isInputAllowed = true;
     }
     public void Restart()
     {
+        gameState = GameState.Running;
         Door.isAllOpen = false;
         CharactersMovement.isInputAllowed = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);   
     }
     public void BackToLevelSelect()
     {
+        gameState = GameState.Running;
+        CharactersMovement.isInputAllowed = true;
         SceneManager.LoadScene("Stage Select");
     }
     public void QuitGame()

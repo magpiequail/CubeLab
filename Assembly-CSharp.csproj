@@ -77,11 +77,15 @@
     <Compile Include="Assets\Scripts\Elevator.cs" />
     <Compile Include="Assets\Scripts\GridTest.cs" />
     <Compile Include="Assets\Scripts\InputSettings.cs" />
+    <Compile Include="Assets\Scripts\Interactables.cs" />
     <Compile Include="Assets\Scripts\InteractionButton.cs" />
     <Compile Include="Assets\Scripts\Intro\IntroDoor.cs" />
     <Compile Include="Assets\Scripts\Intro\IntroText.cs" />
     <Compile Include="Assets\Scripts\Intro\LobbyCharacter.cs" />
+    <Compile Include="Assets\Scripts\Key.cs" />
     <Compile Include="Assets\Scripts\KeyHanger.cs" />
+    <Compile Include="Assets\Scripts\KeyRound.cs" />
+    <Compile Include="Assets\Scripts\KeyTriangle.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\Legacy\BlockPath.cs" />
     <Compile Include="Assets\Scripts\Legacy\BlockStat.cs" />
@@ -93,14 +97,12 @@
     <Compile Include="Assets\Scripts\MovementSetting.cs" />
     <Compile Include="Assets\Scripts\Moves.cs" />
     <Compile Include="Assets\Scripts\Options.cs" />
-    <Compile Include="Assets\Scripts\RoundKey.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\SceneInfo.cs" />
     <Compile Include="Assets\Scripts\Switch.cs" />
     <Compile Include="Assets\Scripts\Teleporter.cs" />
     <Compile Include="Assets\Scripts\TeleporterAnimEvent.cs" />
     <Compile Include="Assets\Scripts\TilemapColor.cs" />
-    <Compile Include="Assets\Scripts\TriangleKey.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/CubeLab/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

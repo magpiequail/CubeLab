@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Character : MonoBehaviour
 {
     public Animator characterAnim;
-    bool isUnitMoveAllowed = true;
+    public bool isUnitMoveAllowed = true;
     bool isInputAllowed = true;
     public bool isHavingRoundKey = false;
     public bool isHavingTriangleKey = false;
@@ -211,9 +211,13 @@ public class Character : MonoBehaviour
 
     public bool SWMovement()
     {
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x - gridX, currPos.y - gridY);
         characterAnim.SetInteger("Direction", 3);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
             return false;
@@ -233,11 +237,14 @@ public class Character : MonoBehaviour
     }
     public bool SEMovement()
     {
-
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x + gridX, currPos.y - gridY);
         characterAnim.SetInteger("Direction", 4);
 
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
             return false;
@@ -257,9 +264,13 @@ public class Character : MonoBehaviour
     }
     public bool NWMovement()
     {
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x - gridX, currPos.y + gridY);
         characterAnim.SetInteger("Direction", 1);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) )
         {
             nextPos = currPos;
             return false;
@@ -280,9 +291,13 @@ public class Character : MonoBehaviour
    
     public bool NEMovement()
     {
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x + gridX, currPos.y + gridY);
         characterAnim.SetInteger("Direction", 2);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) || !isUnitMoveAllowed)
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
             return false;

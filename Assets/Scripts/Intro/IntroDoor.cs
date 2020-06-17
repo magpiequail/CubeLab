@@ -43,7 +43,7 @@ public class IntroDoor : MonoBehaviour
         if(collision.tag == "Character")
         {
             isOpen = true;
-            collision.GetComponent<LobbyCharacter>().characterAnim.Play("Idle_NE");
+            collision.GetComponentInParent<LobbyCharacter>().characterAnim.Play("Idle_NE");
         }
         
     }
