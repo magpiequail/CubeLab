@@ -121,7 +121,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1 &290149242
+=======
+--- !u!1 &314879589
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,14 +133,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< Updated upstream
   - component: {fileID: 290149243}
   - component: {fileID: 290149244}
   m_Layer: 0
   m_Name: sunny_happy
+=======
+  - component: {fileID: 314879591}
+  - component: {fileID: 314879590}
+  m_Layer: 0
+  m_Name: bg_win_01
+>>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< Updated upstream
   m_IsActive: 0
 --- !u!4 &290149243
 Transform:
@@ -153,12 +165,20 @@ Transform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &290149244
+=======
+  m_IsActive: 1
+--- !u!212 &314879590
+>>>>>>> Stashed changes
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 290149242}
+=======
+  m_GameObject: {fileID: 314879589}
+>>>>>>> Stashed changes
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -190,6 +210,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
+<<<<<<< Updated upstream
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d661f8b25a6a8a34aa4973874ba9a517, type: 3}
   m_Color: {r: 0.15294118, g: 0.92549026, b: 0.98823535, a: 0.5882353}
@@ -265,17 +286,31 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 1
   m_Size: {x: 2.1, y: 1.61}
+=======
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: b7cb07c840cb2d848af897e98a1234a4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.77, y: 2.39}
+>>>>>>> Stashed changes
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< Updated upstream
 --- !u!4 &335466425
+=======
+--- !u!4 &314879591
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 335466423}
   m_LocalRotation: {x: 0.22286738, y: 0.38551474, z: 0.09663193, w: 0.89015216}
   m_LocalPosition: {x: -1.84, y: 1.389, z: 6.903}
@@ -304,6 +339,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+=======
+  m_GameObject: {fileID: 314879589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.33, y: -0.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> Stashed changes
 --- !u!1001 &361618331
 PrefabInstance:
   m_ObjectHideFlags: 0
