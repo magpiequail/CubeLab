@@ -8,6 +8,7 @@ public enum GameState
 {
     Running,
     Paused,
+    Died,
     GameOver
 }
 
@@ -17,9 +18,10 @@ public class SceneController : MonoBehaviour
     public GameObject gameOver;
     GameObject gameOverUI;
     public float delayTillGameOver = 0.5f;
-    public float delayTillUI = 1.0f;
+    public float delayTillUI = 2.0f;
     bool isGameOver = false;
     GameObject pauseUI;
+
 
 
     private void Awake()
@@ -46,11 +48,21 @@ public class SceneController : MonoBehaviour
         {
             StartCoroutine(GameOver());
         }
-        if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Running)
+        else if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Running)
         {
             gameState = GameState.Paused;
             pauseUI.SetActive(true);
         }
+        else if(gameState == GameState.Paused)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                BackToGame();
+            }
+            CharactersMovement.isInputAllowed = false;
+        }
+
+
         //else if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Paused)
         //{
         //    gameState = GameState.Running;
@@ -63,25 +75,32 @@ public class SceneController : MonoBehaviour
     {
         pauseUI = GameObject.FindGameObjectWithTag("Pause");
         pauseUI.SetActive(false);
+        CharactersMovement.isInputAllowed = true;
         gameState = GameState.Running;
     }
     public void BackToLobby()
     {
+        gameState = GameState.Running;
         SceneManager.LoadScene("Lobby");
+        CharactersMovement.isInputAllowed = true;
     }
     public void BackToTitle()
     {
+        gameState = GameState.Running;
         SceneManager.LoadScene("Title");
+        CharactersMovement.isInputAllowed = true;
     }
     public void Restart()
     {
+        gameState = GameState.Running;
         Door.isAllOpen = false;
         CharactersMovement.isInputAllowed = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);   
     }
     public void BackToLevelSelect()
     {
+        gameState = GameState.Running;
+        CharactersMovement.isInputAllowed = true;
         SceneManager.LoadScene("Stage Select");
     }
     public void QuitGame()
@@ -91,7 +110,7 @@ public class SceneController : MonoBehaviour
     public void NewGame()
     {
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene("Stage Select");
+        SceneManager.LoadScene("Intro01");
     }
 
     IEnumerator GameOver()

@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 
 public class Character : MonoBehaviour
 {
-    Animator characterAnim;
-    bool isUnitMoveAllowed = true;
+    public Animator characterAnim;
+    public bool isUnitMoveAllowed = true;
     bool isInputAllowed = true;
     public bool isHavingRoundKey = false;
     public bool isHavingTriangleKey = false;
@@ -29,6 +29,10 @@ public class Character : MonoBehaviour
     float gridX;
     float gridY;
     public Vector2 currPos;
+    public Vector3Int currentCharPos;
+    Vector3Int clickedTilePos;
+
+    CharactersMovement cm;
 
     public LayerMask accessible;
     TilemapColor tmc;
@@ -42,6 +46,7 @@ public class Character : MonoBehaviour
         currPos = transform.position;
         nextPos = transform.position;
         tmc = FindObjectOfType<TilemapColor>();
+        cm = FindObjectOfType<CharactersMovement>();
     }
 
     // Start is called before the first frame update
@@ -62,8 +67,10 @@ public class Character : MonoBehaviour
     {
         if (Door.isAllOpen)
         {
-            characterAnim.Play("Idle_NE");
+            //characterAnim.Play("Idle_NE");
             characterAnim.SetInteger("Direction", 2);
+            //characterAnim.Play("StageClear");
+            characterAnim.SetTrigger("StageClear");
         }
         else
         {
@@ -185,49 +192,31 @@ public class Character : MonoBehaviour
 
 
         if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
-            {
-                transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
-            }
-            if (Vector3.Distance(transform.position, nextPos) < 0.01f)
-            {
-                currPos = nextPos;
-                characterAnim.SetInteger("Idle", 1);
-            }
-
-        /*if (isInputAllowed)
         {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                SWMovement();
-                //footAnim.Play("Foot_SW");
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                SEMovement();
-                //footAnim.Play("Foot_SE");
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                NWMovement();
-                //footAnim.Play("Foot_NW");
-            }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                NEMovement();
-                //footAnim.Play("Foot_NE");
-            }
-        }*/
-        
-
-
+            transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * Time.deltaTime);
+        }
+        if (Vector3.Distance(transform.position, nextPos) < 0.01f)
+        {
+            isUnitMoveAllowed = true;
+            currPos = nextPos;
+            characterAnim.SetInteger("Idle", 1);
+        }
+        else
+        {
+            isUnitMoveAllowed = false;
+            Debug.Log("unitmove not allowed");
+        }
 
     }
 
     public bool SWMovement()
     {
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x - gridX, currPos.y - gridY);
+        characterAnim.SetInteger("Direction", 3);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -241,15 +230,20 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 3);
-        characterAnim.Play("Walk");
         characterAnim.SetInteger("Idle", 0);
+        characterAnim.Play("Walk");
+        
         return true;
     }
     public bool SEMovement()
     {
-
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x + gridX, currPos.y - gridY);
+        characterAnim.SetInteger("Direction", 4);
+
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -263,15 +257,20 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 4);
-        characterAnim.Play("Walk_SE");
         characterAnim.SetInteger("Idle", 0);
+        characterAnim.Play("Walk_SE");
+
         return true;
     }
     public bool NWMovement()
     {
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x - gridX, currPos.y + gridY);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        characterAnim.SetInteger("Direction", 1);
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) )
         {
             nextPos = currPos;
             return false;
@@ -284,7 +283,7 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 1);
+
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
         return true;
@@ -292,7 +291,12 @@ public class Character : MonoBehaviour
    
     public bool NEMovement()
     {
+        if (!isUnitMoveAllowed)
+        {
+            return false;
+        }
         nextPos = new Vector2(currPos.x + gridX, currPos.y + gridY);
+        characterAnim.SetInteger("Direction", 2);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -306,7 +310,6 @@ public class Character : MonoBehaviour
         //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
         //tmc.tilemap.SetColor(v3Int, (Color.red));
 
-        characterAnim.SetInteger("Direction", 2);
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
         return true;
@@ -325,6 +328,53 @@ tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
 
         }
     }
+
+
+    public bool isCharCanMoveNW()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool isCharCanMoveNE()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x+1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool isCharCanMoveSW()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x -1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool isCharCanMoveSE()
+    {
+        if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y - 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 
 }

@@ -49,6 +49,8 @@ public class Battery : MonoBehaviour
         firstAnim.SetFloat("Percent", firstPercent);
         secondAnim.SetFloat("Percent", secondPercent);
         thirdAnim.SetFloat("Percent", thirdPercent);
+
+        
     }
 
     // Start is called before the first frame update
@@ -61,6 +63,7 @@ public class Battery : MonoBehaviour
         first.text = "" + movesforEmotion;
         second.text = "" + movesforStageClear;
         third.text = "" + movesTillGameover;
+
     }
 
     // Update is called once per frame
@@ -74,16 +77,16 @@ public class Battery : MonoBehaviour
         }
         if(Door.isAllOpen)
         {
-            if (movesforEmotion != 0)
+            if (movesforStageClear == s.secondBattery)
             {
                 stars = 3;
             }
-            else if (movesforEmotion == 0 && movesforStageClear != 0)
+            else if (movesforStageClear >= 0 && movesTillGameover == s.thirdBattery)
             {
                 stars = 2;
 
             }
-            else if (movesforEmotion == 0 && movesforStageClear == 0)
+            else if (movesforStageClear == 0 && movesTillGameover < s.thirdBattery)
             {
                 stars = 1;
             }
@@ -97,7 +100,6 @@ public class Battery : MonoBehaviour
         {
             movesforEmotion -= 1;
             firstPercent =  (float)movesforEmotion/ s.firstBattery;
-            Debug.Log((float)movesforEmotion / s.firstBattery);
         }
         else if(movesforEmotion == 0 && movesforStageClear != 0)
         {

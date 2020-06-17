@@ -6,6 +6,7 @@ public class DoorDefault : Door
 {
     Animator defaultDoorAnim;
 
+
     private void Awake()
     {
         isOpened = false;
@@ -28,6 +29,7 @@ public class DoorDefault : Door
         if (collision.tag == "Character")
         {
             isOpened = true;
+            ShowInteractionUI();
         }
     }
 
@@ -36,6 +38,7 @@ public class DoorDefault : Door
         if (collision.tag == "Character")
         {
             isOpened = false;
+            HideInteractionUI();
         }
     }
 
