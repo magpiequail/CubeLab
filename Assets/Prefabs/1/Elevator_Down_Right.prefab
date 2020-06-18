@@ -61,12 +61,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cdddf46310ebd4a9ff4816798b2c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+    type: 3}
+  interactionObj: {fileID: 0}
+  interactionMsg: "\uC0AC\uC6A9"
   otherElevator: {fileID: 842361093630813752, guid: 9d4c03b4253c4de4fa647f84e9426ebe,
     type: 3}
   isActivated: 0
-  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
-    type: 3}
-  interactionMsg: "\uC0AC\uC6A9"
 --- !u!1 &8496219911219987112
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6146006553006529300}
   - component: {fileID: 3818428170660130572}
+  - component: {fileID: 2666436490770342374}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -148,3 +150,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2666436490770342374
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8496219911219987112}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 96122c11487960c4cbc65a932faf21ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

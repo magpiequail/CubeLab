@@ -29,7 +29,7 @@ public class KeyRound : Key
     // Update is called once per frame
     void Update()
     {
-        if (isCharOn)
+        if (isCharOn && CharactersMovement.isInputAllowed)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

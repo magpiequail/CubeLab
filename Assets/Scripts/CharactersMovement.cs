@@ -42,10 +42,10 @@ public class CharactersMovement : MonoBehaviour
         {
             isInputAllowed = false;
         }
-
-        if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 0)
+       
+        if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 0 && !Input.GetKey(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A) )
             {
                 if (isAllCharMovedNW())
                 {
