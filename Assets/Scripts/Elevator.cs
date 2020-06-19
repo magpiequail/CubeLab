@@ -9,12 +9,14 @@ public class Elevator : Interactables
     //bool isCharOn;
     public bool isActivated = false;
     GameObject characterColl;
+    SpriteRenderer sprite;
 
-
+    Animator elevatorAnim; // state 1 is when it is opening, state 0 is when it is closing, open receive = 2, close receive = 3
 
     private void Awake()
     {
-
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        elevatorAnim = GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update
@@ -26,21 +28,29 @@ public class Elevator : Interactables
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) /*&& isActivated*/)
+        if (!Input.GetKey(KeyCode.A) &&
+            !Input.GetKey(KeyCode.S) &&
+            !Input.GetKey(KeyCode.D) &&
+            !Input.GetKey(KeyCode.W))
         {
-            ////캐릭터가 속한 플로어 바꾸기
-            //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
-            ////캐릭터의 플로어 스크립트 변경
-            //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
-            //캐릭터의 위치 변경
+            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+            {
+                ////캐릭터가 속한 플로어 바꾸기
+                //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
+                ////캐릭터의 플로어 스크립트 변경
+                //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
+                //캐릭터의 위치 변경
 
-            //이펙트 재생
+                //이펙트 재생
 
 
-            StartInteraction();
+                StartInteraction();
 
-            //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
-            // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
+                //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
+                // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
+            }
+
+
         }
 
 
@@ -69,9 +79,18 @@ public class Elevator : Interactables
         base.StartInteraction();
         if (isActivated)
         {
-            characterColl.transform.position = otherElevator.transform.position;
-            characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
-            characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
+            if (sprite.transform.position.x < characterColl.transform.position.x)
+            {
+                characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 1);
+            }
+            else
+            {
+                characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 2);
+            }
+            elevatorAnim.SetInteger("State", 1);
+            //characterColl.transform.position = otherElevator.transform.position;
+            //characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
+            //characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
         }
         
     }
@@ -94,7 +113,7 @@ public class Elevator : Interactables
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Character")
+        if (collision.tag == "Character" && collision.GetComponentInChildren<SpriteRenderer>().enabled)
         {
             ShowInteractionUI();
         }
@@ -116,9 +135,19 @@ public class Elevator : Interactables
         characterColl.transform.position = otherElevator.transform.position;
         characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
         characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
+        characterColl.GetComponentInChildren<Animator>().SetInteger("Direction", 4);
     }
-    public void PlayReceive()
+    public void PlayOpenReceive()
     {
-        otherElevator.GetComponentInChildren<Animator>().Play("TeleportReceive");
+        otherElevator.GetComponentInChildren<Animator>().SetInteger("State",2);
     }
+    public void PlayCloseReceive()
+    {
+        elevatorAnim.SetInteger("State", 3);
+    }
+    public void CloseElevator()
+    {
+        elevatorAnim.SetInteger("State", 0);
+    }
+
 }

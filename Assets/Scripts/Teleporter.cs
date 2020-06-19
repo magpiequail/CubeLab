@@ -33,32 +33,32 @@ public class Teleporter : Interactables
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed)
+        
+        if(!Input.GetKey(KeyCode.A)&&
+            !Input.GetKey(KeyCode.S) &&
+            !Input.GetKey(KeyCode.D) &&
+            !Input.GetKey(KeyCode.W))
         {
-            ////캐릭터가 속한 플로어 바꾸기
-            //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
-            ////캐릭터의 플로어 스크립트 변경
-            //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
-            //캐릭터의 위치 변경
+            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed)
+            {
+                ////캐릭터가 속한 플로어 바꾸기
+                //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
+                ////캐릭터의 플로어 스크립트 변경
+                //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
+                //캐릭터의 위치 변경
 
-            //이펙트 재생
+                //이펙트 재생
 
-            //teleAnim.Play("TeleportSend");
-            StartInteraction();
+                //teleAnim.Play("TeleportSend");
+                StartInteraction();
 
-            /*characterColl.transform.parent.gameObject.transform.position = otherTele.transform.position;
-            characterColl.GetComponentInParent<Character>().currPos = otherTele.transform.position;
-            characterColl.GetComponentInParent<Character>().nextPos = otherTele.transform.position;*/
+                /*characterColl.transform.parent.gameObject.transform.position = otherTele.transform.position;
+                characterColl.GetComponentInParent<Character>().currPos = otherTele.transform.position;
+                characterColl.GetComponentInParent<Character>().nextPos = otherTele.transform.position;*/
 
-            //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
-            // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
-        }
-        else if(Input.GetKeyDown(KeyCode.A)||
-            Input.GetKeyDown(KeyCode.S) ||
-            Input.GetKeyDown(KeyCode.D) ||
-            Input.GetKeyDown(KeyCode.W))
-        {
-
+                //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
+                // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
+            }
         }
 
     }
