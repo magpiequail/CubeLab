@@ -65,8 +65,7 @@ MonoBehaviour:
     type: 3}
   interactionObj: {fileID: 0}
   interactionMsg: "\uC0AC\uC6A9"
-  otherElevator: {fileID: 842361093630813752, guid: 9d4c03b4253c4de4fa647f84e9426ebe,
-    type: 3}
+  otherElevator: {fileID: 0}
   isActivated: 0
 --- !u!1 &8496219911219987112
 GameObject:
@@ -79,6 +78,7 @@ GameObject:
   - component: {fileID: 6146006553006529300}
   - component: {fileID: 3818428170660130572}
   - component: {fileID: 2666436490770342374}
+  - component: {fileID: 5724782531430582054}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -169,3 +169,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5724782531430582054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8496219911219987112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a3584544bb886448362a0e1a5bda28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

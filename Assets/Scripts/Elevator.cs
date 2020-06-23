@@ -125,17 +125,34 @@ public class Elevator : Interactables
     public void CharacterSpriteOn()
     {
         characterColl.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        if (characterColl.GetComponentInChildren<Key>())
+        {
+            characterColl.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        }
+
     }
     public void CharacterSpriteOff()
     {
         characterColl.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        if (characterColl.GetComponentInChildren<Key>())
+        {
+            characterColl.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        }
+
     }
     public void SendCharacterToOther()
     {
         characterColl.transform.position = otherElevator.transform.position;
         characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
         characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
-        characterColl.GetComponentInChildren<Animator>().SetInteger("Direction", 4);
+        if (sprite.transform.position.x < characterColl.transform.position.x)
+        {
+            characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 4);
+        }
+        else
+        {
+            characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 3);
+        }
     }
     public void PlayOpenReceive()
     {

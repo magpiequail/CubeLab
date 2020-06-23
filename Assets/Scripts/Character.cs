@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     public Animator characterAnim;
     public bool isUnitMoveAllowed = true;
     bool isInputAllowed = true;
+    public bool isDeathByLaser = false;
     public bool isHavingRoundKey = false;
     public bool isHavingTriangleKey = false;
    // public GameObject floor;
@@ -55,6 +56,10 @@ public class Character : MonoBehaviour
         //fl = floor.GetComponent<Floor>();
         
         characterAnim = GetComponentInChildren<Animator>();
+        characterAnim.SetInteger("Idle", 1);
+        characterAnim.SetInteger("StageClear", 0);
+        characterAnim.SetInteger("Direction", 3);
+        //characterAnim.Play("Idle_SW");
 
         //transform.position = fl.gridArray[fl.charPosX, fl.charPosY].transform.position;
 
@@ -70,11 +75,15 @@ public class Character : MonoBehaviour
             //characterAnim.Play("Idle_NE");
             characterAnim.SetInteger("Direction", 2);
             //characterAnim.Play("StageClear");
-            characterAnim.SetTrigger("StageClear");
+            characterAnim.SetInteger("StageClear",1);
         }
         else
         {
 
+        }
+        if(SceneController.gameState == GameState.GameOver && isDeathByLaser == false)
+        {
+            characterAnim.Play("GameOver");
         }
 
 
@@ -204,7 +213,6 @@ public class Character : MonoBehaviour
         else
         {
             isUnitMoveAllowed = false;
-            Debug.Log("unitmove not allowed");
         }
 
     }

@@ -39,7 +39,7 @@ public class Teleporter : Interactables
             !Input.GetKey(KeyCode.D) &&
             !Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed)
+            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
             {
                 ////캐릭터가 속한 플로어 바꾸기
                 //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;

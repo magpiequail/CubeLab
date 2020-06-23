@@ -32,7 +32,6 @@ public class CharactersMovement : MonoBehaviour
         if (Door.isAllOpen)
         {
             isInputAllowed = false;
-
         }
         //else if(!Door.isAllOpen && /*SceneController.gameState != GameState.GameOver && */SceneController.gameState == GameState.Running)
         //{

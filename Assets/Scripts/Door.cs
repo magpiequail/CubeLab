@@ -29,6 +29,7 @@ public class Door :Interactables
         stars.gameObject.SetActive(false);
         text.SetActive(false);
         doorsArray = GameObject.FindObjectsOfType<Door>();
+        isAllOpen = false;
     }
 
     // Update is called once per frame
