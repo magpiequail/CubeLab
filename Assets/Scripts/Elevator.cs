@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Elevator : Interactables
 {
     public GameObject otherElevator;
@@ -79,14 +80,14 @@ public class Elevator : Interactables
         base.StartInteraction();
         if (isActivated)
         {
-            if (sprite.transform.position.x < characterColl.transform.position.x)
+            /*if (sprite.transform.position.x < characterColl.transform.position.x)
             {
                 characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 1);
             }
             else
             {
                 characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 2);
-            }
+            }*/
             elevatorAnim.SetInteger("State", 1);
             //characterColl.transform.position = otherElevator.transform.position;
             //characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
@@ -145,14 +146,14 @@ public class Elevator : Interactables
         characterColl.transform.position = otherElevator.transform.position;
         characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
         characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
-        if (sprite.transform.position.x < characterColl.transform.position.x)
+        /*if (sprite.transform.position.x < characterColl.transform.position.x)
         {
             characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 4);
         }
         else
         {
             characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 3);
-        }
+        }*/
     }
     public void PlayOpenReceive()
     {
@@ -165,6 +166,7 @@ public class Elevator : Interactables
     public void CloseElevator()
     {
         elevatorAnim.SetInteger("State", 0);
+        
     }
 
 }
