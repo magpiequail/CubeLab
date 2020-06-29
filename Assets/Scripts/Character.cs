@@ -231,13 +231,6 @@ public class Character : MonoBehaviour
             return false;
         }
 
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
-
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk");
         
@@ -258,13 +251,6 @@ public class Character : MonoBehaviour
             return false;
         }
 
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
-
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SE");
 
@@ -284,14 +270,6 @@ public class Character : MonoBehaviour
             return false;
         }
 
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
-
-
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
         return true;
@@ -310,13 +288,6 @@ public class Character : MonoBehaviour
             nextPos = currPos;
             return false;
         }
-
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
 
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
@@ -338,6 +309,7 @@ tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
     }
 
 
+    //these functions are used for mouse click movement
     public bool isCharCanMoveNW()
     {
         if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))

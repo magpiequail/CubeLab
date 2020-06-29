@@ -129,7 +129,6 @@ GameObject:
   - component: {fileID: 5263819380810694502}
   - component: {fileID: 4032296781756185997}
   - component: {fileID: 3048353807433799662}
-  - component: {fileID: 556381196}
   m_Layer: 10
   m_Name: Tilemap
   m_TagString: Untagged
@@ -743,21 +742,7 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   x: 0
   y: 0
---- !u!114 &556381196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536991339619313931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e8194c28a2e4074991e656c58d28e28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
-  x: 0
-  y: 0
+  currentTileColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!1 &1725007674743201430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1602,7 @@ PrefabInstance:
     - target: {fileID: 4822956747957985215, guid: 2194fc7d9764c714cb1d413b3d7c7033,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -53.1
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 4851966515889460222, guid: 2194fc7d9764c714cb1d413b3d7c7033,
         type: 3}
@@ -1627,7 +1612,7 @@ PrefabInstance:
     - target: {fileID: 4851966515889460223, guid: 2194fc7d9764c714cb1d413b3d7c7033,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -53.1
+      value: -9.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2194fc7d9764c714cb1d413b3d7c7033, type: 3}

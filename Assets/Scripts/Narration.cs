@@ -16,6 +16,8 @@ public enum Narrate
 public class Narration : MonoBehaviour
 {
     public GameObject subtitle;
+
+    [TextArea(3,10)]
     public string[] sentences;
     public float[] forHowLong;
     public string whenSucceeded;
@@ -88,7 +90,9 @@ public class Narration : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Stage Select")
             {
                 memoryPlaying.SetActive(false);
+                subtitle.SetActive(true);
             }
+            index = 0;
         }
 
         if (isThisSceneStage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex + "stars") == 0)

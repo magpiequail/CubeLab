@@ -1392,6 +1392,7 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   x: 0
   y: 0
+  currentTileColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!1 &8696146913963200034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,6 +1741,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5017464962312749165, guid: 05558bb6753680a48b7ba35e77d49d85,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017464963640850845, guid: 05558bb6753680a48b7ba35e77d49d85,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -490
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017464963640850845, guid: 05558bb6753680a48b7ba35e77d49d85,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7877633727504156628, guid: 05558bb6753680a48b7ba35e77d49d85,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1913,37 +1929,37 @@ PrefabInstance:
     - target: {fileID: 4822956747957985215, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4822956747957985215, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4822956747957985215, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 4851966515889460222, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: orthographic size
-      value: 5.83
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4851966515889460223, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4851966515889460223, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4851966515889460223, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 8672079188711530761, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
@@ -1958,17 +1974,17 @@ PrefabInstance:
     - target: {fileID: 8960865201889711563, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8960865201889711563, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.75
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 8960865201889711563, guid: 03905a5d68a256649a9822687cfb7f8e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03905a5d68a256649a9822687cfb7f8e, type: 3}

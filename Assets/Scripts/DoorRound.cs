@@ -33,6 +33,10 @@ void Start()
         {
             roundDoorAnim.SetInteger("Open", 0);
         }
+        if (isAllOpen)
+        {
+            roundDoorAnim.SetInteger("Open", 2);
+        }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,6 +64,7 @@ void Start()
     {
         base.PlayOpenAnim();
         roundDoorAnim.SetInteger("Open", 2);
+        Debug.Log("PlayOpenAnim Called");
     }
 
 }

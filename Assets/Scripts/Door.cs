@@ -28,7 +28,7 @@ public class Door :Interactables
     {
         stars.gameObject.SetActive(false);
         text.SetActive(false);
-        doorsArray = GameObject.FindObjectsOfType<Door>();
+        doorsArray = FindObjectsOfType<Door>();
         isAllOpen = false;
     }
 
@@ -40,7 +40,7 @@ public class Door :Interactables
             StartCoroutine(Open());
         }
             
-        if (IsAllDoorsOpen())
+        if (isAllOpen)
         {
 
         }
@@ -86,9 +86,11 @@ public class Door :Interactables
 
 
         yield return new WaitForSeconds(0);
-        foreach (Door doors in doorsArray)
+        //for doesn't work here, use foreach instead
+        //foreach not working all the time
+        for(int i = 0;i<doorsArray.Length;i ++)
         {
-            doors.PlayOpenAnim();
+            doorsArray[i].PlayOpenAnim();
         }
 
 
@@ -101,9 +103,9 @@ public class Door :Interactables
 
         Rate();
         isAllOpen = false;
-        if (SceneManager.GetActiveScene().buildIndex == 6)
+        if (SceneManager.GetActiveScene().buildIndex == 20)
         {
-            SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene("Stage Select");
         }
         CharactersMovement.isInputAllowed = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
