@@ -5,7 +5,7 @@ using UnityEngine;
 public class Switch : Interactables
 {
     public Laser[] controlledLasers;
-    bool isSwitchActive = false;
+    //bool isSwitchActive = false;
     SpriteRenderer currentSprite;
     public Sprite sprite1;
     public Sprite sprite2;
@@ -15,6 +15,7 @@ public class Switch : Interactables
     {
         currentSprite = GetComponent<SpriteRenderer>();
         currentSprite.sprite = sprite1;
+        isActivated = false;
     }
 
     // Start is called before the first frame update
@@ -37,7 +38,7 @@ public class Switch : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
-        if (isSwitchActive)
+        if (isActivated && CharactersMovement.isInputAllowed)
         {
             if (currentSprite.sprite == sprite1)
             {
@@ -57,7 +58,7 @@ public class Switch : Interactables
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isSwitchActive = true;
+        isActivated = true;
         if (collision.tag == "Character")
         {
             ShowInteractionUI();
@@ -65,7 +66,7 @@ public class Switch : Interactables
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isSwitchActive = false;
+        isActivated = false;
         if (collision.tag == "Character")
         {
             HideInteractionUI();

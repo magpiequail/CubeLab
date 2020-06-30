@@ -25,10 +25,12 @@ public class Options : MonoBehaviour
         if(PlayerPrefs.GetInt("OptionValue") == 0)
         {
             d.value = 0;
+            input = 0;
         }
         else
         {
             d.value = 1;
+            input = 1;
         }
     }
 

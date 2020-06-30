@@ -8,7 +8,7 @@ public class Elevator : Interactables
     public GameObject otherElevator;
     //public GameObject attachedFloor;
     //bool isCharOn;
-    public bool isActivated = false;
+    //public bool isActivated = false;
     GameObject characterColl;
     SpriteRenderer sprite;
 
@@ -18,6 +18,7 @@ public class Elevator : Interactables
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
         elevatorAnim = GetComponentInChildren<Animator>();
+        isActivated = false;
     }
 
     // Start is called before the first frame update
@@ -78,7 +79,7 @@ public class Elevator : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
-        if (isActivated)
+        if (isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
             if (sprite.transform.position.x < characterColl.transform.position.x)
             {

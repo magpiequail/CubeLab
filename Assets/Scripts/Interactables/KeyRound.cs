@@ -9,7 +9,6 @@ public class KeyRound : Key
     Vector2 originPos;
     public SpriteRenderer sprite;
     bool isWithChar = false;
-    bool isCharOn=false;
     GameObject character;
     public Animator effectAnim;
 
@@ -19,6 +18,7 @@ public class KeyRound : Key
         roundKeyAnim = GetComponentInChildren<Animator>();
         originPos = transform.position;
         sprite = GetComponentInChildren<SpriteRenderer>();
+        isActivated = false;
     }
 
     // Start is called before the first frame update
@@ -34,7 +34,7 @@ public class KeyRound : Key
             !Input.GetKey(KeyCode.D) &&
             !Input.GetKey(KeyCode.W))
         {
-            if (isCharOn && CharactersMovement.isInputAllowed)
+            if (isActivated && CharactersMovement.isInputAllowed)
             {
                 if (Input.GetKeyDown(KeyCode.Space) )
                 {
@@ -69,11 +69,21 @@ public class KeyRound : Key
             //currently position is controlled by animation
             //gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition); //keyPosition not working properly. shifting position with animation
             character.GetComponent<Character>().isHavingRoundKey = true;
-            isCharOn = false;
+            isActivated = false;
         }
             
        
     }
+
+    public override void StartInteraction()
+    {
+        base.StartInteraction();
+        if (isActivated && CharactersMovement.isInputAllowed)
+        {
+            GetKey();
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Character")
@@ -86,7 +96,7 @@ public class KeyRound : Key
     {
         if (other.tag == "Character")
         {
-            isCharOn = true;
+            isActivated = true;
             roundKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
             character = other.gameObject;
@@ -99,7 +109,7 @@ public class KeyRound : Key
         {
             if (!isWithChar)
             {
-                isCharOn = false;
+                isActivated = false;
                 roundKeyAnim.SetInteger("State", 0);
                 sprite.gameObject.transform.position = originPos;
             }
@@ -111,7 +121,7 @@ public class KeyRound : Key
     {
         if(collision.tag == "Character")
         {
-            isCharOn = true;
+            isActivated = true;
             roundKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
             character = collision.gameObject;

@@ -9,7 +9,7 @@ public class KeyTriangle : Key
     bool isWithChar = false;
     Vector2 originPos;
     public SpriteRenderer sprite;
-    bool isCharOn = false;
+    //bool isCharOn = false;
     GameObject character;
     public Animator effectAnim;
 
@@ -19,6 +19,7 @@ public class KeyTriangle : Key
         triangleKeyAnim = GetComponentInChildren<Animator>();
         originPos = transform.position;
         sprite = GetComponentInChildren<SpriteRenderer>();
+        isActivated = false;
     }
 
     // Start is called before the first frame update
@@ -35,7 +36,7 @@ public class KeyTriangle : Key
             !Input.GetKey(KeyCode.D) &&
             !Input.GetKey(KeyCode.W))
         {
-            if (isCharOn && CharactersMovement.isInputAllowed)
+            if (isActivated && CharactersMovement.isInputAllowed)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -68,9 +69,18 @@ public class KeyTriangle : Key
             //currently the position of this key is controlled by animation
             //gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
             character.GetComponent<Character>().isHavingTriangleKey = true;
-            isCharOn = false;
+            isActivated = false;
         }
 
+    }
+
+    public override void StartInteraction()
+    {
+        base.StartInteraction();
+        if (isActivated && CharactersMovement.isInputAllowed)
+        {
+            GetKey();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -85,7 +95,7 @@ public class KeyTriangle : Key
     {
         if (other.tag == "Character")
         {
-            isCharOn = true;
+            isActivated = true;
             triangleKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
             character = other.gameObject;
@@ -98,7 +108,7 @@ public class KeyTriangle : Key
         {
             if (!isWithChar)
             {
-                isCharOn = false;
+                isActivated = false;
                 triangleKeyAnim.SetInteger("State", 0);
                 sprite.gameObject.transform.position = originPos;
             }

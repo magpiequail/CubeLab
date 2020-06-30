@@ -7,7 +7,7 @@ public class Teleporter : Interactables
     public GameObject otherTele;
     //public GameObject attachedFloor;
     //bool isCharOn;
-    public bool isActivated = false;
+    //public bool isActivated = false;
     GameObject characterColl;
     public int posX;
     public int posY;
@@ -66,14 +66,17 @@ public class Teleporter : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
-        for(int i = 0; i < teleArray.Length; i++)
+        if(characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
-            if (teleArray[i].isActivated)
+            for (int i = 0; i < teleArray.Length; i++)
             {
-                teleAnim.Play("TeleportSend");
+                if (teleArray[i].isActivated)
+                {
+                    teleAnim.Play("TeleportSend");
+                }
             }
         }
-        
+
         //otherTele.GetComponent<Teleporter>().teleAnim.Play("TeleportSend");
     }
 

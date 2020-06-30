@@ -52,6 +52,7 @@ public class Door :Interactables
         if(IsAllDoorsOpen() == true)
         {
             StartCoroutine(Open());
+            Debug.Log("start interaction called");
         }
         
     }
@@ -62,13 +63,16 @@ public class Door :Interactables
         {
             if (doorsArray[i].isOpened == false)
             {
+                isActivated = false;
                 return false;
             }
         }
         if (doorsArray.Length == 0)
         {
+            
             return false;
         }
+        isActivated = true;
         return true;
     }
 

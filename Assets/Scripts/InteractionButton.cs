@@ -9,6 +9,7 @@ public class InteractionButton : MonoBehaviour
     public Text buttonText;
     public string keyInputString = "SPACE";
     public string mouseInputString;
+    Interactables[] interactablesArray;
 
     private void Awake()
     {
@@ -25,7 +26,8 @@ public class InteractionButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ChangeButtonState();
+        GetComponent<Canvas>().worldCamera = CameraManager.currentCam;
     }
     public void ChangeButtonState()
     {
@@ -42,9 +44,18 @@ public class InteractionButton : MonoBehaviour
     }
     public void InteractionClick()
     {
-        GetComponentInParent<Interactables>().StartInteraction();
+        interactablesArray = FindObjectsOfType<Interactables>();
+        for(int i = 0; i < interactablesArray.Length; i++)
+        {
+            if (interactablesArray[i].isActivated)
+            {
+                interactablesArray[i].StartInteraction();
+            }
+        }
+        //GetComponentInParent<Interactables>().StartInteraction();
         Debug.Log("Button Clicked");
     }
+
     
 }
 

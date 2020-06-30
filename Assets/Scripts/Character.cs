@@ -295,7 +295,7 @@ public class Character : MonoBehaviour
     }
 
     //this function is not being used
-    void GetTile()
+    /*void GetTile()
     {
         tmc.tilemap.RefreshAllTiles();
         
@@ -304,11 +304,11 @@ public class Character : MonoBehaviour
         Debug.DrawRay(worldPoint, transform.forward * 10, Color.red, 0.3f);
         if (hit)
         {
-tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
+        tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
         tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
 
         }
-    }
+    }*/
 
 
     //these functions are used for mouse click movement

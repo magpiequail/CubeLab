@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 842361093630813733}
   - component: {fileID: 842361093630813732}
   m_Layer: 2
-  m_Name: Teleporter_Blue_Left
+  m_Name: Teleporter_Blue_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,10 +116,10 @@ MonoBehaviour:
   interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
     type: 3}
   interactionObj: {fileID: 0}
+  isActivated: 0
   interactionMsg: "\uC0AC\uC6A9"
   otherTele: {fileID: 842361093630813752, guid: 445e59c268d92ae4ebf4bf3867000fcf,
     type: 3}
-  isActivated: 0
   posX: 2
   posY: 4
   teleAnim: {fileID: 0}
