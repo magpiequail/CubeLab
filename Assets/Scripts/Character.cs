@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     public Animator characterAnim;
     public bool isUnitMoveAllowed = true;
     bool isInputAllowed = true;
+    public bool isDeathByLaser = false;
     public bool isHavingRoundKey = false;
     public bool isHavingTriangleKey = false;
    // public GameObject floor;
@@ -55,6 +56,10 @@ public class Character : MonoBehaviour
         //fl = floor.GetComponent<Floor>();
         
         characterAnim = GetComponentInChildren<Animator>();
+        characterAnim.SetInteger("Idle", 1);
+        characterAnim.SetInteger("StageClear", 0);
+        characterAnim.SetInteger("Direction", 3);
+        //characterAnim.Play("Idle_SW");
 
         //transform.position = fl.gridArray[fl.charPosX, fl.charPosY].transform.position;
 
@@ -70,11 +75,15 @@ public class Character : MonoBehaviour
             //characterAnim.Play("Idle_NE");
             characterAnim.SetInteger("Direction", 2);
             //characterAnim.Play("StageClear");
-            characterAnim.SetTrigger("StageClear");
+            characterAnim.SetInteger("StageClear",1);
         }
         else
         {
 
+        }
+        if(SceneController.gameState == GameState.GameOver && isDeathByLaser == false)
+        {
+            characterAnim.Play("GameOver");
         }
 
 
@@ -204,7 +213,6 @@ public class Character : MonoBehaviour
         else
         {
             isUnitMoveAllowed = false;
-            Debug.Log("unitmove not allowed");
         }
 
     }
@@ -222,13 +230,6 @@ public class Character : MonoBehaviour
             nextPos = currPos;
             return false;
         }
-
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
 
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk");
@@ -250,13 +251,6 @@ public class Character : MonoBehaviour
             return false;
         }
 
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
-
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SE");
 
@@ -275,14 +269,6 @@ public class Character : MonoBehaviour
             nextPos = currPos;
             return false;
         }
-
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
-
 
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
@@ -303,18 +289,13 @@ public class Character : MonoBehaviour
             return false;
         }
 
-        //tmc.tilemap.RefreshAllTiles();
-        //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-        //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-        //Vector3Int v3Int = new Vector3Int(tmc.x, tmc.x, 0);
-        //tmc.tilemap.SetTileFlags(v3Int, TileFlags.None);
-        //tmc.tilemap.SetColor(v3Int, (Color.red));
-
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
         return true;
     }
-    void GetTile()
+
+    //this function is not being used
+    /*void GetTile()
     {
         tmc.tilemap.RefreshAllTiles();
         
@@ -323,13 +304,14 @@ public class Character : MonoBehaviour
         Debug.DrawRay(worldPoint, transform.forward * 10, Color.red, 0.3f);
         if (hit)
         {
-tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
+        tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
         tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
 
         }
-    }
+    }*/
 
 
+    //these functions are used for mouse click movement
     public bool isCharCanMoveNW()
     {
         if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))

@@ -55,7 +55,13 @@ public class Laser : MonoBehaviour
         {
             if (collision.CompareTag("Character"))
             {
+                collision.GetComponent<Character>().isDeathByLaser = true;
                 SceneController.gameState = GameState.Died;
+                
+                /*foreach(Character c in FindObjectsOfType<Character>())
+                {
+                    c.characterAnim.Play("GameOver");
+                }*/
                 collision.GetComponentInChildren<Animator>().Play(animationName);
                 //SceneController.gameState = GameState.GameOver;
             }

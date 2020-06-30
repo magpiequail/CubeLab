@@ -38,12 +38,17 @@ public class IntroDoor : MonoBehaviour
             StartCoroutine(OpenIntroDoor());
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Character")
         {
             isOpen = true;
             collision.GetComponentInParent<LobbyCharacter>().characterAnim.Play("Idle_NE");
+            if(collision.GetComponentInParent<LobbyCharacter>().nextPos == collision.GetComponentInParent<LobbyCharacter>().currPos)
+            {
+                LobbyCharacter.isInputAllowed = false;
+            }
+
         }
         
     }
@@ -59,7 +64,7 @@ public class IntroDoor : MonoBehaviour
         
 
         yield return new WaitForSeconds(waitTillNextScene);
-        SceneManager.LoadScene("Stage Select");
+        SceneManager.LoadScene("Lobby");
 
     }
 }

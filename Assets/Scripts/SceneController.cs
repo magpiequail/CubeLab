@@ -39,6 +39,7 @@ public class SceneController : MonoBehaviour
     {
         gameOver.SetActive(false);
         pauseUI.SetActive(false);
+        CharactersMovement.isInputAllowed = true;
     }
 
     // Update is called once per frame
@@ -55,13 +56,13 @@ public class SceneController : MonoBehaviour
         }
         else if(gameState == GameState.Paused)
         {
+            CharactersMovement.isInputAllowed = false;
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 BackToGame();
             }
-            CharactersMovement.isInputAllowed = false;
+            
         }
-
 
         //else if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Paused)
         //{
@@ -95,7 +96,8 @@ public class SceneController : MonoBehaviour
         gameState = GameState.Running;
         Door.isAllOpen = false;
         CharactersMovement.isInputAllowed = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);   
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
     public void BackToLevelSelect()
     {

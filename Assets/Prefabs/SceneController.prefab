@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5026729243466328649}
   - component: {fileID: -92846712665676191}
   - component: {fileID: 4676232670409894582}
+  - component: {fileID: 1144692805348646661}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -94,3 +95,22 @@ MonoBehaviour:
   bottomLeftCam: {fileID: 0}
   topRightCam: {fileID: 0}
   bottomRightCam: {fileID: 0}
+--- !u!114 &1144692805348646661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8502901378559333914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8eb935d16de9d44592bdf11294cd9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitle: {fileID: 0}
+  sentences: []
+  forHowLong: []
+  whenSucceeded: 
+  whenFailed: 
+  howToConvey: 0
+  memoryPlaying: {fileID: 0}

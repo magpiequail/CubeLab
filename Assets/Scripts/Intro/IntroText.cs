@@ -29,7 +29,8 @@ public class IntroText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        index = 0;
+        LobbyCharacter.isInputAllowed = false;
     }
 
     // Update is called once per frame
@@ -37,6 +38,7 @@ public class IntroText : MonoBehaviour
     {
         if(index < sentences.Length)
         {
+            LobbyCharacter.isInputAllowed = false;
             if (Input.GetKeyDown(KeyCode.Space) && state == 0 && index < 7)
             {
                 index++;
@@ -59,6 +61,15 @@ public class IntroText : MonoBehaviour
         if (index > sentences.Length)
         {
             
+        }
+        if(index == sentences.Length - 1)
+        {
+            LobbyCharacter.isInputAllowed = true;
+            keysImg.enabled = true;
+        }
+        else
+        {
+            LobbyCharacter.isInputAllowed = false;
         }
         /*else if (state == 2)     
         {

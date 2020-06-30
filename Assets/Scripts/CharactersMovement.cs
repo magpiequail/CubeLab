@@ -8,6 +8,7 @@ public class CharactersMovement : MonoBehaviour
     Grid grid;
     public Vector3 tileWorldPos;
     public Vector3Int clickedTilePos;
+    TilemapColor tmc;
 
     static public bool isInputAllowed = true;
     Battery b;
@@ -18,6 +19,7 @@ public class CharactersMovement : MonoBehaviour
         charactersArray = FindObjectsOfType<Character>();
         b = FindObjectOfType<Battery>();
         grid = FindObjectOfType<Grid>();
+        tmc = FindObjectOfType<TilemapColor>();
     }
 
     // Start is called before the first frame update
@@ -32,7 +34,6 @@ public class CharactersMovement : MonoBehaviour
         if (Door.isAllOpen)
         {
             isInputAllowed = false;
-
         }
         //else if(!Door.isAllOpen && /*SceneController.gameState != GameState.GameOver && */SceneController.gameState == GameState.Running)
         //{
@@ -47,6 +48,7 @@ public class CharactersMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A) )
             {
+                tmc.ColorTiles();
                 if (isAllCharMovedNW())
                 {
                     b.MinusOneMove();
@@ -55,6 +57,7 @@ public class CharactersMovement : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
+                tmc.ColorTiles();
                 if (isAllCharMovedSW())
                 {
                     b.MinusOneMove();
@@ -63,6 +66,7 @@ public class CharactersMovement : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.W))
             {
+                tmc.ColorTiles();
                 if (isAllCharMovedNE())
                 {
                     b.MinusOneMove();
@@ -70,6 +74,7 @@ public class CharactersMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
+                tmc.ColorTiles();
                 if (isAllCharMovedSE())
                 {
                     b.MinusOneMove();
@@ -81,14 +86,7 @@ public class CharactersMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                /*if (Input.mousePosition.x < halfScreen)
-                {
-                    currentCam = leftCam;
-                }
-                else
-                {
-                    currentCam = rightCam;
-                }*/
+                
                 for( int i= 0;i < charactersArray.Length; i++)
                 {
                     charactersArray[i].currentCharPos = grid.WorldToCell(charactersArray[i].gameObject.transform.position);
@@ -99,6 +97,8 @@ public class CharactersMovement : MonoBehaviour
                 //currentCharPos = grid.WorldToCell(currentChar.transform.position);
                 clickedTilePos = grid.WorldToCell(CameraManager.currentCam.ScreenToWorldPoint(Input.mousePosition));
                 tileWorldPos = grid.GetCellCenterWorld(clickedTilePos);
+
+                tmc.ColorTiles();
 
                 if (isCheckingNW())
                 {
@@ -133,7 +133,6 @@ public class CharactersMovement : MonoBehaviour
                     b.MinusOneMove();
                 }
 
-                //Debug.Log("clickedTilePos = " + clickedTilePos + "currentCharPos = " + currentCharPos);
             }
         }
     }
@@ -200,7 +199,7 @@ public class CharactersMovement : MonoBehaviour
         return true;
     }
 
-    ////////////////////
+    //for mouse click movement
     bool isCheckingNW()
     {
         foreach (Character c in charactersArray)

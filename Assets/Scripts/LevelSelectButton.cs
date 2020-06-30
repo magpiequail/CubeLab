@@ -12,6 +12,7 @@ public class LevelSelectButton : MonoBehaviour
     public Sprite twoStars;
     public Sprite threeStars;
 
+
     private void Awake()
     {
         image = GetComponent<Image>();
@@ -20,7 +21,7 @@ public class LevelSelectButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.GetInt("" + buildIndex + "stars");
+        //PlayerPrefs.GetInt("" + buildIndex + "stars");
         if (PlayerPrefs.GetInt("" + buildIndex + "stars" )== 1)
         {
             image.sprite = oneStar;
@@ -38,12 +39,15 @@ public class LevelSelectButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerPrefs.GetInt("" + buildIndex + "stars");
         
     }
     
     public void ButtonClicked()
     {
         SceneManager.LoadScene(buildIndex);
+    }
+    public int GetStar()
+    {
+        return PlayerPrefs.GetInt("" + buildIndex + "stars");
     }
 }

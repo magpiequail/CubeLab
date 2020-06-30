@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LobbyCharacter : MonoBehaviour
 {
     public Animator characterAnim;
     bool isUnitMoveAllowed = true;
     public static bool isInputAllowed = true;
+
 
     // public GameObject floor;
 
@@ -46,23 +48,28 @@ public class LobbyCharacter : MonoBehaviour
 
         cm = FindObjectOfType<CharactersMovement>();
         it = FindObjectOfType<IntroText>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         characterAnim = GetComponentInChildren<Animator>();
+        characterAnim.SetInteger("Idle", 1);
+        isInputAllowed = true;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IntroText.state ==2)
+        
+        if (SceneManager.GetActiveScene().name == "Intro01" && Input.GetKeyDown(KeyCode.Space) && IntroText.state ==2)
         {
             characterAnim.SetTrigger("GetUp");
             it.getUp.enabled = false;
-            it.keysImg.enabled = true;
+            //it.keysImg.enabled = true;
+            characterAnim.SetInteger("Idle", 1);
         }
         if (isInputAllowed)
         {
