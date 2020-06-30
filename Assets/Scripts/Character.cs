@@ -293,6 +293,8 @@ public class Character : MonoBehaviour
         characterAnim.SetInteger("Idle", 0);
         return true;
     }
+
+    //this function is not being used
     void GetTile()
     {
         tmc.tilemap.RefreshAllTiles();

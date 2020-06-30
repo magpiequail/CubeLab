@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnim: {fileID: 0}
+  isUnitMoveAllowed: 1
+  isDeathByLaser: 0
   isHavingRoundKey: 0
   isHavingTriangleKey: 0
   rows: 5
@@ -236,9 +238,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2070166501
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c770c69296eab084da44ca7dc05d12d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62d6df27d0db0e9499c25e78ce6a8d9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
