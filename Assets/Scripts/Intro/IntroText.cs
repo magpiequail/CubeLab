@@ -10,7 +10,7 @@ public class IntroText : MonoBehaviour
     public static int state = 0;
     public GameObject timeline;
     Image subtitleImg;
-    public Image keysImg;
+    public GameObject optionButton;
     public Image getUp;
     
 
@@ -22,7 +22,7 @@ public class IntroText : MonoBehaviour
         currentText = GetComponent<Text>();
         timeline.SetActive(false);
         subtitleImg = GetComponentInParent<Image>();
-        keysImg.enabled = false;
+        optionButton.SetActive(false);
         getUp.enabled = false;
     }
 
@@ -30,7 +30,7 @@ public class IntroText : MonoBehaviour
     void Start()
     {
         index = 0;
-        LobbyCharacter.isInputAllowed = false;
+        IntroCharacter.isInputAllowed = false;
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class IntroText : MonoBehaviour
     {
         if(index < sentences.Length)
         {
-            LobbyCharacter.isInputAllowed = false;
+
             if (Input.GetKeyDown(KeyCode.Space) && state == 0 && index < 7)
             {
                 index++;
@@ -64,12 +64,12 @@ public class IntroText : MonoBehaviour
         }
         if(index == sentences.Length - 1)
         {
-            LobbyCharacter.isInputAllowed = true;
-            keysImg.enabled = true;
+            IntroCharacter.isInputAllowed = true;
+            optionButton.SetActive(true);
         }
         else
         {
-            LobbyCharacter.isInputAllowed = false;
+            IntroCharacter.isInputAllowed = false;
         }
         /*else if (state == 2)     
         {
@@ -84,16 +84,12 @@ public class IntroText : MonoBehaviour
         currentText.text = sentences[index];
     }
 
-    IEnumerator Monologue()
+    public void SkipIntro()
     {
-        for(index = 8; index < sentences.Length; index++)
-        {
-            yield return new WaitForSeconds(delayBetweenLine);
-
-        }
-        
 
     }
+
+    
     IEnumerator StateTwo(float sec)
     {
         yield return new WaitForSeconds(sec);

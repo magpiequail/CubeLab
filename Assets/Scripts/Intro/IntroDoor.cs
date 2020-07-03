@@ -33,7 +33,6 @@ public class IntroDoor : MonoBehaviour
     {
         if (isOpen)
         {
-            //LobbyCharacter.isInputAllowed = false;
 
             StartCoroutine(OpenIntroDoor());
         }
@@ -43,10 +42,10 @@ public class IntroDoor : MonoBehaviour
         if(collision.tag == "Character")
         {
             isOpen = true;
-            collision.GetComponentInParent<LobbyCharacter>().characterAnim.Play("Idle_NE");
-            if(collision.GetComponentInParent<LobbyCharacter>().nextPos == collision.GetComponentInParent<LobbyCharacter>().currPos)
+            collision.GetComponentInParent<IntroCharacter>().characterAnim.Play("Idle_NE");
+            if(collision.GetComponentInParent<IntroCharacter>().nextPos == collision.GetComponentInParent<IntroCharacter>().currPos)
             {
-                LobbyCharacter.isInputAllowed = false;
+                IntroCharacter.isInputAllowed = false;
             }
 
         }
@@ -57,7 +56,7 @@ public class IntroDoor : MonoBehaviour
 
         yield return new WaitForSeconds(waitTillBlueLight);
         /*lightSprite.sprite = blueLight;*/
-        LobbyCharacter.isInputAllowed = false;
+        IntroCharacter.isInputAllowed = false;
         GetComponent<SpriteRenderer>().sprite = openedDoor;
 
         yield return new WaitForSeconds(waitTillDoorOpen);

@@ -7,11 +7,13 @@ public class Character : MonoBehaviour
 {
     public Animator characterAnim;
     public bool isUnitMoveAllowed = true;
-    bool isInputAllowed = true;
+    //bool isInputAllowed = true;
     public bool isDeathByLaser = false;
     public bool isHavingRoundKey = false;
     public bool isHavingTriangleKey = false;
-   // public GameObject floor;
+    public bool isHavingDiamondKey = false;
+    public bool isHavingSquareKey = false;
+    // public GameObject floor;
     float keyPressedTime = 0f;
 
     public int rows = 5;
@@ -232,7 +234,7 @@ public class Character : MonoBehaviour
         }
 
         characterAnim.SetInteger("Idle", 0);
-        characterAnim.Play("Walk");
+        characterAnim.Play("Walk_SW");
         
         return true;
     }

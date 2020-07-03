@@ -27,7 +27,7 @@ public class Options : MonoBehaviour
             d.value = 0;
             input = 0;
         }
-        else
+        else if(PlayerPrefs.GetInt("OptionValue") == 1)
         {
             d.value = 1;
             input = 1;
@@ -56,6 +56,28 @@ public class Options : MonoBehaviour
         }
         PlayerPrefs.SetInt("OptionValue", input);
     }
-    
-    
+
+    public void ChangeToKeyboard()
+    {
+        input = 0;
+        PlayerPrefs.SetInt("OptionValue", input);
+        Debug.Log(input);
+    }
+    public void ChangeToMouse()
+    {
+        input = 1;
+        PlayerPrefs.SetInt("OptionValue", input);
+        Debug.Log(input);
+    }
+    public void GetCurrentInputOption()
+    {
+        if (PlayerPrefs.GetInt("OptionValue") == 0)
+        {
+            input = 0;
+        }
+        else if(PlayerPrefs.GetInt("OptionValue") == 1)
+        {
+            input = 1;
+        }
+    }
 }

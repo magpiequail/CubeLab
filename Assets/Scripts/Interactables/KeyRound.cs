@@ -52,8 +52,10 @@ public class KeyRound : Key
 
     private void GetKey()
     {
-        if (character.GetComponent<Character>().isHavingTriangleKey == false
-                && character.GetComponent<Character>().isHavingRoundKey == false)
+        if (character.GetComponent<Character>().isHavingRoundKey == false
+                && character.GetComponent<Character>().isHavingTriangleKey == false
+                && character.GetComponent<Character>().isHavingSquareKey == false
+                && character.GetComponent<Character>().isHavingDiamondKey == false)
         {
             isWithChar = true;
             roundKeyAnim.SetInteger("State", 2);

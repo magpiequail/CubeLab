@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LobbyCharacter : MonoBehaviour
 {
     public Animator characterAnim;
-    bool isUnitMoveAllowed = true;
+    //bool isUnitMoveAllowed = true;
     public static bool isInputAllowed = true;
 
 
@@ -30,12 +30,10 @@ public class LobbyCharacter : MonoBehaviour
     public Vector2 currPos;
     public Vector3Int currentCharPos;
     Vector3Int clickedTilePos;
-
-    CharactersMovement cm;
+    Camera mainCam;
 
     public LayerMask accessible;
-    IntroText it;
-
+    public Vector3 tileWorldPos;
 
     private void Awake()
     {
@@ -46,9 +44,7 @@ public class LobbyCharacter : MonoBehaviour
         currPos = transform.position;
         nextPos = transform.position;
 
-        cm = FindObjectOfType<CharactersMovement>();
-        it = FindObjectOfType<IntroText>();
-
+        mainCam = Camera.main;
     }
 
     // Start is called before the first frame update
@@ -57,20 +53,22 @@ public class LobbyCharacter : MonoBehaviour
         characterAnim = GetComponentInChildren<Animator>();
         characterAnim.SetInteger("Idle", 1);
         isInputAllowed = true;
+
+        if (PlayerPrefs.GetInt("OptionValue") == 0)
+        {
+            Options.input = 0;
+        }
+        else if (PlayerPrefs.GetInt("OptionValue") == 1)
+        {
+            Options.input = 1;
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (SceneManager.GetActiveScene().name == "Intro01" && Input.GetKeyDown(KeyCode.Space) && IntroText.state ==2)
-        {
-            characterAnim.SetTrigger("GetUp");
-            it.getUp.enabled = false;
-            //it.keysImg.enabled = true;
-            characterAnim.SetInteger("Idle", 1);
-        }
+
         if (isInputAllowed)
         {
             if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
@@ -83,40 +81,61 @@ public class LobbyCharacter : MonoBehaviour
                 characterAnim.SetInteger("Idle", 1);
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+
+            if(Options.input == 0)
             {
-                SWMovement();
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    SWMovement();
 
-                characterAnim.SetInteger("Direction", 3);
-                characterAnim.Play("Walk");
+                }
 
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    SEMovement();
+
+                }
+
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    NWMovement();
+
+                }
+                else if (Input.GetKeyDown(KeyCode.W))
+                {
+                    NEMovement();
+                }
             }
-
-            else if (Input.GetKeyDown(KeyCode.D))
+            else if(Options.input == 1)
             {
-                SEMovement();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    currentCharPos = grid.WorldToCell(gameObject.transform.position);
 
-                characterAnim.SetInteger("Direction", 4);
-                characterAnim.Play("Walk_SE");
+                    clickedTilePos = grid.WorldToCell(mainCam.ScreenToWorldPoint(Input.mousePosition));
+                    tileWorldPos = grid.GetCellCenterWorld(clickedTilePos);
 
+
+                    if (clickedTilePos.x == currentCharPos.x && clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
+                    {
+                        NWMovement();
+                    }
+                    if (clickedTilePos.x == currentCharPos.x + 1 && clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
+                    {
+                        NEMovement();
+                    }
+                    if (clickedTilePos.x == currentCharPos.x - 1 && clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
+                    {
+                        SWMovement();
+                    }
+                    if (clickedTilePos.x == currentCharPos.x && clickedTilePos.y == currentCharPos.y - 1 && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
+                    {
+                        SEMovement();
+
+                    }
+                }
             }
-
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                NWMovement();
-
-                characterAnim.SetInteger("Direction", 1);
-                characterAnim.Play("Walk_NW");
-
-            }
-            else if (Input.GetKeyDown(KeyCode.W))
-            {
-                NEMovement();
-
-                characterAnim.SetInteger("Direction", 2);
-                characterAnim.Play("Walk_NE");
-
-            }
+            
 
         }
 
@@ -135,7 +154,7 @@ public class LobbyCharacter : MonoBehaviour
 
 
         characterAnim.SetInteger("Idle", 0);
-        characterAnim.Play("Walk");
+        characterAnim.Play("Walk_SW");
 
     }
     public void SEMovement()
@@ -180,53 +199,6 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
-    }
-
-
-
-    public bool isCharCanMoveNW()
-    {
-        if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool isCharCanMoveNE()
-    {
-        if (cm.clickedTilePos.x == currentCharPos.x + 1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool isCharCanMoveSW()
-    {
-        if (cm.clickedTilePos.x == currentCharPos.x - 1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool isCharCanMoveSE()
-    {
-        if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y - 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
 

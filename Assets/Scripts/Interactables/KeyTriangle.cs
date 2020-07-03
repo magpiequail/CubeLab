@@ -54,7 +54,9 @@ public class KeyTriangle : Key
     private void GetKey()
     {
         if (character.GetComponent<Character>().isHavingRoundKey == false
-                 && character.GetComponent<Character>().isHavingTriangleKey == false)
+                && character.GetComponent<Character>().isHavingTriangleKey == false
+                && character.GetComponent<Character>().isHavingSquareKey == false
+                && character.GetComponent<Character>().isHavingDiamondKey == false)
         {
             triangleKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");

@@ -88,14 +88,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1117788881
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.91, y: 1.64}
+  m_Size: {x: 0.6, y: 0.59}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -171,9 +171,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1117788881
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a6c29a6554945714eb2cb99d6b5077e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b740534c333907548a68cede59e77f64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -194,7 +194,7 @@ Animator:
   m_GameObject: {fileID: 2205586769395311541}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9ffa89319de332a46bffd61416126b92, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3cccc5502240558499185f972c4fda67, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -213,9 +213,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7546502942932128801}
   - component: {fileID: 7546502942932128807}
-  - component: {fileID: 7546502942932128800}
+  - component: {fileID: 5754226950184509317}
   m_Layer: 0
-  m_Name: Key_Round_01
+  m_Name: Key_Diamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
---- !u!114 &7546502942932128800
+--- !u!114 &5754226950184509317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,12 +261,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7546502942932128803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74aee40cb6510914dac120b575e6d368, type: 3}
+  m_Script: {fileID: 11500000, guid: b160514ae582ef2458da3a13c93af7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+    type: 3}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: "\uD68D\uB4DD"
   keyPosition: 1
   sprite: {fileID: 0}
   effectAnim: {fileID: 1687985960}
-  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
-    type: 3}
-  interactionMsg: "\uD68D\uB4DD"
