@@ -67,6 +67,11 @@ public class IntroCharacter : MonoBehaviour
             //it.keysImg.enabled = true;
             characterAnim.SetInteger("Idle", 1);
         }
+        if(it.index > it.sentences.Length - 2)
+        {
+            it.getUp.enabled = false;
+
+        }
         if (isInputAllowed)
         {
             if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
@@ -85,24 +90,20 @@ public class IntroCharacter : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.S))
                 {
                     SWMovement();
-                    Debug.Log("key s is pressed");
                 }
 
                 else if (Input.GetKeyDown(KeyCode.D))
                 {
                     SEMovement();
-                    Debug.Log("key d is pressed");
                 }
 
                 else if (Input.GetKeyDown(KeyCode.A))
                 {
                     NWMovement();
-                    Debug.Log("key a is pressed");
                 }
                 else if (Input.GetKeyDown(KeyCode.W))
                 {
                     NEMovement();
-                    Debug.Log("key w is pressed");
                 }
             }
             else if(Options.input == 1)

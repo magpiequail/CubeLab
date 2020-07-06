@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Lobby : MonoBehaviour
 {
+    public GameObject pauseUI;
+    bool isPauseUIActive = false;
+
+    private void Awake()
+    {
+        //pauseUI = GameObject.FindGameObjectWithTag("Pause");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,10 +22,23 @@ public class Lobby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPauseUIActive)
+            {
+                pauseUI.SetActive(true);
+                isPauseUIActive = true;
+            }
+            else if (isPauseUIActive)
+            {
+                pauseUI.SetActive(false);
+                isPauseUIActive = false;
+            }
+
+        }
     }
 
-    public void LoadStage1()
+    /*public void LoadStage1()
     {
         SceneManager.LoadScene("Stage01");
     }
@@ -40,5 +61,5 @@ public class Lobby : MonoBehaviour
     public void LoadStage6()
     {
         SceneManager.LoadScene("Stage06");
-    }
+    }*/
 }

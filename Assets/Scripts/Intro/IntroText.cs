@@ -12,7 +12,8 @@ public class IntroText : MonoBehaviour
     Image subtitleImg;
     public GameObject optionButton;
     public Image getUp;
-    
+
+    IntroCharacter introChar;
 
     public int index = 0;
     public float delayBetweenLine = 2.0f;
@@ -31,6 +32,7 @@ public class IntroText : MonoBehaviour
     {
         index = 0;
         IntroCharacter.isInputAllowed = false;
+        introChar = FindObjectOfType<IntroCharacter>();
     }
 
     // Update is called once per frame
@@ -39,11 +41,24 @@ public class IntroText : MonoBehaviour
         if(index < sentences.Length)
         {
 
-            if (Input.GetKeyDown(KeyCode.Space) && state == 0 && index < 7)
+            if (Input.GetKeyDown(KeyCode.Space)/* && state == 0 && index < 7*/)
             {
-                index++;
+                if(state == 0 && index < 7)
+                {
+                    index++;
+                }
+                else if(state == 2 && index < sentences.Length - 1)
+                {
+                    index++;
+                    if (index == sentences.Length - 1)
+                    {
+                        optionButton.SetActive(true);
+                    }
+                }
+
+                
             }
-            else if (index == 7)
+            /*else if (index == 7)
             {
 
                 subtitleImg.enabled = false;
@@ -51,10 +66,22 @@ public class IntroText : MonoBehaviour
                 StartCoroutine(StateTwo(0.5f));
                 //subtitleImg.enabled = true;
                 
-            }
-            else if (state == 2 && Input.GetKeyDown(KeyCode.Space) && index < sentences.Length -1)
+            }*/
+
+            else if (Input.GetKeyDown(KeyCode.Tab))
             {
-                index++;
+                if(index < 7)
+                {
+                    index = 7;
+                }
+                else if(index > 7)
+                {
+                    index = sentences.Length - 1;
+                    introChar.characterAnim.SetTrigger("GetUp");
+                    IntroCharacter.isInputAllowed = true;
+                    optionButton.SetActive(true);
+                }
+
             }
             
         }
@@ -62,10 +89,18 @@ public class IntroText : MonoBehaviour
         {
             
         }
-        if(index == sentences.Length - 1)
+        if (index == 7)
+        {
+
+            subtitleImg.enabled = false;
+            timeline.SetActive(true);
+            StartCoroutine(StateTwo(0.5f));
+            //subtitleImg.enabled = true;
+
+        }
+        if (index == sentences.Length - 1)
         {
             IntroCharacter.isInputAllowed = true;
-            optionButton.SetActive(true);
         }
         else
         {

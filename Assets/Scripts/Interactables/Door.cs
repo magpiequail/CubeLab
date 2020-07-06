@@ -108,7 +108,7 @@ public class Door :Interactables
 
         Rate();
         isAllOpen = false;
-        if (SceneManager.GetActiveScene().buildIndex == 20)
+        if (SceneManager.GetActiveScene().buildIndex == 25)
         {
             SceneManager.LoadScene("Stage Select");
         }
