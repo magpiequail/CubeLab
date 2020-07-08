@@ -57,8 +57,9 @@ public class IntroDoor : MonoBehaviour
         yield return new WaitForSeconds(waitTillBlueLight);
         /*lightSprite.sprite = blueLight;*/
         IntroCharacter.isInputAllowed = false;
+        FindObjectOfType<AudioManager>().PlayAudio("Lobby_door_open");
         GetComponent<SpriteRenderer>().sprite = openedDoor;
-
+        
         yield return new WaitForSeconds(waitTillDoorOpen);
         
 

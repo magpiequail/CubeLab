@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Lobby : MonoBehaviour
 {
-    public GameObject pauseUI;
-    bool isPauseUIActive = false;
+    bool isPause = false;
+    public GameObject option;
 
     private void Awake()
     {
@@ -24,17 +24,17 @@ public class Lobby : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isPauseUIActive)
+            if (!isPause)
             {
-                pauseUI.SetActive(true);
-                isPauseUIActive = true;
+                option.SetActive(true);
+                isPause = true;
             }
-            else if (isPauseUIActive)
+            else if (isPause)
             {
-                pauseUI.SetActive(false);
-                isPauseUIActive = false;
+                option.SetActive(false);
+                isPause = false;
+                option.GetComponentInChildren<Options>().SaveCurrentOption();
             }
-
         }
     }
 

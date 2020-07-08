@@ -29,6 +29,7 @@ public class IntroCharacter : MonoBehaviour
     IntroText it;
     Camera mainCam;
 
+    AudioManager audioManager;
 
     private void Awake()
     {
@@ -42,6 +43,8 @@ public class IntroCharacter : MonoBehaviour
         it = FindObjectOfType<IntroText>();
 
         mainCam = Camera.main;
+
+        audioManager = FindObjectOfType<AudioManager>();
 
     }
 
@@ -63,15 +66,15 @@ public class IntroCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IntroText.state == 2)
         {
             characterAnim.SetTrigger("GetUp");
-            it.getUp.enabled = false;
+
+            //it.getUp.enabled = false;
             //it.keysImg.enabled = true;
             characterAnim.SetInteger("Idle", 1);
         }
-        if(it.index > it.sentences.Length - 2)
+        /*if(it.index > it.sentences.Length - 2)
         {
-            it.getUp.enabled = false;
 
-        }
+        }*/
         if (isInputAllowed)
         {
             if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
@@ -152,7 +155,7 @@ public class IntroCharacter : MonoBehaviour
 
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SW");
-
+        audioManager.PlayCharacterFootstep();
     }
     public void SEMovement()
     {
@@ -168,7 +171,7 @@ public class IntroCharacter : MonoBehaviour
 
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SE");
-
+        audioManager.PlayCharacterFootstep();
     }
     public void NWMovement()
     {
@@ -182,6 +185,7 @@ public class IntroCharacter : MonoBehaviour
 
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
+        audioManager.PlayCharacterFootstep();
     }
 
     public void NEMovement()
@@ -196,6 +200,7 @@ public class IntroCharacter : MonoBehaviour
 
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
+        audioManager.PlayCharacterFootstep();
     }
 
 }

@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 8210706857333586329}
   - component: {fileID: 4424303427556538866}
   - component: {fileID: 3447858463177505528}
+  - component: {fileID: 8186983685409388717}
   m_Layer: 5
   m_Name: ThirdBattery
   m_TagString: Untagged
@@ -228,6 +229,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8186983685409388717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014026290836750860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0056181cc9cf0db4689ad702d565419d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3926823690457126348
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +253,7 @@ GameObject:
   - component: {fileID: 7145612240825809486}
   - component: {fileID: 3795225406951897136}
   - component: {fileID: 9178199704877923780}
+  - component: {fileID: 7186856032667311020}
   m_Layer: 5
   m_Name: FirstBattery
   m_TagString: Untagged
@@ -322,6 +336,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7186856032667311020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3926823690457126348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0056181cc9cf0db4689ad702d565419d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6142263418661054917
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +550,7 @@ GameObject:
   - component: {fileID: 619924948131727577}
   - component: {fileID: 4162788069368046029}
   - component: {fileID: 5717518614114702522}
+  - component: {fileID: 3531274591061939374}
   m_Layer: 5
   m_Name: SecondBattery
   m_TagString: Untagged
@@ -606,3 +633,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3531274591061939374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566143605567807450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0056181cc9cf0db4689ad702d565419d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

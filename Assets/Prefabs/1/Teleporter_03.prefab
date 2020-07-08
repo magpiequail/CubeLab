@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &6396927493780948490
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301264899436050907}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 554d6013b66c646498551ed1b12c5834, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &842361093630813752
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +32,7 @@ GameObject:
   - component: {fileID: 842361093630813733}
   - component: {fileID: 842361093630813732}
   m_Layer: 2
-  m_Name: Teleporter_TempColor
+  m_Name: Teleporter_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,6 +399,11 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.49803922
       objectReference: {fileID: 0}
+    - target: {fileID: 5960394919973239221, guid: d1e9284580792054dab62c090b32e3d1,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5960394921094677368, guid: d1e9284580792054dab62c090b32e3d1,
         type: 3}
       propertyPath: m_Color.r
@@ -400,8 +424,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5960394921094677351, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
+    - {fileID: 5960394919769341476, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
+    - {fileID: 5960394919572058830, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
+--- !u!1 &301264899436050907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5960394919494936919, guid: d1e9284580792054dab62c090b32e3d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6240262085702586508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &301264899436050906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5960394919494936918, guid: d1e9284580792054dab62c090b32e3d1,

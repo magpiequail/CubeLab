@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 842361093630813733}
   - component: {fileID: 842361093630813732}
   m_Layer: 2
-  m_Name: Teleporter_Blue_left
+  m_Name: Teleporter_01_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +123,25 @@ MonoBehaviour:
   posX: 2
   posY: 4
   teleAnim: {fileID: 0}
+--- !u!95 &4676148676382749807
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495639429337789639}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea254c983c841484190deab3e5f548ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5942940691567096402
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +384,21 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.99607843
       objectReference: {fileID: 0}
+    - target: {fileID: 5960394919973239221, guid: d1e9284580792054dab62c090b32e3d1,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960394919973239221, guid: d1e9284580792054dab62c090b32e3d1,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.93333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960394919973239221, guid: d1e9284580792054dab62c090b32e3d1,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.99607843
+      objectReference: {fileID: 0}
     - target: {fileID: 5960394921094677368, guid: d1e9284580792054dab62c090b32e3d1,
         type: 3}
       propertyPath: m_Color.r
@@ -380,8 +414,17 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.99607843
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5960394921094677351, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
+    - {fileID: 5960394919769341476, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
+    - {fileID: 5960394919572058830, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
+--- !u!1 &5495639429337789639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5960394919494936919, guid: d1e9284580792054dab62c090b32e3d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2230404863979085200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5495639429337789638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5960394919494936918, guid: d1e9284580792054dab62c090b32e3d1,

@@ -75,12 +75,14 @@ public class Laser : MonoBehaviour
             isLaserActive = false;
             laserAnim.SetInteger("LaserOn", 0);
             laserCollider.enabled = false;
+            FindObjectOfType<AudioManager>().PlayAudio("Ingame_LaserOn");
         }
-        else // set laser as activated
+        else if(!isLaserActive)// set laser as activated
         {
             isLaserActive = true;
             laserAnim.SetInteger("LaserOn", 1);
             laserCollider.enabled = true;
+            FindObjectOfType<AudioManager>().PlayAudio("Ingame_LaserOn");
         }
     }
     public void DeactivateLaser()

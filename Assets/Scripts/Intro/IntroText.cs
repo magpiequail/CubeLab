@@ -11,7 +11,7 @@ public class IntroText : MonoBehaviour
     public GameObject timeline;
     Image subtitleImg;
     public GameObject optionButton;
-    public Image getUp;
+    
 
     IntroCharacter introChar;
 
@@ -24,7 +24,7 @@ public class IntroText : MonoBehaviour
         timeline.SetActive(false);
         subtitleImg = GetComponentInParent<Image>();
         optionButton.SetActive(false);
-        getUp.enabled = false;
+
     }
 
     // Start is called before the first frame update
@@ -130,7 +130,6 @@ public class IntroText : MonoBehaviour
         yield return new WaitForSeconds(sec);
         state = 2;
         index = 8;
-        getUp.enabled = true;
         subtitleImg.enabled = true;
     }
 }

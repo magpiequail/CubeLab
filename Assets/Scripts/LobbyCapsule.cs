@@ -27,6 +27,8 @@ public class LobbyCapsule : MonoBehaviour
         if (isActivated && Input.GetKeyDown(KeyCode.Space))
         {
             capsuleAnim.Play("Open_Lobby");
+            FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
+            FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_steam");
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -62,7 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioTrigger.cs" />
+    <Compile Include="Assets\Scripts\Audio\Sound.cs" />
     <Compile Include="Assets\Scripts\Battery.cs" />
+    <Compile Include="Assets\Scripts\ButtonMouseHover.cs" />
     <Compile Include="Assets\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\CharacterAnimEvent.cs" />
@@ -91,11 +95,14 @@
     <Compile Include="Assets\Scripts\Interactables\Teleporter.cs" />
     <Compile Include="Assets\Scripts\Interactables\TeleporterAnimEvent.cs" />
     <Compile Include="Assets\Scripts\InteractionButton.cs" />
+    <Compile Include="Assets\Scripts\Intro\Bgm.cs" />
+    <Compile Include="Assets\Scripts\Intro\CapsuleAnimEvent.cs" />
     <Compile Include="Assets\Scripts\Intro\IntroCharacter.cs" />
     <Compile Include="Assets\Scripts\Intro\IntroDoor.cs" />
     <Compile Include="Assets\Scripts\Intro\IntroText.cs" />
     <Compile Include="Assets\Scripts\Intro\LobbyCharacter.cs" />
     <Compile Include="Assets\Scripts\Intro\ShowTooltip.cs" />
+    <Compile Include="Assets\Scripts\Intro\StageSelectScene.cs" />
     <Compile Include="Assets\Scripts\Intro\StarsCount.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\Legacy\BgCameaManager.cs" />

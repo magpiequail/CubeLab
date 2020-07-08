@@ -73,6 +73,7 @@ public class Teleporter : Interactables
                 if (teleArray[i].isActivated)
                 {
                     teleAnim.Play("TeleportSend");
+                    FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
                 }
             }
         }

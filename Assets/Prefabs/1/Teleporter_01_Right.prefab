@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &9091179859818859742
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301264899436050907}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea254c983c841484190deab3e5f548ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &842361093630813752
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +32,7 @@ GameObject:
   - component: {fileID: 842361093630813733}
   - component: {fileID: 842361093630813732}
   m_Layer: 2
-  m_Name: Teleporter_Blue_Right
+  m_Name: Teleporter_01_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,10 +135,10 @@ MonoBehaviour:
   interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
     type: 3}
   interactionObj: {fileID: 0}
+  isActivated: 0
   interactionMsg: "\uC0AC\uC6A9"
   otherTele: {fileID: 842361093630813752, guid: 93aaad027258d3b4e985e6c0db5ad5df,
     type: 3}
-  isActivated: 0
   posX: 2
   posY: 4
   teleAnim: {fileID: 0}
@@ -132,6 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2566217667318971083}
+  - component: {fileID: 4547559750528442436}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -154,6 +174,25 @@ Transform:
   m_Father: {fileID: 842361093630813734}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4547559750528442436
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916163464268533026}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7027433520052543418
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +404,21 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.99607843
       objectReference: {fileID: 0}
+    - target: {fileID: 5960394919973239221, guid: d1e9284580792054dab62c090b32e3d1,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960394919973239221, guid: d1e9284580792054dab62c090b32e3d1,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.93333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960394919973239221, guid: d1e9284580792054dab62c090b32e3d1,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.99607843
+      objectReference: {fileID: 0}
     - target: {fileID: 5960394921094677368, guid: d1e9284580792054dab62c090b32e3d1,
         type: 3}
       propertyPath: m_Color.r
@@ -382,6 +436,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1e9284580792054dab62c090b32e3d1, type: 3}
+--- !u!1 &301264899436050907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5960394919494936919, guid: d1e9284580792054dab62c090b32e3d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6240262085702586508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &301264899436050906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5960394919494936918, guid: d1e9284580792054dab62c090b32e3d1,

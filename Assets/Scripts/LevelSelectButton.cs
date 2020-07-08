@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class LevelSelectButton : MonoBehaviour
+public class LevelSelectButton : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHandler*/
 {
     public int buildIndex;
     Image image;
     public Sprite oneStar;
     public Sprite twoStars;
     public Sprite threeStars;
-
 
     private void Awake()
     {
@@ -50,4 +50,13 @@ public class LevelSelectButton : MonoBehaviour
     {
         return PlayerPrefs.GetInt("" + buildIndex + "stars");
     }
+
+    /*public void OnPointerEnter(PointerEventData eventData)
+    {
+        image.rectTransform.localScale = new Vector3(0.9f, 0.9f, 1.0f);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        image.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    }*/
 }

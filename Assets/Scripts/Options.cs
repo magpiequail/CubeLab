@@ -2,23 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Options : MonoBehaviour
 {
     public static int input; //0 = keyboard, 1 = mouse
-    Dropdown d;
+    ToggleGroup inputToggleGroup;
+    //Dropdown d;
     InteractionButton interaction;
+    Toggle[] toggleArray;
+
+    Slider volumeSilder;
+
+    public Image speakerImage;
+    public Sprite soundOn;
+    public Sprite soundOff;
+
+    public Toggle currentOption
+    {
+        get { return inputToggleGroup.ActiveToggles().FirstOrDefault(); }
+    }
 
     private void Awake()
     {
-        d = GetComponentInChildren<Dropdown>();
+        //d = GetComponentInChildren<Dropdown>();
         interaction = FindObjectOfType<InteractionButton>();
+        inputToggleGroup = GetComponentInChildren<ToggleGroup>();
+        toggleArray = inputToggleGroup.GetComponentsInChildren<Toggle>();
+
+        volumeSilder = GetComponentInChildren<Slider>();
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        d.onValueChanged.AddListener(delegate
+        //this was used for dropdown 
+        /*d.onValueChanged.AddListener(delegate
         {
             ChangeInput(d);
         });
@@ -31,13 +51,30 @@ public class Options : MonoBehaviour
         {
             d.value = 1;
             input = 1;
-        }
+        }*/
+        ChangeInputToggle(PlayerPrefs.GetInt("OptionValue"));
+
+        volumeSilder.value = PlayerPrefs.GetFloat("Volume");
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        AudioListener.volume = volumeSilder.value;
+        if(volumeSilder.value == 0)
+        {
+            speakerImage.sprite = soundOff;
+        }
+        else
+        {
+            speakerImage.sprite = soundOn;
+        }
+    }
 
+    public void ChangeInputToggle(int i)
+    {
+        toggleArray[i].isOn = true;
     }
 
     public void ChangeInput(Dropdown d)
@@ -69,6 +106,8 @@ public class Options : MonoBehaviour
         PlayerPrefs.SetInt("OptionValue", input);
         Debug.Log(input);
     }
+
+
     public void GetCurrentInputOption()
     {
         if (PlayerPrefs.GetInt("OptionValue") == 0)
@@ -79,5 +118,9 @@ public class Options : MonoBehaviour
         {
             input = 1;
         }
+    }
+    public void SaveCurrentOption()
+    {
+        PlayerPrefs.SetFloat("Volume", volumeSilder.value);
     }
 }

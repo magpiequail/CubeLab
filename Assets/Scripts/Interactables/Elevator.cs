@@ -90,6 +90,8 @@ public class Elevator : Interactables
                 characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 2);
             }
             elevatorAnim.SetInteger("State", 1);
+
+            FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
             //characterColl.transform.position = otherElevator.transform.position;
             //characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
             //characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;

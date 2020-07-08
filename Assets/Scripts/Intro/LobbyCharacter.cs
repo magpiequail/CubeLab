@@ -9,6 +9,7 @@ public class LobbyCharacter : MonoBehaviour
     //bool isUnitMoveAllowed = true;
     public static bool isInputAllowed = true;
 
+    AudioManager audioManager;
 
     // public GameObject floor;
 
@@ -45,6 +46,7 @@ public class LobbyCharacter : MonoBehaviour
         nextPos = transform.position;
 
         mainCam = Camera.main;
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Start is called before the first frame update
@@ -155,7 +157,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SW");
-
+        audioManager.PlayCharacterFootstep();
     }
     public void SEMovement()
     {
@@ -171,7 +173,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SE");
-
+        audioManager.PlayCharacterFootstep();
     }
     public void NWMovement()
     {
@@ -185,6 +187,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
+        audioManager.PlayCharacterFootstep();
     }
 
     public void NEMovement()
@@ -199,6 +202,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
+        audioManager.PlayCharacterFootstep();
     }
 
 

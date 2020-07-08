@@ -22,7 +22,9 @@ public class SceneController : MonoBehaviour
     bool isGameOver = false;
     GameObject pauseUI;
 
+    bool isAudioPlayed = false;
 
+    public static AudioManager audioManager;
 
     private void Awake()
     {
@@ -32,14 +34,19 @@ public class SceneController : MonoBehaviour
         gameState = GameState.Running;
         pauseUI = GameObject.FindGameObjectWithTag("Pause");
 
+        audioManager = FindObjectOfType<AudioManager>();
+
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        gameOverUI.SetActive(false);
         gameOver.SetActive(false);
         pauseUI.SetActive(false);
         CharactersMovement.isInputAllowed = true;
+        FindObjectOfType<AudioManager>().PlayAudio("StageBgm");
     }
 
     // Update is called once per frame
@@ -56,12 +63,17 @@ public class SceneController : MonoBehaviour
         }
         else if(gameState == GameState.Paused)
         {
+            Time.timeScale = 0f;
             CharactersMovement.isInputAllowed = false;
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 BackToGame();
             }
             
+        }
+        else if(gameState == GameState.Running)
+        {
+            Time.timeScale = 1f;
         }
 
         //else if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Paused)
@@ -117,10 +129,15 @@ public class SceneController : MonoBehaviour
 
     IEnumerator GameOver()
     {
+        
+
         yield return new WaitForSeconds(delayTillGameOver);
-        //
+        if (!isAudioPlayed)
+        {
+            audioManager.PlayAudio("GameOver");
+            isAudioPlayed = true;
+        }
         gameOver.SetActive(true);
-        gameOverUI.SetActive(false);
         yield return new WaitForSeconds(delayTillUI);
         gameOverUI.SetActive(true);
         isGameOver = true;

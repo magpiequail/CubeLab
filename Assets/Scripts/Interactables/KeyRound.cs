@@ -60,6 +60,9 @@ public class KeyRound : Key
             isWithChar = true;
             roundKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");
+
+            FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
+
             character.GetComponentInChildren<Animator>().SetTrigger("Joy");
             if (character.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
             {

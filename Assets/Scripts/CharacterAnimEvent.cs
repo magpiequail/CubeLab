@@ -28,4 +28,8 @@ public class CharacterAnimEvent : MonoBehaviour
     {
         CharactersMovement.isInputAllowed = false;
     }
+    public void PlayAudio()
+    {
+        FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_ambient");
+    }
 }

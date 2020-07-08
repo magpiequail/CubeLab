@@ -60,6 +60,9 @@ public class KeySquare : Key
             isWithChar = true;
             squareKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");
+
+            FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
+
             character.GetComponentInChildren<Animator>().SetTrigger("Joy");
             if (character.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
             {

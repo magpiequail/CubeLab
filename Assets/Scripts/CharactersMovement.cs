@@ -13,6 +13,7 @@ public class CharactersMovement : MonoBehaviour
     static public bool isInputAllowed = true;
     Battery b;
 
+    AudioManager audioManager;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class CharactersMovement : MonoBehaviour
         b = FindObjectOfType<Battery>();
         grid = FindObjectOfType<Grid>();
         tmc = FindObjectOfType<TilemapColor>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Start is called before the first frame update
@@ -52,6 +54,7 @@ public class CharactersMovement : MonoBehaviour
                 if (isAllCharMovedNW())
                 {
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
             }
 
@@ -61,6 +64,7 @@ public class CharactersMovement : MonoBehaviour
                 if (isAllCharMovedSW())
                 {
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
             }
 
@@ -70,6 +74,7 @@ public class CharactersMovement : MonoBehaviour
                 if (isAllCharMovedNE())
                 {
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.D))
@@ -78,6 +83,7 @@ public class CharactersMovement : MonoBehaviour
                 if (isAllCharMovedSE())
                 {
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
             }
         }
@@ -107,6 +113,7 @@ public class CharactersMovement : MonoBehaviour
                         charactersArray[i].GetComponent<Character>().NWMovement();
                     }
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
                 if (isCheckingNE())
                 {
@@ -115,6 +122,7 @@ public class CharactersMovement : MonoBehaviour
                         charactersArray[i].GetComponent<Character>().NEMovement();
                     }
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
                 if (isCheckingSW())
                 {
@@ -123,6 +131,7 @@ public class CharactersMovement : MonoBehaviour
                         charactersArray[i].GetComponent<Character>().SWMovement();
                     }
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
                 if (isCheckingSE())
                 {
@@ -131,11 +140,13 @@ public class CharactersMovement : MonoBehaviour
                         charactersArray[i].GetComponent<Character>().SEMovement();
                     }
                     b.MinusOneMove();
+                    audioManager.PlayCharacterFootstep();
                 }
 
             }
         }
     }
+
 
     bool isAllCharMovedSW()
     {

@@ -15,6 +15,8 @@ public class Door :Interactables
     Door[] doorsArray;
     public static bool isAllOpen = false;
 
+    bool isAudioPlayed = false;
+
     Animator stars;
 
     private void Awake()
@@ -87,7 +89,11 @@ public class Door :Interactables
 
         isAllOpen = true;
 
-
+        if (!isAudioPlayed)
+        {
+            FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_steam");
+            isAudioPlayed = true;
+        }
 
         //yield return new WaitForSeconds(0);
 
@@ -100,6 +106,7 @@ public class Door :Interactables
 
 
         yield return new WaitForSeconds(delayTillStageClear);
+        FindObjectOfType<AudioManager>().PlayAudio("UI_change");
         text.SetActive(true);
         ShowStars();
 
