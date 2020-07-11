@@ -124,6 +124,7 @@ public class SceneController : MonoBehaviour
     public void NewGame()
     {
         PlayerPrefs.DeleteAll();
+        InitializeOptions();
         SceneManager.LoadScene("Intro01");
     }
 
@@ -142,5 +143,9 @@ public class SceneController : MonoBehaviour
         gameOverUI.SetActive(true);
         isGameOver = true;
         
+    }
+    public void InitializeOptions()
+    {
+        PlayerPrefs.SetFloat("Volume",1.0f);
     }
 }
