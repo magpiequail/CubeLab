@@ -142,7 +142,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2076856608, guid: ace1135be174d7e4c9c98b10c5b70765, type: 3}
       propertyPath: m_ChunkCullingBounds.x
-      value: 0.005319178
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076856608, guid: ace1135be174d7e4c9c98b10c5b70765, type: 3}
+      propertyPath: m_ChunkCullingBounds.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2076856609, guid: ace1135be174d7e4c9c98b10c5b70765, type: 3}
       propertyPath: m_TileAnchor.x
@@ -425,6 +429,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 6948675292695734628, guid: b00f06cdede0a8247a13e6238cac132d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d84b2fb28eb762645bbb4e34d98042ba,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b00f06cdede0a8247a13e6238cac132d, type: 3}
 --- !u!1001 &1087071636
@@ -717,6 +727,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle System (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8262727530761000037, guid: 3643d9704757ba64bbaa6c044576f467,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3643d9704757ba64bbaa6c044576f467, type: 3}
 --- !u!1001 &2055967591
@@ -785,6 +800,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Particle System (1) 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262727530761000037, guid: eb23ad826de023f4585904875335ad0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb23ad826de023f4585904875335ad0d, type: 3}

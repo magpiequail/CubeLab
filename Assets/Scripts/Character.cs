@@ -34,11 +34,13 @@ public class Character : MonoBehaviour
     public Vector2 currPos;
     public Vector3Int currentCharPos;
     Vector3Int clickedTilePos;
+    //layermask is accessible floor
+    int rayLayerMask = 1 << 10;
 
     CharactersMovement cm;
 
     public LayerMask accessible;
-    TilemapColor tmc;
+
 
     private void Awake()
     {
@@ -48,7 +50,6 @@ public class Character : MonoBehaviour
 
         currPos = transform.position;
         nextPos = transform.position;
-        tmc = FindObjectOfType<TilemapColor>();
         cm = FindObjectOfType<CharactersMovement>();
     }
 
@@ -61,6 +62,8 @@ public class Character : MonoBehaviour
         characterAnim.SetInteger("Idle", 1);
         characterAnim.SetInteger("StageClear", 0);
         characterAnim.SetInteger("Direction", 3);
+
+        SetCurrentBlock();
         //characterAnim.Play("Idle_SW");
 
         //transform.position = fl.gridArray[fl.charPosX, fl.charPosY].transform.position;
@@ -87,6 +90,8 @@ public class Character : MonoBehaviour
         {
             characterAnim.Play("GameOver");
         }
+
+        //Debug.DrawLine(currPos, transform.forward,Color.red);
 
 
         //transform.position = Vector3.MoveTowards(transform.position, fl.gridArray[fl.charPosX, fl.charPosY].transform.position, speed * Time.deltaTime);
@@ -225,6 +230,7 @@ public class Character : MonoBehaviour
         {
             return false;
         }
+        ResetBlockColor();
         nextPos = new Vector2(currPos.x - gridX, currPos.y - gridY);
         characterAnim.SetInteger("Direction", 3);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
@@ -233,6 +239,7 @@ public class Character : MonoBehaviour
             return false;
         }
 
+        SetCurrentBlock();
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SW");
         
@@ -244,6 +251,7 @@ public class Character : MonoBehaviour
         {
             return false;
         }
+        ResetBlockColor();
         nextPos = new Vector2(currPos.x + gridX, currPos.y - gridY);
         characterAnim.SetInteger("Direction", 4);
 
@@ -253,6 +261,7 @@ public class Character : MonoBehaviour
             return false;
         }
 
+        SetCurrentBlock();
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SE");
 
@@ -264,6 +273,7 @@ public class Character : MonoBehaviour
         {
             return false;
         }
+        ResetBlockColor();
         nextPos = new Vector2(currPos.x - gridX, currPos.y + gridY);
         characterAnim.SetInteger("Direction", 1);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible) )
@@ -272,6 +282,7 @@ public class Character : MonoBehaviour
             return false;
         }
 
+        SetCurrentBlock();
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
         return true;
@@ -283,6 +294,7 @@ public class Character : MonoBehaviour
         {
             return false;
         }
+        ResetBlockColor();
         nextPos = new Vector2(currPos.x + gridX, currPos.y + gridY);
         characterAnim.SetInteger("Direction", 2);
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
@@ -291,6 +303,7 @@ public class Character : MonoBehaviour
             return false;
         }
 
+        SetCurrentBlock();
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
         return true;
@@ -359,6 +372,24 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void ResetBlockColor()
+    {
+        
+        RaycastHit2D hit = Physics2D.Raycast(currPos, transform.forward,100,rayLayerMask);
 
+        if(hit)
+        {
+            hit.collider.gameObject.GetComponent<BlockStat>().currentBlock = 0;
+        }
+    }
+    public void SetCurrentBlock()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
+
+        if (hit)
+        {
+            hit.collider.gameObject.GetComponent<BlockStat>().currentBlock = 1;
+        }
+    }
 
 }

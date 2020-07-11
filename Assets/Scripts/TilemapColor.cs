@@ -11,7 +11,7 @@ public class TilemapColor : MonoBehaviour
     public Color currentTileColor;
 
     BoundsInt bounds;
-    TileBase[] allTiles;
+    //TileBase[] allTiles;
 
     Character[] charactersArray;
 
@@ -26,22 +26,26 @@ public class TilemapColor : MonoBehaviour
     void Start()
     {
         bounds = tilemap.cellBounds;
-        allTiles = tilemap.GetTilesBlock(bounds);
+        //allTiles = tilemap.GetTilesBlock(bounds);
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < charactersArray.Length; i++)
+        if(tilemap != null)
         {
-            //tilemap.RefreshAllTiles();
-            //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
-            //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
-            Vector3Int v3Int = new Vector3Int(tilemap.WorldToCell(charactersArray[i].nextPos).x, tilemap.WorldToCell(charactersArray[i].nextPos).y, 0);
-            tilemap.SetTileFlags(v3Int, TileFlags.None);
-            tilemap.SetColor(v3Int, currentTileColor);
-            
+            for (int i = 0; i < charactersArray.Length; i++)
+            {
+                //tilemap.RefreshAllTiles();
+                //tmc.x = tmc.tilemap.WorldToCell(nextPos).x;
+                //tmc.y = tmc.tilemap.WorldToCell(nextPos).y;
+                Vector3Int v3Int = new Vector3Int(tilemap.WorldToCell(charactersArray[i].nextPos).x, tilemap.WorldToCell(charactersArray[i].nextPos).y, 0);
+                tilemap.SetTileFlags(v3Int, TileFlags.None);
+                tilemap.SetColor(v3Int, currentTileColor);
+
+            }
         }
+        
 
     }
 

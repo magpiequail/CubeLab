@@ -8,6 +8,7 @@ public class Interactables : MonoBehaviour
     public GameObject interactionObj;
     public bool isActivated;
     public string interactionMsg = "SPACE";
+ 
 
     // Start is called before the first frame update
     void Start()
