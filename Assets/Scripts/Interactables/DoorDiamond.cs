@@ -46,8 +46,10 @@ public class DoorDiamond : Door
             if (collision.GetComponent<Character>().isHavingDiamondKey)
             {
                 isOpened = true;
+                characterObj = collision.gameObject;
+                ShowInteractionUI();
             }
-            ShowInteractionUI();
+            
 
         }
     }

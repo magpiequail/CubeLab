@@ -9,7 +9,7 @@ public class Elevator : Interactables
     //public GameObject attachedFloor;
     //bool isCharOn;
     //public bool isActivated = false;
-    GameObject characterColl;
+    
     SpriteRenderer sprite;
 
     Animator elevatorAnim; // state 1 is when it is opening, state 0 is when it is closing, open receive = 2, close receive = 3
@@ -35,7 +35,7 @@ public class Elevator : Interactables
             !Input.GetKey(KeyCode.D) &&
             !Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
             {
                 ////캐릭터가 속한 플로어 바꾸기
                 //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
@@ -79,15 +79,15 @@ public class Elevator : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
-        if (isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+        if (isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
-            if (sprite.transform.position.x < characterColl.transform.position.x)
+            if (sprite.transform.position.x < characterObj.transform.position.x)
             {
-                characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 1);
+                characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 1);
             }
             else
             {
-                characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 2);
+                characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 2);
             }
             elevatorAnim.SetInteger("State", 1);
 
@@ -103,7 +103,7 @@ public class Elevator : Interactables
     {
         if (collision.tag == "Character")
         {
-            characterColl = collision.gameObject;
+            characterObj = collision.gameObject;
             isActivated = true;
         }
     }
@@ -128,34 +128,34 @@ public class Elevator : Interactables
     //AnimEvent
     public void CharacterSpriteOn()
     {
-        characterColl.GetComponentInChildren<SpriteRenderer>().enabled = true;
-        if (characterColl.GetComponentInChildren<Key>())
+        characterObj.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        if (characterObj.GetComponentInChildren<Key>())
         {
-            characterColl.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            characterObj.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
 
     }
     public void CharacterSpriteOff()
     {
-        characterColl.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        if (characterColl.GetComponentInChildren<Key>())
+        characterObj.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        if (characterObj.GetComponentInChildren<Key>())
         {
-            characterColl.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            characterObj.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
 
     }
     public void SendCharacterToOther()
     {
-        characterColl.transform.position = otherElevator.transform.position;
-        characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;
-        characterColl.GetComponent<Character>().nextPos = otherElevator.transform.position;
-        if (sprite.transform.position.x < characterColl.transform.position.x)
+        characterObj.transform.position = otherElevator.transform.position;
+        characterObj.GetComponent<Character>().currPos = otherElevator.transform.position;
+        characterObj.GetComponent<Character>().nextPos = otherElevator.transform.position;
+        if (sprite.transform.position.x < characterObj.transform.position.x)
         {
-            characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 4);
+            characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 4);
         }
         else
         {
-            characterColl.GetComponent<Character>().characterAnim.SetInteger("Direction", 3);
+            characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 3);
         }
     }
     public void PlayOpenReceive()

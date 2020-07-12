@@ -8,7 +8,7 @@ public class Teleporter : Interactables
     //public GameObject attachedFloor;
     //bool isCharOn;
     //public bool isActivated = false;
-    GameObject characterColl;
+    //GameObject characterColl;
     public int posX;
     public int posY;
     public Animator teleAnim;
@@ -39,7 +39,7 @@ public class Teleporter : Interactables
             !Input.GetKey(KeyCode.D) &&
             !Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
             {
                 ////캐릭터가 속한 플로어 바꾸기
                 //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
@@ -66,7 +66,7 @@ public class Teleporter : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
-        if(characterColl.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+        if(characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
             for (int i = 0; i < teleArray.Length; i++)
             {
@@ -86,7 +86,7 @@ public class Teleporter : Interactables
     {
         if(collision.tag == "Character")
         {
-            characterColl = collision.gameObject;
+            characterObj = collision.gameObject;
             isActivated = true;
         }
     }
@@ -111,19 +111,19 @@ public class Teleporter : Interactables
     //AnimEvent
     public void CharacterSpriteOn()
     {
-        characterColl.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        characterObj.GetComponentInChildren<SpriteRenderer>().enabled = true;
         Debug.Log("spirte on called");
     }
     public void CharacterSpriteOff()
     {
-        characterColl.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        characterObj.GetComponentInChildren<SpriteRenderer>().enabled = false;
         Debug.Log("sprite off called");
     }
     public void SendCharacterToOther()
     {
-        characterColl.transform.position = otherTele.transform.position;
-        characterColl.GetComponent<Character>().currPos = otherTele.transform.position;
-        characterColl.GetComponent<Character>().nextPos = otherTele.transform.position;
+        characterObj.transform.position = otherTele.transform.position;
+        characterObj.GetComponent<Character>().currPos = otherTele.transform.position;
+        characterObj.GetComponent<Character>().nextPos = otherTele.transform.position;
 
     }
     public void PlayReceive()

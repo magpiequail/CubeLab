@@ -46,8 +46,9 @@ public class DoorSquare : Door
             if (collision.GetComponent<Character>().isHavingSquareKey)
             {
                 isOpened = true;
+                characterObj = collision.gameObject;
+                ShowInteractionUI();
             }
-            ShowInteractionUI();
 
         }
     }

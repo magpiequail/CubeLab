@@ -9,7 +9,7 @@ public class KeySquare : Key
     Vector2 originPos;
     public SpriteRenderer sprite;
     bool isWithChar = false;
-    GameObject character;
+    //GameObject character;
     public Animator effectAnim;
 
 
@@ -52,10 +52,10 @@ public class KeySquare : Key
 
     private void GetKey()
     {
-        if (character.GetComponent<Character>().isHavingRoundKey == false
-                && character.GetComponent<Character>().isHavingTriangleKey == false
-                && character.GetComponent<Character>().isHavingSquareKey == false
-                && character.GetComponent<Character>().isHavingDiamondKey == false)
+        if (characterObj.GetComponent<Character>().isHavingRoundKey == false
+                && characterObj.GetComponent<Character>().isHavingTriangleKey == false
+                && characterObj.GetComponent<Character>().isHavingSquareKey == false
+                && characterObj.GetComponent<Character>().isHavingDiamondKey == false)
         {
             isWithChar = true;
             squareKeyAnim.SetInteger("State", 2);
@@ -63,17 +63,17 @@ public class KeySquare : Key
 
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
 
-            character.GetComponentInChildren<Animator>().SetTrigger("Joy");
-            if (character.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+            characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
+            if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
             {
-                character.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+                characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
             }
 
 
-            gameObject.transform.SetParent(character.transform);
+            gameObject.transform.SetParent(characterObj.transform);
             //currently position is controlled by animation
             //gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition); //keyPosition not working properly. shifting position with animation
-            character.GetComponent<Character>().isHavingSquareKey = true;
+            characterObj.GetComponent<Character>().isHavingSquareKey = true;
             isActivated = false;
         }
 
@@ -104,7 +104,7 @@ public class KeySquare : Key
             isActivated = true;
             squareKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            character = other.gameObject;
+            characterObj = other.gameObject;
 
         }
     }

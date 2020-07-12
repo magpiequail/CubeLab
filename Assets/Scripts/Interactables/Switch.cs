@@ -10,7 +10,6 @@ public class Switch : Interactables
     public Sprite sprite1;
     public Sprite sprite2;
 
-
     private void Awake()
     {
         currentSprite = GetComponent<SpriteRenderer>();
@@ -58,9 +57,11 @@ public class Switch : Interactables
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isActivated = true;
+        
         if (collision.tag == "Character")
         {
+            isActivated = true;
+            characterObj = collision.gameObject;
             ShowInteractionUI();
         }
     }

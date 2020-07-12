@@ -10,7 +10,7 @@ public class KeyTriangle : Key
     Vector2 originPos;
     public SpriteRenderer sprite;
     //bool isCharOn = false;
-    GameObject character;
+    //GameObject character;
     public Animator effectAnim;
 
 
@@ -53,27 +53,27 @@ public class KeyTriangle : Key
 
     private void GetKey()
     {
-        if (character.GetComponent<Character>().isHavingRoundKey == false
-                && character.GetComponent<Character>().isHavingTriangleKey == false
-                && character.GetComponent<Character>().isHavingSquareKey == false
-                && character.GetComponent<Character>().isHavingDiamondKey == false)
+        if (characterObj.GetComponent<Character>().isHavingRoundKey == false
+                && characterObj.GetComponent<Character>().isHavingTriangleKey == false
+                && characterObj.GetComponent<Character>().isHavingSquareKey == false
+                && characterObj.GetComponent<Character>().isHavingDiamondKey == false)
         {
             triangleKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");
 
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
 
-            character.GetComponentInChildren<Animator>().SetTrigger("Joy");
-            if (character.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+            characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
+            if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
             {
-                character.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+                characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
             }
 
             isWithChar = true;
-            gameObject.transform.SetParent(character.transform);
+            gameObject.transform.SetParent(characterObj.transform);
             //currently the position of this key is controlled by animation
             //gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            character.GetComponent<Character>().isHavingTriangleKey = true;
+            characterObj.GetComponent<Character>().isHavingTriangleKey = true;
             isActivated = false;
         }
 
@@ -103,7 +103,7 @@ public class KeyTriangle : Key
             isActivated = true;
             triangleKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            character = other.gameObject;
+            characterObj = other.gameObject;
             
         }
     }

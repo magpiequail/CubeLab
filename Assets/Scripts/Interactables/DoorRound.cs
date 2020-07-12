@@ -46,9 +46,11 @@ void Start()
             if (collision.GetComponent<Character>().isHavingRoundKey)
             {
                 isOpened = true;
+                characterObj = collision.gameObject;
+                ShowInteractionUI();
             }
 
-            ShowInteractionUI();
+            
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

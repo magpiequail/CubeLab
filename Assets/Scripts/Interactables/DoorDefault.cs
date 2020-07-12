@@ -32,6 +32,7 @@ public class DoorDefault : Door
         if (collision.tag == "Character")
         {
             isOpened = true;
+            characterObj = collision.gameObject;
             ShowInteractionUI();
         }
     }

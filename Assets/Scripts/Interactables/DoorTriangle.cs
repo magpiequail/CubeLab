@@ -46,8 +46,10 @@ public class DoorTriangle : Door
             if (collision.GetComponent<Character>().isHavingTriangleKey)
             {
                 isOpened = true;
+                characterObj = collision.gameObject;
+                ShowInteractionUI();
             }
-            ShowInteractionUI();
+            
 
         }
     }
