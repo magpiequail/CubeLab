@@ -4194,6 +4194,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -4.25
       objectReference: {fileID: 0}
+    - target: {fileID: 243293177170168084, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: firstBattery
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 243293177170168084, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: secondBattery
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 243293177170168084, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: thirdBattery
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 296334275463847468, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -9525,13 +9540,13 @@ PrefabInstance:
     - target: {fileID: 3383126324353759123, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3383126324353759123, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1127340793}
     - target: {fileID: 3383126324353759123, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_TileMatrixArray.Array.data[0].m_Data.e00
@@ -10345,7 +10360,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2

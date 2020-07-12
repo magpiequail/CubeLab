@@ -106,6 +106,7 @@ public class Door :Interactables
 
 
         yield return new WaitForSeconds(delayTillStageClear);
+        Rate();
         FindObjectOfType<AudioManager>().PlayAudio("UI_change");
         text.SetActive(true);
         ShowStars();
@@ -113,7 +114,7 @@ public class Door :Interactables
         yield return new WaitForSeconds(delayTillNextStage);
 
 
-        Rate();
+        
         isAllOpen = false;
         if (SceneManager.GetActiveScene().buildIndex == 25)
         {

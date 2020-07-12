@@ -1143,6 +1143,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 243293177170168084, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: firstBattery
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 243293177170168084, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: secondBattery
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 483279399911213222, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -4821,7 +4831,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2

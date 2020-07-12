@@ -4356,6 +4356,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8198021829916254583, guid: 30f4cefc96ac47b4ab35feceffd88015,
+        type: 3}
+      propertyPath: firstBattery
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198021829916254583, guid: 30f4cefc96ac47b4ab35feceffd88015,
+        type: 3}
+      propertyPath: secondBattery
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198021829916254583, guid: 30f4cefc96ac47b4ab35feceffd88015,
+        type: 3}
+      propertyPath: thirdBattery
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8400923483444833248, guid: 30f4cefc96ac47b4ab35feceffd88015,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -5781,7 +5796,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
