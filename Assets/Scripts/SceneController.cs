@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public enum GameState
 {
@@ -60,6 +61,7 @@ public class SceneController : MonoBehaviour
         {
             gameState = GameState.Paused;
             pauseUI.SetActive(true);
+            
         }
         else if(gameState == GameState.Paused)
         {
@@ -124,6 +126,7 @@ public class SceneController : MonoBehaviour
     public void NewGame()
     {
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetFloat("Volume", 1.0f);
         InitializeOptions();
         SceneManager.LoadScene("Intro01");
     }
@@ -148,4 +151,6 @@ public class SceneController : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Volume",1.0f);
     }
+
+
 }

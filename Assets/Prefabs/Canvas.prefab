@@ -124,7 +124,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2784591335625023619}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -254,7 +254,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2784591335625023619}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -310,8 +310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 2618141983727412307}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -367,6 +367,7 @@ MonoBehaviour:
   size: 0.9
   originalSize: {x: 1, y: 1, z: 1}
   isSoundOn: 1
+  isInitialSelection: 0
 --- !u!1 &698887079501376211
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +380,7 @@ GameObject:
   - component: {fileID: 8967883728130306899}
   - component: {fileID: 8344377036614346788}
   - component: {fileID: 967272542300612437}
+  - component: {fileID: 3307373433552668792}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -454,8 +456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 3915421666234096654}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -497,6 +499,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3307373433552668792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698887079501376211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2fbed8f8eba2d4087fa77befe0960d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.9
+  originalSize: {x: 1, y: 1, z: 1}
+  isSoundOn: 1
+  isInitialSelection: 0
 --- !u!1 &1185380090932127125
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +744,7 @@ GameObject:
   - component: {fileID: 5010459173557488794}
   - component: {fileID: 7186214449505516459}
   - component: {fileID: 3915421666234096654}
+  - component: {fileID: 7321067921262129454}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -801,9 +820,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 967272542300612437}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -844,6 +863,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7321067921262129454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512048799693213446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2fbed8f8eba2d4087fa77befe0960d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.9
+  originalSize: {x: 1, y: 1, z: 1}
+  isSoundOn: 1
+  isInitialSelection: 1
 --- !u!1 &4278121128245291461
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +910,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2784591335625023619}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1061,9 +1096,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnDown: {fileID: 5223057091850798341}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -1119,6 +1154,7 @@ MonoBehaviour:
   size: 0.9
   originalSize: {x: 1, y: 1, z: 1}
   isSoundOn: 1
+  isInitialSelection: 1
 --- !u!1 &4493894214287410818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,9 +1243,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 8191176148800054223}
+    m_SelectOnDown: {fileID: 2618141983727412307}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -1265,6 +1301,7 @@ MonoBehaviour:
   size: 0.9
   originalSize: {x: 1, y: 1, z: 1}
   isSoundOn: 1
+  isInitialSelection: 0
 --- !u!1 &4979319466946934575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 4431670098062018213}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!114 &2625373005990375333
@@ -1557,9 +1594,9 @@ RectTransform:
   - {fileID: 5134492620282843471}
   - {fileID: 2777958750549760792}
   - {fileID: 2971327577325035096}
+  - {fileID: 5355507706842845356}
   - {fileID: 2284618234444108158}
   - {fileID: 2647901290130742728}
-  - {fileID: 5355507706842845356}
   - {fileID: 7770497134493826447}
   m_Father: {fileID: 1185380092584086473}
   m_RootOrder: 6
@@ -1919,9 +1956,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 5223057091850798341}
+    m_SelectOnDown: {fileID: 3410452190655760035}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -1977,6 +2014,7 @@ MonoBehaviour:
   size: 0.9
   originalSize: {x: 1, y: 1, z: 1}
   isSoundOn: 1
+  isInitialSelection: 0
 --- !u!1001 &2006502191640550642
 PrefabInstance:
   m_ObjectHideFlags: 0

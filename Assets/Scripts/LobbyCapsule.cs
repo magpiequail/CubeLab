@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LobbyCapsule : MonoBehaviour
+public class LobbyCapsule : Interactables
 {
-    bool isActivated = false;
+
     GameObject LobbyChar;
     Animator capsuleAnim;
     public int stageNumber;
+    
 
     private void Awake()
     {
+        isActivated = false;
+        interactionMsg = "접속";
         capsuleAnim = GetComponent<Animator>();
     }
 
@@ -26,18 +29,34 @@ public class LobbyCapsule : MonoBehaviour
     {
         if (isActivated && Input.GetKeyDown(KeyCode.Space))
         {
+            HideInteractionUI();
             capsuleAnim.Play("Open_Lobby");
             FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
             FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_steam");
         }
     }
+    public override void StartInteraction()
+    {
+        base.StartInteraction();
+        HideInteractionUI();
+        capsuleAnim.Play("Open_Lobby");
+        FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
+        FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_steam");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Character")
         {
             isActivated = true;
+            ShowInteractionUI();
             LobbyChar =  collision.transform.parent.gameObject;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        HideInteractionUI();
+        isActivated = false;
     }
 
     public void PlayCharAnim()

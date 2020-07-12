@@ -666,6 +666,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd7241457f84fe49a60f0e785a2940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 0}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: SPACE
   stageNumber: 0
 --- !u!58 &86338511
 CircleCollider2D:
@@ -798,6 +802,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd7241457f84fe49a60f0e785a2940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 0}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: SPACE
   stageNumber: 0
 --- !u!58 &105327821
 CircleCollider2D:
@@ -1048,6 +1056,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd7241457f84fe49a60f0e785a2940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 0}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: SPACE
   stageNumber: 0
 --- !u!58 &185808412
 CircleCollider2D:
@@ -5336,6 +5348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1033483476}
   - component: {fileID: 1033483477}
+  - component: {fileID: 1033483478}
   m_Layer: 0
   m_Name: obj_monitor01_on_ef
   m_TagString: Untagged
@@ -5351,8 +5364,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033483475}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.24, y: 0.35, z: 11.773506}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.307, y: 0.272, z: 11.773506}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 2093228921}
   m_RootOrder: 6
@@ -5397,7 +5410,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: b0fbad9df3576874f9f1295bb0445444, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5407,6 +5420,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1033483478
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033483475}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6bd90bc24fa741a48b6f57d87ab756d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1038128195
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,6 +6908,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd7241457f84fe49a60f0e785a2940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 0}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: SPACE
   stageNumber: 0
 --- !u!58 &1219478642
 CircleCollider2D:
@@ -7596,6 +7632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd7241457f84fe49a60f0e785a2940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 0}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: SPACE
   stageNumber: 0
 --- !u!58 &1342302648
 CircleCollider2D:
@@ -8833,6 +8873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd7241457f84fe49a60f0e785a2940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 0}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: SPACE
   stageNumber: 0
 --- !u!58 &1580899867
 CircleCollider2D:
@@ -9937,6 +9981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd7241457f84fe49a60f0e785a2940e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+    type: 3}
+  interactionObj: {fileID: 0}
+  isActivated: 0
+  interactionMsg: SPACE
   stageNumber: 0
 --- !u!1 &1776595903
 GameObject:
@@ -11302,6 +11351,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2264135083066598720, guid: 3667949e87ccb2a4399a2732e697ea6e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2519168962752677213, guid: 3667949e87ccb2a4399a2732e697ea6e,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -11348,7 +11402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2045876127
 RectTransform:
   m_ObjectHideFlags: 0

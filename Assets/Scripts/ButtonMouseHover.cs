@@ -12,6 +12,7 @@ public class ButtonMouseHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public float size;
     public Vector3 originalSize = new Vector3(1.0f,1.0f,1.0f);
     public bool isSoundOn;
+    public bool isInitialSelection;
 
     private void Awake()
     {
@@ -22,7 +23,16 @@ public class ButtonMouseHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
     // Start is called before the first frame update
     void Start()
     {
-        
+
+    }
+
+    private void OnEnable()
+    {
+        if (isInitialSelection)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +47,7 @@ public class ButtonMouseHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             am.PlayAudio("UI_select");
         }
+        EventSystem.current.SetSelectedGameObject(gameObject);
         
     }
 

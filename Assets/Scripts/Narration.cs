@@ -57,6 +57,15 @@ public class Narration : MonoBehaviour
         if (index < sentences.Length)
         {
             subtitle.GetComponentInChildren<Text>().text = sentences[index];
+
+            if (!isThisSceneStage)
+            {
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    SkipNarration();
+                }
+            }
+
             if (howToConvey == Narrate.Manual)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -136,5 +145,10 @@ public class Narration : MonoBehaviour
     IEnumerator Wait(float sec)
     {
         yield return new WaitForSeconds(sec);
+    }
+
+    public void SkipNarration()
+    {
+        index = sentences.Length;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class Options : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Options : MonoBehaviour
     public Image speakerImage;
     public Sprite soundOn;
     public Sprite soundOff;
+    public GameObject initialSelection;
 
     public Toggle currentOption
     {
@@ -32,6 +34,12 @@ public class Options : MonoBehaviour
 
         volumeSilder = GetComponentInChildren<Slider>();
 
+    }
+
+    private void OnEnable()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(initialSelection);
     }
 
     // Start is called before the first frame update
@@ -53,6 +61,7 @@ public class Options : MonoBehaviour
             input = 1;
         }*/
         ChangeInputToggle(PlayerPrefs.GetInt("OptionValue"));
+
 
         volumeSilder.value = PlayerPrefs.GetFloat("Volume");
 
@@ -122,5 +131,6 @@ public class Options : MonoBehaviour
     public void SaveCurrentOption()
     {
         PlayerPrefs.SetFloat("Volume", volumeSilder.value);
+        PlayerPrefs.SetInt("SavedOption", 1);
     }
 }
