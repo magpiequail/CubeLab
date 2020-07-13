@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class Door :Interactables
 {
@@ -37,7 +38,7 @@ public class Door :Interactables
     // Update is called once per frame
     void Update()
     {
-        if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.Space))
+        if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.Space) && CharactersMovement.isInputAllowed)
         {
             StartCoroutine(Open());
         }
@@ -121,6 +122,13 @@ public class Door :Interactables
             SceneManager.LoadScene("Stage Select");
         }
         CharactersMovement.isInputAllowed = true;
+        Analytics.CustomEvent("StageClear", new Dictionary<string, object>
+    {
+        { "stage_index", SceneManager.GetActiveScene().buildIndex },
+        { "how_many_stars", Battery.stars },
+        { "how_many_moves_left", (Battery.movesforEmotion + Battery.movesforStageClear+Battery.movesTillGameover) }
+
+    });
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
@@ -136,5 +144,15 @@ public class Door :Interactables
     {
         stars.gameObject.SetActive(true);
         stars.SetInteger("Stars", Battery.stars);
+    }
+    public void CollectStageClearData()
+    {
+        Analytics.CustomEvent("StageClear", new Dictionary<string, object>
+    {
+        { "Stage Index", SceneManager.GetActiveScene().buildIndex },
+        { "How Many Stars", Battery.stars },
+        { "How Many Moves Left", (Battery.movesforEmotion + Battery.movesforStageClear+Battery.movesTillGameover) }
+
+    });
     }
 }

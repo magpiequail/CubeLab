@@ -49,6 +49,7 @@ public class LobbyCapsule : Interactables
         if(collision.tag == "Character")
         {
             isActivated = true;
+            characterObj = collision.gameObject;
             ShowInteractionUI();
             LobbyChar =  collision.transform.parent.gameObject;
         }

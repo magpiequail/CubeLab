@@ -16,6 +16,7 @@ public enum Narrate
 public class Narration : MonoBehaviour
 {
     public GameObject subtitle;
+    public float typingSpeed;
 
     [TextArea(3,10)]
     public string[] sentences;
@@ -27,8 +28,15 @@ public class Narration : MonoBehaviour
     float timePassed;
     public GameObject memoryPlaying;
     float endingLineTime = 3f;
+    Text subtitleText;
+    private int letterIndex;
 
     bool isThisSceneStage;
+
+    private void Awake()
+    {
+        subtitleText = subtitle.GetComponentInChildren<Text>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +64,8 @@ public class Narration : MonoBehaviour
 
         if (index < sentences.Length)
         {
-            subtitle.GetComponentInChildren<Text>().text = sentences[index];
+            subtitleText.text = sentences[index];
+            //StartCoroutine(Type());
 
             if (!isThisSceneStage)
             {
@@ -111,7 +120,7 @@ public class Narration : MonoBehaviour
                 if (timePassed < endingLineTime)
                 {
                     subtitle.SetActive(true);
-                    subtitle.GetComponentInChildren<Text>().text = whenSucceeded;
+                    subtitleText.text = whenSucceeded;
                     timePassed += Time.deltaTime;
                 }
                 else
@@ -127,7 +136,7 @@ public class Narration : MonoBehaviour
                     if (timePassed < endingLineTime)
                     {
                         subtitle.SetActive(true);
-                        subtitle.GetComponentInChildren<Text>().text = whenFailed;
+                        subtitleText.text = whenFailed;
                         timePassed += Time.deltaTime;
                     }
                     else
@@ -140,6 +149,15 @@ public class Narration : MonoBehaviour
         }
             
         
+    }
+
+    IEnumerator Type()
+    {
+        foreach (char letter in sentences[index].ToCharArray())
+        {
+            subtitleText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
     }
 
     IEnumerator Wait(float sec)

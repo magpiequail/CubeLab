@@ -81,6 +81,8 @@ public class Elevator : Interactables
         base.StartInteraction();
         if (isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
+            characterObj.GetComponent<Character>().ResetBlockColor();
+
             if (sprite.transform.position.x < characterObj.transform.position.x)
             {
                 characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 1);
@@ -119,6 +121,7 @@ public class Elevator : Interactables
     {
         if (collision.tag == "Character" && collision.GetComponentInChildren<SpriteRenderer>().enabled)
         {
+            characterObj = collision.gameObject;
             ShowInteractionUI();
         }
     }
@@ -132,6 +135,10 @@ public class Elevator : Interactables
         if (characterObj.GetComponentInChildren<Key>())
         {
             characterObj.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        }
+        if (characterObj.GetComponentInChildren<InteractionButton>())
+        {
+            characterObj.GetComponentInChildren<InteractionButton>().enabled = true;
         }
 
     }

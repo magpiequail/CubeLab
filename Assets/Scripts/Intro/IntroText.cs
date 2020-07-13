@@ -24,7 +24,7 @@ public class IntroText : MonoBehaviour
         timeline.SetActive(false);
         subtitleImg = GetComponentInParent<Image>();
         optionButton.SetActive(false);
-
+        
     }
 
     // Start is called before the first frame update
@@ -77,7 +77,7 @@ public class IntroText : MonoBehaviour
                 else if(index > 7)
                 {
                     index = sentences.Length - 1;
-                    introChar.characterAnim.SetTrigger("GetUp");
+                    introChar.TriggerGetUp();
                     IntroCharacter.isInputAllowed = true;
                     optionButton.SetActive(true);
                 }

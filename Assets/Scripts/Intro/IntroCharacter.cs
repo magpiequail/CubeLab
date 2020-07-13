@@ -203,4 +203,8 @@ public class IntroCharacter : MonoBehaviour
         audioManager.PlayCharacterFootstep();
     }
 
+    public void TriggerGetUp()
+    {
+        characterAnim.SetTrigger("GetUp");
+    }
 }

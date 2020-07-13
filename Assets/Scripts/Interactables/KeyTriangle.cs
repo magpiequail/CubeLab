@@ -92,6 +92,7 @@ public class KeyTriangle : Key
     {
         if (collision.tag == "Character")
         {
+            characterObj = collision.gameObject;
             ShowInteractionUI();
         }
     }

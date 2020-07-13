@@ -72,6 +72,8 @@ public class Teleporter : Interactables
             {
                 if (teleArray[i].isActivated)
                 {
+                    characterObj.GetComponent<Character>().ResetBlockColor();
+
                     teleAnim.Play("TeleportSend");
                     FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
                 }
@@ -96,12 +98,14 @@ public class Teleporter : Interactables
         {
             isActivated = false;
             HideInteractionUI();
+
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Character")
         {
+            characterObj = collision.gameObject;
             ShowInteractionUI();
         }
     }
@@ -112,12 +116,12 @@ public class Teleporter : Interactables
     public void CharacterSpriteOn()
     {
         characterObj.GetComponentInChildren<SpriteRenderer>().enabled = true;
-        Debug.Log("spirte on called");
+
     }
     public void CharacterSpriteOff()
     {
         characterObj.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        Debug.Log("sprite off called");
+
     }
     public void SendCharacterToOther()
     {

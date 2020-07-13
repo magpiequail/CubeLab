@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class Battery : MonoBehaviour
 {
@@ -72,6 +74,7 @@ public class Battery : MonoBehaviour
 
         if(movesTillGameover == 0)
         {
+
             SceneController.gameState = GameState.GameOver;
             stars = 0;
         }
@@ -122,6 +125,7 @@ public class Battery : MonoBehaviour
         if(movesTillGameover == 0)
         {
             thirdAnim.Play("Grey");
+            CollectGameOverData();
         }
 
         first.text = "" + movesforEmotion;
@@ -131,6 +135,15 @@ public class Battery : MonoBehaviour
         firstAnim.SetFloat("Percent", firstPercent);
         secondAnim.SetFloat("Percent", secondPercent);
         thirdAnim.SetFloat("Percent", thirdPercent);
+
+    }
+    public void CollectGameOverData()
+    {
+        Analytics.CustomEvent("GameOver", new Dictionary<string, object>
+    {
+        { "Stage Index", SceneManager.GetActiveScene().buildIndex },
+
+    });
 
     }
 }

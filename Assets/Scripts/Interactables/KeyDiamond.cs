@@ -93,6 +93,7 @@ public class KeyDiamond : Key
     {
         if (collision.tag == "Character")
         {
+            characterObj = collision.gameObject;
             ShowInteractionUI();
         }
     }

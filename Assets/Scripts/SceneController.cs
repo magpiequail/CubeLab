@@ -22,6 +22,7 @@ public class SceneController : MonoBehaviour
     public float delayTillUI = 2.0f;
     bool isGameOver = false;
     GameObject pauseUI;
+    GameObject optionUI;
 
     bool isAudioPlayed = false;
 
@@ -34,6 +35,7 @@ public class SceneController : MonoBehaviour
         
         gameState = GameState.Running;
         pauseUI = GameObject.FindGameObjectWithTag("Pause");
+        optionUI = pauseUI.GetComponentInChildren<Options>().gameObject;
 
         audioManager = FindObjectOfType<AudioManager>();
 
@@ -45,6 +47,7 @@ public class SceneController : MonoBehaviour
     {
         gameOverUI.SetActive(false);
         gameOver.SetActive(false);
+        optionUI.SetActive(false);
         pauseUI.SetActive(false);
         CharactersMovement.isInputAllowed = true;
         FindObjectOfType<AudioManager>().PlayAudio("StageBgm");
@@ -61,7 +64,7 @@ public class SceneController : MonoBehaviour
         {
             gameState = GameState.Paused;
             pauseUI.SetActive(true);
-            
+            //optionUI = pauseUI.GetComponentInChildren<Options>().gameObject;
         }
         else if(gameState == GameState.Paused)
         {
@@ -69,6 +72,7 @@ public class SceneController : MonoBehaviour
             CharactersMovement.isInputAllowed = false;
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                optionUI.SetActive(false);
                 BackToGame();
             }
             
