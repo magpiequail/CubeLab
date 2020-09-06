@@ -21,14 +21,29 @@ public class BlockStat : MonoBehaviour
     private bool isDown = false;
     private bool isUp = true;
 
+    //public Vector3 blockOriginalPos;
+    public Vector2 charPosOffset;
+    public Vector3 blockCharPos;
+
+    private void Awake()
+    {
+        blockPosition = gameObject.GetComponent<Transform>().position;
+        blockCharPos = new Vector3(blockPosition.x + charPosOffset.x, blockPosition.y + charPosOffset.y);
+
+        isSpringCompleted = true;
+        blockSprite = gameObject.GetComponentInChildren<SpriteRenderer>();
+
+        pushedPosition = new Vector3(blockPosition.x, blockPosition.y - springDepth, blockPosition.z);
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        isSpringCompleted = true;
+        /*isSpringCompleted = true;
         blockSprite = gameObject.GetComponentInChildren<SpriteRenderer>();
-        blockPosition = gameObject.GetComponent<Transform>().position;
-        pushedPosition = new Vector3(blockPosition.x, blockPosition.y - springDepth, blockPosition.z);
+        
+        pushedPosition = new Vector3(blockPosition.x, blockPosition.y - springDepth, blockPosition.z);*/
         
     }
 

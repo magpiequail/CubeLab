@@ -43,6 +43,7 @@ public class DoorSquare : Door
     {
         if (collision.tag == "Character" /*&& collision.GetComponent<Character>().isHavingSquareKey*/)
         {
+            characterObj = collision.gameObject;
             if (collision.GetComponent<Character>().isHavingSquareKey)
             {
                 isOpened = true;
@@ -57,7 +58,9 @@ public class DoorSquare : Door
         if (collision.tag == "Character")
         {
             isOpened = false;
+            
             HideInteractionUI();
+            characterObj = null;
         }
     }
 

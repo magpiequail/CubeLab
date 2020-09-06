@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     public bool isHavingDiamondKey = false;
     public bool isHavingSquareKey = false;
     // public GameObject floor;
-    float keyPressedTime = 0f;
+    protected float keyPressedTime = 0f;
 
     public int rows = 5;
 
@@ -28,16 +28,17 @@ public class Character : MonoBehaviour
     //public int charPosY = 2;
 
     public Vector2 nextPos;
-    Grid grid;
-    float gridX;
-    float gridY;
+    protected Vector2 nextCharPos;
+    protected Grid grid;
+    protected float gridX;
+    protected float gridY;
     public Vector2 currPos;
     public Vector3Int currentCharPos;
-    Vector3Int clickedTilePos;
+    protected Vector3Int clickedTilePos;
     //layermask is accessible floor
-    int rayLayerMask = 1 << 10;
+    protected int rayLayerMask = 1 << 10;
 
-    CharactersMovement cm;
+    protected CharactersMovement cm;
 
     public LayerMask accessible;
 
@@ -224,9 +225,62 @@ public class Character : MonoBehaviour
 
     }
 
-    public bool SWMovement()
+    /*public virtual void Initialize()
     {
-        if (!isUnitMoveAllowed)
+        grid = FindObjectOfType<Grid>();
+        gridX = grid.cellSize.x / 2;
+        gridY = grid.cellSize.y / 2;
+
+        currPos = transform.position;
+        nextPos = transform.position;
+        cm = FindObjectOfType<CharactersMovement>();
+
+        characterAnim = GetComponentInChildren<Animator>();
+        characterAnim.SetInteger("Idle", 1);
+        characterAnim.SetInteger("StageClear", 0);
+        characterAnim.SetInteger("Direction", 3);
+
+        SetCurrentBlock();
+    }*/ 
+
+    public virtual void UpdateFunc()
+    {
+        if (Door.isAllOpen)
+        {
+            //characterAnim.Play("Idle_NE");
+            characterAnim.SetInteger("Direction", 2);
+            //characterAnim.Play("StageClear");
+            characterAnim.SetInteger("StageClear", 1);
+        }
+        else
+        {
+
+        }
+        if (SceneController.gameState == GameState.GameOver && isDeathByLaser == false)
+        {
+            characterAnim.Play("GameOver");
+        }
+
+
+        if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nextCharPos, speed * Time.deltaTime);
+        }
+        if (Vector3.Distance(transform.position, nextCharPos) < 0.01f)
+        {
+            isUnitMoveAllowed = true;
+            currPos = nextPos;
+            characterAnim.SetInteger("Idle", 1);
+        }
+        else
+        {
+            isUnitMoveAllowed = false;
+        }
+    }
+
+    public virtual bool SWMovement()
+    {
+        /*if (!isUnitMoveAllowed)
         {
             return false;
         }
@@ -241,13 +295,13 @@ public class Character : MonoBehaviour
 
         SetCurrentBlock();
         characterAnim.SetInteger("Idle", 0);
-        characterAnim.Play("Walk_SW");
+        characterAnim.Play("Walk_SW");*/
         
         return true;
     }
-    public bool SEMovement()
+    public virtual bool SEMovement()
     {
-        if (!isUnitMoveAllowed)
+        /*if (!isUnitMoveAllowed)
         {
             return false;
         }
@@ -263,13 +317,13 @@ public class Character : MonoBehaviour
 
         SetCurrentBlock();
         characterAnim.SetInteger("Idle", 0);
-        characterAnim.Play("Walk_SE");
+        characterAnim.Play("Walk_SE");*/
 
         return true;
     }
-    public bool NWMovement()
+    public virtual bool NWMovement()
     {
-        if (!isUnitMoveAllowed)
+        /*if (!isUnitMoveAllowed)
         {
             return false;
         }
@@ -284,13 +338,13 @@ public class Character : MonoBehaviour
 
         SetCurrentBlock();
         characterAnim.Play("Walk_NW");
-        characterAnim.SetInteger("Idle", 0);
+        characterAnim.SetInteger("Idle", 0);*/
         return true;
     }
    
-    public bool NEMovement()
+    public virtual bool NEMovement()
     {
-        if (!isUnitMoveAllowed)
+        /*if (!isUnitMoveAllowed)
         {
             return false;
         }
@@ -305,7 +359,7 @@ public class Character : MonoBehaviour
 
         SetCurrentBlock();
         characterAnim.Play("Walk_NE");
-        characterAnim.SetInteger("Idle", 0);
+        characterAnim.SetInteger("Idle", 0);*/
         return true;
     }
 
@@ -327,7 +381,7 @@ public class Character : MonoBehaviour
 
 
     //these functions are used for mouse click movement
-    public bool isCharCanMoveNW()
+    public virtual bool isCharCanMoveNW()
     {
         if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
         {
@@ -338,7 +392,7 @@ public class Character : MonoBehaviour
             return false;
         }
     }
-    public bool isCharCanMoveNE()
+    public virtual bool isCharCanMoveNE()
     {
         if (cm.clickedTilePos.x == currentCharPos.x+1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
         {
@@ -349,7 +403,7 @@ public class Character : MonoBehaviour
             return false;
         }
     }
-    public bool isCharCanMoveSW()
+    public virtual bool isCharCanMoveSW()
     {
         if (cm.clickedTilePos.x == currentCharPos.x -1 && cm.clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
         {
@@ -360,7 +414,7 @@ public class Character : MonoBehaviour
             return false;
         }
     }
-    public bool isCharCanMoveSE()
+    public virtual bool isCharCanMoveSE()
     {
         if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y - 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
         {
