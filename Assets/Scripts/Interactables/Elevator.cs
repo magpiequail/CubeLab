@@ -79,8 +79,10 @@ public class Elevator : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
+        
         if (isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
+            CharactersMovement.isInputAllowed = false;
             characterObj.GetComponent<Character>().ResetBlockColor();
 
             if (sprite.transform.position.x < characterObj.transform.position.x)
@@ -119,7 +121,7 @@ public class Elevator : Interactables
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Character" && collision.GetComponentInChildren<SpriteRenderer>().enabled)
+        if (collision.tag == "Character" /*&& collision.GetComponentInChildren<SpriteRenderer>().enabled*/)
         {
             characterObj = collision.gameObject;
             ShowInteractionUI();
@@ -136,10 +138,11 @@ public class Elevator : Interactables
         {
             characterObj.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
         }
-        if (characterObj.GetComponentInChildren<InteractionButton>())
+        /*if (characterObj.GetComponentInChildren<InteractionButton>())
         {
             characterObj.GetComponentInChildren<InteractionButton>().enabled = true;
-        }
+        }*/
+        ShowInteractionUI();
 
     }
     public void CharacterSpriteOff()
@@ -153,9 +156,11 @@ public class Elevator : Interactables
     }
     public void SendCharacterToOther()
     {
+
         characterObj.transform.position = otherElevator.transform.position;
         characterObj.GetComponent<Character>().currPos = otherElevator.transform.position;
         characterObj.GetComponent<Character>().nextPos = otherElevator.transform.position;
+        characterObj.GetComponent<Character>().nextCharPos = otherElevator.transform.position;
         if (sprite.transform.position.x < characterObj.transform.position.x)
         {
             characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 4);

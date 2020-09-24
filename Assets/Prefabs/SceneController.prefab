@@ -77,6 +77,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613c9978bf420544786611814159ec83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputTriggerTime: 0.5
+  inputWaitTime: 0.2
   tileWorldPos: {x: 0, y: 0, z: 0}
   clickedTilePos: {x: 0, y: 0, z: 0}
 --- !u!114 &4676232670409894582
@@ -108,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitle: {fileID: 0}
+  typingSpeed: 0
   sentences: []
   forHowLong: []
   whenSucceeded: 

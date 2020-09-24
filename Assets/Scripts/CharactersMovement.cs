@@ -7,6 +7,13 @@ public class CharactersMovement : MonoBehaviour
 {
     Character[] charactersArray;
     Grid grid;
+
+    float keyPressedTime;
+    public float inputTriggerTime;
+    public float inputWaitTime;
+
+    [Space(10)]
+
     public Vector3 tileWorldPos;
     public Vector3Int clickedTilePos;
     TilemapColor tmc;
@@ -49,6 +56,7 @@ public class CharactersMovement : MonoBehaviour
        
         if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 0 && !Input.GetKey(KeyCode.Space))
         {
+            //W = NE, A = NW, S = SW, D = SE
             if (Input.GetKeyDown(KeyCode.A) )
             {
                 tmc.ColorTiles();
@@ -85,6 +93,63 @@ public class CharactersMovement : MonoBehaviour
                 {
                     b.MinusOneMove();
                     audioManager.PlayCharacterFootstep();
+                }
+            }
+            //while getkey
+            if (Input.GetKey(KeyCode.A))
+            {
+                keyPressedTime += Time.deltaTime;
+                if (keyPressedTime > inputTriggerTime)
+                {
+                    keyPressedTime = inputTriggerTime - inputWaitTime;
+                    tmc.ColorTiles();
+                    if (isAllCharMovedNW())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
+                }
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                keyPressedTime += Time.deltaTime;
+                if (keyPressedTime > inputTriggerTime)
+                {
+                    keyPressedTime = inputTriggerTime - inputWaitTime;
+                    tmc.ColorTiles();
+                    if (isAllCharMovedSW())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
+                }
+            }
+            else if (Input.GetKey(KeyCode.W))
+            {
+                keyPressedTime += Time.deltaTime;
+                if (keyPressedTime > inputTriggerTime)
+                {
+                    keyPressedTime = inputTriggerTime - inputWaitTime;
+                    tmc.ColorTiles();
+                    if (isAllCharMovedNE())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
+                }
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                keyPressedTime += Time.deltaTime;
+                if (keyPressedTime > inputTriggerTime)
+                {
+                    keyPressedTime = inputTriggerTime - inputWaitTime;
+                    tmc.ColorTiles();
+                    if (isAllCharMovedSE())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
                 }
             }
         }
@@ -145,6 +210,10 @@ public class CharactersMovement : MonoBehaviour
                 }
 
             }
+            else if (Input.GetMouseButtonUp(0))
+            {
+
+            }
         }
     }
 
@@ -157,27 +226,48 @@ public class CharactersMovement : MonoBehaviour
         }
         foreach (Character c in charactersArray)
         {
-            c.characterAnim.SetInteger("Direction", 3);
+            
             if (!c.SWMovement())
             {
+                /*foreach(Character ch in charactersArray)
+                {
+                    ch.nextPos = ch.currPos;
+                }*/
                 return false;
             }
         }
-        return true;
+        /*foreach (Character c in charactersArray)
+        {
+            
+            c.nextCharPos = c.tempNextCharPos;
+
+        }*/
+
+            return true;
     }
     bool isAllCharMovedSE()
     {
         foreach (Character c in charactersArray)
         {
             c.characterAnim.SetInteger("Direction", 4);
+            
         }
         foreach (Character c in charactersArray)
         {
             if (!c.SEMovement())
             {
+                /*foreach (Character ch in charactersArray)
+                {
+                    ch.nextPos = ch.currPos;
+                }*/
                 return false;
             }
         }
+        /*foreach (Character c in charactersArray)
+        {
+            
+            c.nextCharPos = c.tempNextCharPos;
+        }*/
         return true;
     }
     bool isAllCharMovedNW()
@@ -190,9 +280,18 @@ public class CharactersMovement : MonoBehaviour
         {
             if (!c.NWMovement())
             {
+                /*foreach (Character ch in charactersArray)
+                {
+                    ch.nextPos = ch.currPos;
+                }*/
                 return false;
             }
         }
+        /*foreach (Character c in charactersArray)
+        {
+            
+            c.nextCharPos = c.tempNextCharPos;
+        }*/
         return true;
     }
     bool isAllCharMovedNE()
@@ -205,9 +304,18 @@ public class CharactersMovement : MonoBehaviour
         {
             if (!c.NEMovement())
             {
+                /*foreach (Character ch in charactersArray)
+                {
+                    ch.nextPos = ch.currPos;
+                }*/
                 return false;
             }
         }
+        /*foreach (Character c in charactersArray)
+        {
+            
+            c.nextCharPos = c.tempNextCharPos;
+        }*/
         return true;
     }
 

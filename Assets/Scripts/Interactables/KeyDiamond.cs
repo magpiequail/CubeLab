@@ -62,7 +62,10 @@ public class KeyDiamond : Key
             effectAnim.SetTrigger("EffectTrigger");
 
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
-
+            if (FindObjectOfType<Expression>())
+            {
+                Expression.faceAnim.Play("Happy");
+            }
             characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
             if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
             {
@@ -106,7 +109,6 @@ public class KeyDiamond : Key
             diamondKeyAnim.SetInteger("State", 1);
             //sprite.gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
             characterObj = other.gameObject;
-
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

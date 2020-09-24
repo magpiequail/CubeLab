@@ -40,6 +40,10 @@ public class Door :Interactables
     {
         if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.Space) && CharactersMovement.isInputAllowed)
         {
+            if (FindObjectOfType<Expression>())
+            {
+                Expression.faceAnim.Play("Happy");
+            }
             StartCoroutine(Open());
         }
             

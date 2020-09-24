@@ -26,16 +26,21 @@ public class Interactables : MonoBehaviour
 
     public virtual void StartInteraction()
     {
-
+        
+        HideInteractionUI();
     }
     protected virtual void ShowInteractionUI()
     {
-        interactionObj = Instantiate(interactionPrefab, /*characterObj.transform.position, Quaternion.identity, */characterObj.transform);
-        interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+        if (characterObj != null && !characterObj.GetComponent<InteractionButton>() && characterObj.GetComponentInChildren<SpriteRenderer>().enabled)
+        {
+            interactionObj = Instantiate(interactionPrefab, /*characterObj.transform.position, Quaternion.identity, */characterObj.transform);
+            interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
+        }
+        
     }
     protected virtual void HideInteractionUI()
     {
-        if (characterObj.GetComponentInChildren<InteractionButton>())
+        if (characterObj != null && characterObj.GetComponentInChildren<InteractionButton>())
         {
             Destroy(characterObj.GetComponentInChildren<InteractionButton>().gameObject);
         }

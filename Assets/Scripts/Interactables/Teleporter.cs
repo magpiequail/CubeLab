@@ -5,6 +5,7 @@ using UnityEngine;
 public class Teleporter : Interactables
 {
     public GameObject otherTele;
+    public int attachedFloor; //0 = floor 1 = ceiling
     //public GameObject attachedFloor;
     //bool isCharOn;
     //public bool isActivated = false;
@@ -73,6 +74,8 @@ public class Teleporter : Interactables
                 if (teleArray[i].isActivated)
                 {
                     characterObj.GetComponent<Character>().ResetBlockColor();
+                    
+
 
                     teleAnim.Play("TeleportSend");
                     FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
@@ -116,18 +119,30 @@ public class Teleporter : Interactables
     public void CharacterSpriteOn()
     {
         characterObj.GetComponentInChildren<SpriteRenderer>().enabled = true;
-
+        ShowInteractionUI();
     }
     public void CharacterSpriteOff()
     {
         characterObj.GetComponentInChildren<SpriteRenderer>().enabled = false;
-
+        HideInteractionUI();
     }
     public void SendCharacterToOther()
     {
+        HideInteractionUI();
+        //while the sprite is disabled, flip the spider character 
+        if (characterObj.GetComponent<Spider>())
+        {
+            if (attachedFloor - otherTele.GetComponent<Teleporter>().attachedFloor != 0)
+            {
+                characterObj.GetComponent<Spider>().Flip();
+            }
+        }
+        //
         characterObj.transform.position = otherTele.transform.position;
         characterObj.GetComponent<Character>().currPos = otherTele.transform.position;
         characterObj.GetComponent<Character>().nextPos = otherTele.transform.position;
+        characterObj.GetComponent<Character>().nextCharPos = otherTele.transform.position;
+
 
     }
     public void PlayReceive()

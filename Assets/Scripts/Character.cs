@@ -26,9 +26,12 @@ public class Character : MonoBehaviour
 
     //public int charPosX = 2;
     //public int charPosY = 2;
+    public LayerMask accessible;
 
+    //[HideInInspector]
     public Vector2 nextPos;
-    protected Vector2 nextCharPos;
+    public Vector2 tempNextCharPos;
+    public Vector2 nextCharPos;
     protected Grid grid;
     protected float gridX;
     protected float gridY;
@@ -40,7 +43,7 @@ public class Character : MonoBehaviour
 
     protected CharactersMovement cm;
 
-    public LayerMask accessible;
+    
 
 
     private void Awake()
@@ -444,6 +447,14 @@ public class Character : MonoBehaviour
         {
             hit.collider.gameObject.GetComponent<BlockStat>().currentBlock = 1;
         }
+    }
+
+    //when teleporting, change the floor which the character is standing on
+    public void ResetFloor()
+    {
+        ResetBlockColor();
+
+
     }
 
 }

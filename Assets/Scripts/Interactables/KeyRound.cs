@@ -64,6 +64,11 @@ public class KeyRound : Key
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
 
             characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
+            if (FindObjectOfType<Expression>())
+            {
+                Expression.faceAnim.Play("Happy");
+            }
+            
             if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
             {
                 characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);

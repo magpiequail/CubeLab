@@ -11,7 +11,7 @@ public class BlockStat : MonoBehaviour
     public float springDepth;
 
     public Material originalMat;
-    //public Color pathColor;
+    public Material pathMat;
     public Material CurrentBlockMat;
 
     private SpriteRenderer blockSprite;
@@ -55,10 +55,10 @@ public class BlockStat : MonoBehaviour
             
             blockSprite.material = CurrentBlockMat;
         }
-        /*if (currentBlock == 2)
+        if (currentBlock == 2)
         {
-            blockSprite.color = pathColor;
-        }*/
+            blockSprite.material = pathMat;
+        }
         if (currentBlock == 0)
         {
             blockSprite.material = originalMat;

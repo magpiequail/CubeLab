@@ -62,7 +62,10 @@ public class KeyTriangle : Key
             effectAnim.SetTrigger("EffectTrigger");
 
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
-
+            if (FindObjectOfType<Expression>())
+            {
+                Expression.faceAnim.Play("Happy");
+            }
             characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
             if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
             {

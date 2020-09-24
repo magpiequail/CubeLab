@@ -30,6 +30,7 @@ public class NormalCharacter : Character
 
         currPos = transform.position;
         nextPos = transform.position;
+        tempNextCharPos = transform.position;
         nextCharPos = transform.position;
         cm = FindObjectOfType<CharactersMovement>();
 
@@ -43,11 +44,12 @@ public class NormalCharacter : Character
 
     public override bool NWMovement()
     {
+        ResetBlockColor();
         if (!isUnitMoveAllowed)
         {
             return false;
         }
-        ResetBlockColor();
+        characterAnim.SetInteger("Direction", 1);
 
         nextPos = new Vector2(currPos.x - gridX, currPos.y + gridY);
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
@@ -57,7 +59,7 @@ public class NormalCharacter : Character
             
         }
 
-        characterAnim.SetInteger("Direction", 1);
+        
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -72,11 +74,12 @@ public class NormalCharacter : Character
 
     public override bool NEMovement()
     {
+        ResetBlockColor();
         if (!isUnitMoveAllowed)
         {
             return false;
         }
-        ResetBlockColor();
+        characterAnim.SetInteger("Direction", 2);
         nextPos = new Vector2(currPos.x + gridX, currPos.y + gridY);
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
@@ -84,7 +87,7 @@ public class NormalCharacter : Character
             nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
             
         }
-        characterAnim.SetInteger("Direction", 2);
+        
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -99,11 +102,12 @@ public class NormalCharacter : Character
 
     public override bool SWMovement()
     {
+        ResetBlockColor();
         if (!isUnitMoveAllowed)
         {
             return false;
         }
-        ResetBlockColor();
+        characterAnim.SetInteger("Direction", 3);
         nextPos = new Vector2(currPos.x - gridX, currPos.y - gridY);
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
@@ -111,7 +115,7 @@ public class NormalCharacter : Character
             nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
             
         }
-        characterAnim.SetInteger("Direction", 3);
+        
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
             nextPos = currPos;
@@ -127,11 +131,12 @@ public class NormalCharacter : Character
 
     public override bool SEMovement()
     {
+        ResetBlockColor();
         if (!isUnitMoveAllowed)
         {
             return false;
         }
-        ResetBlockColor();
+        characterAnim.SetInteger("Direction", 4);
         nextPos = new Vector2(currPos.x + gridX, currPos.y - gridY);
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
@@ -139,7 +144,7 @@ public class NormalCharacter : Character
             nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
             
         }
-        characterAnim.SetInteger("Direction", 4);
+        
 
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
@@ -153,10 +158,6 @@ public class NormalCharacter : Character
 
         return true;
     }
-
-    //aslant block movement
-
-        //
 
     public override bool isCharCanMoveNW()
     {
@@ -177,4 +178,56 @@ public class NormalCharacter : Character
     {
         return base.isCharCanMoveSE();
     }
+
+
+
+
+    //mouse click path finding ai
+    /*public void PathFinding()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Initialize();
+            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(worldPoint, transform.forward);
+            Debug.DrawRay(worldPoint, transform.forward * 10, Color.red, 0.3f);
+            if (hit)
+            {
+                endX = hit.collider.gameObject.GetComponent<BlockStat>().transform.position.x;
+                endY = hit.collider.gameObject.GetComponent<BlockStat>().transform.position.y;
+
+
+                startX = fl.charPosX;
+                startY = fl.charPosY;
+
+                Run();
+
+            }
+            else
+                return;
+        }
+    }
+    void Run()
+    {
+        run = true;
+        SetSteps();
+        SetPath();
+        run = false;
+        foreach (GameObject obj in fl.gridArray)
+        {
+            if (path.Contains(obj) && obj != path[path.Count - 1])
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 2;
+            }
+            else if (obj == fl.gridArray[fl.charPosX, fl.charPosY])
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 1;
+            }
+            else
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 0;
+            }
+        }
+
+    }*/
 }

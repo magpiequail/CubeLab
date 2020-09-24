@@ -12,7 +12,7 @@ public class Switch : Interactables
 
     private void Awake()
     {
-        currentSprite = GetComponent<SpriteRenderer>();
+        currentSprite = GetComponentInChildren<SpriteRenderer>();
         currentSprite.sprite = sprite1;
         isActivated = false;
     }
