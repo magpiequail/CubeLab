@@ -12,7 +12,11 @@ public class NormalCharacter : Character
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(nextPos);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 100, rayLayerMask);
+        if (hit && hit.collider.transform.parent.GetComponent<Floor>())
+        {
+            hit.collider.transform.parent.GetComponent<Floor>().charOnFloor = this;
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +37,8 @@ public class NormalCharacter : Character
         tempNextCharPos = transform.position;
         nextCharPos = transform.position;
         cm = FindObjectOfType<CharactersMovement>();
+
+        pf = FindObjectOfType<PathFinding>();
 
         characterAnim = GetComponentInChildren<Animator>();
         characterAnim.SetInteger("Idle", 1);
@@ -179,55 +185,6 @@ public class NormalCharacter : Character
         return base.isCharCanMoveSE();
     }
 
+  
 
-
-
-    //mouse click path finding ai
-    /*public void PathFinding()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            Initialize();
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(worldPoint, transform.forward);
-            Debug.DrawRay(worldPoint, transform.forward * 10, Color.red, 0.3f);
-            if (hit)
-            {
-                endX = hit.collider.gameObject.GetComponent<BlockStat>().transform.position.x;
-                endY = hit.collider.gameObject.GetComponent<BlockStat>().transform.position.y;
-
-
-                startX = fl.charPosX;
-                startY = fl.charPosY;
-
-                Run();
-
-            }
-            else
-                return;
-        }
-    }
-    void Run()
-    {
-        run = true;
-        SetSteps();
-        SetPath();
-        run = false;
-        foreach (GameObject obj in fl.gridArray)
-        {
-            if (path.Contains(obj) && obj != path[path.Count - 1])
-            {
-                obj.GetComponent<BlockStat>().currentBlock = 2;
-            }
-            else if (obj == fl.gridArray[fl.charPosX, fl.charPosY])
-            {
-                obj.GetComponent<BlockStat>().currentBlock = 1;
-            }
-            else
-            {
-                obj.GetComponent<BlockStat>().currentBlock = 0;
-            }
-        }
-
-    }*/
 }

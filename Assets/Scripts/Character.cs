@@ -43,7 +43,7 @@ public class Character : MonoBehaviour
 
     protected CharactersMovement cm;
 
-    
+    protected PathFinding pf;
 
 
     private void Awake()
@@ -55,6 +55,8 @@ public class Character : MonoBehaviour
         currPos = transform.position;
         nextPos = transform.position;
         cm = FindObjectOfType<CharactersMovement>();
+
+        pf = FindObjectOfType<PathFinding>();
     }
 
     // Start is called before the first frame update
@@ -384,6 +386,8 @@ public class Character : MonoBehaviour
 
 
     //these functions are used for mouse click movement
+
+    #region functions currently not used
     public virtual bool isCharCanMoveNW()
     {
         if (cm.clickedTilePos.x == currentCharPos.x && cm.clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(cm.tileWorldPos, 0.01f, accessible))
@@ -429,15 +433,17 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void ResetBlockColor()
-    {
-        
-        RaycastHit2D hit = Physics2D.Raycast(currPos, transform.forward,100,rayLayerMask);
+    #endregion
 
-        if(hit)
-        {
-            hit.collider.gameObject.GetComponent<BlockStat>().currentBlock = 0;
-        }
+
+    public void ResetBlockColor()
+{
+    RaycastHit2D hit = Physics2D.Raycast(currPos, transform.forward,100,rayLayerMask);
+
+    if(hit)
+    {
+        hit.collider.gameObject.GetComponent<BlockStat>().currentBlock = 0;
+    }
     }
     public void SetCurrentBlock()
     {

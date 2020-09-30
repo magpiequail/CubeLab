@@ -14,11 +14,14 @@ public class Elevator : Interactables
 
     Animator elevatorAnim; // state 1 is when it is opening, state 0 is when it is closing, open receive = 2, close receive = 3
 
+    public Floor attachedFloor;
+
     private void Awake()
     {
         sprite = GetComponentInChildren<SpriteRenderer>();
         elevatorAnim = GetComponentInChildren<Animator>();
         isActivated = false;
+        attachedFloor = GetComponentInParent<Floor>();
     }
 
     // Start is called before the first frame update
@@ -169,9 +172,13 @@ public class Elevator : Interactables
         {
             characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 3);
         }
+        
     }
     public void PlayOpenReceive()
     {
+        attachedFloor.charOnFloor = null;
+        otherElevator.GetComponent<Elevator>().attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
+
         otherElevator.GetComponentInChildren<Animator>().SetInteger("State",2);
     }
     public void PlayCloseReceive()

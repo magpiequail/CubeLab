@@ -29,11 +29,15 @@ public class DoorDefault : Door
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Character")
+        if (collision.tag == "Character" )
         {
-            isOpened = true;
-            characterObj = collision.gameObject;
-            ShowInteractionUI();
+            if (collision.gameObject.GetComponent<NormalCharacter>())
+            {
+                isOpened = true;
+                characterObj = collision.gameObject;
+                ShowInteractionUI();
+            }
+            
         }
     }
 

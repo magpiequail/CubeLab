@@ -23,6 +23,19 @@ public class CharactersMovement : MonoBehaviour
 
     AudioManager audioManager;
 
+    //variables for pathfinding
+    public LayerMask floorLayerMask = 1 << 10;
+    Floor pathFindingFloor;
+    public List<GameObject> path = new List<GameObject>();
+    public float delayTime;
+
+    public int startX;
+    public int startY;
+
+    //position of ending block
+    public int endX;
+    public int endY;
+
     private void Awake()
     {
         charactersArray = FindObjectsOfType<Character>();
@@ -156,7 +169,77 @@ public class CharactersMovement : MonoBehaviour
         //mouse
         if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 1)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
+            {
+                
+                Vector3 worldPoint = CameraManager.currentCam.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(worldPoint, transform.forward, 100, floorLayerMask);
+                Debug.DrawLine(worldPoint, transform.forward * 100, Color.red);
+                if (hit)
+                {
+
+                    pathFindingFloor = hit.collider.gameObject.transform.parent.GetComponent<Floor>();
+                    
+
+                    endX = hit.collider.gameObject.GetComponent<BlockStat>().x;
+                    endY = hit.collider.gameObject.GetComponent<BlockStat>().y;
+
+                    if (pathFindingFloor.charOnFloor)
+                    {
+                        RaycastHit2D charHit = Physics2D.Raycast(pathFindingFloor.charOnFloor.transform.position, transform.forward, 100, floorLayerMask);
+                        if (charHit)
+                        {
+                            startX = charHit.collider.gameObject.GetComponent<BlockStat>().x;
+                            startY = charHit.collider.gameObject.GetComponent<BlockStat>().y;
+                        }
+                        InitializeBlockStat();
+                        Run();
+                    }
+                    
+                    
+                }
+                else
+                {
+                    if(pathFindingFloor == null)
+                    {
+                        return;
+                    }
+                    endX = startX;
+                    endY = startY;
+                    Run();
+                    pathFindingFloor.blockArray[startX, startY].GetComponent<BlockStat>().currentBlock = 1;
+                }
+
+
+
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (pathFindingFloor)
+                {
+                    foreach (GameObject obj in pathFindingFloor.blockArray)
+                    {
+                        obj.GetComponent<BlockStat>().currentBlock = 0;
+                    }
+                    if (path.Count - 1 <= Battery.movesTillGameover)
+                    {
+                        StartCoroutine("Delay");
+                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        {
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("not enough moves");
+                    }
+                }
+                
+            }
+
+
+            #region this is legacy mouse movement
+            /*if (Input.GetMouseButtonDown(0))
             {
                 
                 for( int i= 0;i < charactersArray.Length; i++)
@@ -213,11 +296,12 @@ public class CharactersMovement : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
             {
 
-            }
+            }*/
+            #endregion
         }
     }
 
-
+    #region isAllCharMoved
     bool isAllCharMovedSW()
     {
         foreach (Character c in charactersArray)
@@ -319,7 +403,287 @@ public class CharactersMovement : MonoBehaviour
         return true;
     }
 
+    #endregion
+
     //for mouse click movement
+
+
+
+    #region functions used for pathfinding
+    
+    IEnumerator Delay()
+    {
+        for (int i = path.Count; i >= 2; i--)
+        {
+            if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+            {
+                yield break;
+            }
+            if (pathFindingFloor.charOnFloor.currPos.x < path[i - 2].GetComponent<BlockStat>().blockCharPos.x)
+            {
+                //NE
+                if (pathFindingFloor.charOnFloor.currPos.y < path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
+                {
+                    foreach (Character c in charactersArray)
+                    {
+                        c.GetComponent<Character>().NEMovement();
+
+                        /*if (c.isCharCanMoveNE())
+                        {
+                            c.GetComponent<Character>().NEMovement();
+                            b.MinusOneMove();
+                        }*/
+                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        {
+                            yield break;
+                        }
+
+                    }
+                    b.MinusOneMove();
+                }
+                //SE
+                else if (pathFindingFloor.charOnFloor.currPos.y > path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
+                {
+                    foreach (Character c in charactersArray)
+                    {
+                        c.GetComponent<Character>().SEMovement();
+
+                        /*if (c.isCharCanMoveSE())
+                        {
+                            c.GetComponent<Character>().SEMovement();
+                            b.MinusOneMove();
+                        }*/
+                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        {
+                            yield break;
+                        }
+
+                    }
+                    b.MinusOneMove();
+                }
+            }
+            else if (pathFindingFloor.charOnFloor.currPos.x > path[i - 2].GetComponent<BlockStat>().blockCharPos.x)
+            {
+                //NW
+                if (pathFindingFloor.charOnFloor.currPos.y < path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
+                {
+                    foreach (Character c in charactersArray)
+                    {
+                        c.GetComponent<Character>().NWMovement();
+
+                        /*if (c.isCharCanMoveNW())
+                        {
+                            c.GetComponent<Character>().NWMovement();
+                            b.MinusOneMove();
+                        }*/
+                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        {
+                            yield break;
+                        }
+
+                    }
+                    b.MinusOneMove();
+                }
+                //SW
+                else if (pathFindingFloor.charOnFloor.currPos.y > path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
+                {
+                    foreach (Character c in charactersArray)
+                    {
+                        c.GetComponent<Character>().SWMovement();
+
+                        /*if (c.isCharCanMoveSW())
+                        {
+                            c.GetComponent<Character>().SWMovement();
+                            b.MinusOneMove();
+                        }*/
+                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        {
+                            yield break;
+                        }
+
+                    }
+                    b.MinusOneMove();
+                }
+            }
+
+
+
+            /*pathFindingFloor.charPosX = path[i - 2].GetComponent<BlockStat>().x;
+            pathFindingFloor.charPosY = path[i - 2].GetComponent<BlockStat>().y;
+
+            pathFindingFloor.SetAsCurrent(pathFindingFloor.charPosX, pathFindingFloor.charPosY);*/
+            //character.transform.position = path[i - 2].transform.position;
+            yield return new WaitForSeconds(delayTime);
+        }
+
+    }
+    void InitializeBlockStat()
+    {
+        if(pathFindingFloor == null)
+        {
+            return;
+        }
+        foreach (GameObject obj in pathFindingFloor.blockArray)
+        {
+            obj.GetComponent<BlockStat>().visited = -1;
+        }
+        pathFindingFloor.blockArray[startX, startY].GetComponent<BlockStat>().visited = 0;
+
+        //fl.gridArray[fl.charPosX, fl.charPosY].GetComponent<BlockStat>().currentBlock = 1;
+        //character.transform.position = fl.gridArray[charPosX, charPosY].transform.position;
+    }
+
+    void Run()
+    {
+        //run = true;
+        SetSteps();
+        SetPath();
+        //run = false;
+        foreach (GameObject obj in pathFindingFloor.blockArray)
+        {
+            if (path.Contains(obj) && obj != path[path.Count - 1])
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 2;
+            }
+            else if (obj == pathFindingFloor.blockArray[startX, startY])
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 1;
+            }
+            else
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 0;
+            }
+        }
+
+    }
+
+    void SetSteps()
+    {
+        //Initialize();
+        //int x = startX;
+        //int y = startY;
+        //int[] moveArray = new int[Moves.possibleMoves];
+        for (int step = 1; step < pathFindingFloor.rows * pathFindingFloor.rows; step++)
+        {
+            foreach (GameObject obj in pathFindingFloor.blockArray)
+            {
+                if (obj.GetComponent<BlockStat>().visited == step - 1)
+                    CheckDirections(obj.GetComponent<BlockStat>().x, obj.GetComponent<BlockStat>().y, step);
+            }
+        }
+    }
+
+    void SetPath()
+    {
+        int step;
+        int x = endX;
+        int y = endY;
+        List<GameObject> temp = new List<GameObject>();
+        path.Clear();
+        if (pathFindingFloor.blockArray[endX, endY] && pathFindingFloor.blockArray[endX, endY].GetComponent<BlockStat>().visited > 0)
+        {
+            path.Add(pathFindingFloor.blockArray[x, y]);
+            step = pathFindingFloor.blockArray[x, y].GetComponent<BlockStat>().visited - 1;
+        }
+        else
+        {
+            print("impossible move");
+            return;
+        }
+        for (int i = step; step > -1; step--)
+        {
+            if (DirectionTest(x, y, step, 1))
+                temp.Add(pathFindingFloor.blockArray[x, y + 1]);
+            if (DirectionTest(x, y, step, 2))
+                temp.Add(pathFindingFloor.blockArray[x, y - 1]);
+            if (DirectionTest(x, y, step, 3))
+                temp.Add(pathFindingFloor.blockArray[x + 1, y]);
+            if (DirectionTest(x, y, step, 4))
+                temp.Add(pathFindingFloor.blockArray[x - 1, y]);
+
+            GameObject tempObj = FindClosest(pathFindingFloor.blockArray[endX, endY].transform, temp);
+            path.Add(tempObj);
+            x = tempObj.GetComponent<BlockStat>().x;
+            y = tempObj.GetComponent<BlockStat>().y;
+            temp.Clear();
+
+        }
+    }
+
+    GameObject FindClosest(Transform destination, List<GameObject> list)
+    {
+        float currentDist = pathFindingFloor.rows * pathFindingFloor.rows;
+        int indexNum = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (Vector2.Distance(destination.position, list[i].transform.position) < currentDist)
+            {
+                currentDist = Vector2.Distance(destination.position, list[i].transform.position);
+                indexNum = i;
+            }
+        }
+        return list[indexNum];
+    }
+
+    void CheckDirections(float xf, float yf, int step)
+    {
+        int x = (int)xf;
+        int y = (int)yf;
+
+
+        if (DirectionTest(x, y, -1, 1))
+            SetVisited(x, y + 1, step);
+        if (DirectionTest(x, y, -1, 2))
+            SetVisited(x, y - 1, step);
+        if (DirectionTest(x, y, -1, 3))
+            SetVisited(x + 1, y, step);
+        if (DirectionTest(x, y, -1, 4))
+            SetVisited(x - 1, y, step);
+
+    }
+
+    bool DirectionTest(int x, int y, int step, int direction)
+    {
+        switch (direction)
+        {
+            case 1:
+                if (y + 1 < pathFindingFloor.rows && pathFindingFloor.blockArray[x, y + 1] && pathFindingFloor.blockArray[x, y + 1].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 2:
+                if (y - 1 > -1 && pathFindingFloor.blockArray[x, y - 1] && pathFindingFloor.blockArray[x, y - 1].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 3:
+                if (x + 1 < pathFindingFloor.rows && pathFindingFloor.blockArray[x + 1, y] && pathFindingFloor.blockArray[x + 1, y].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 4:
+                if (x - 1 > -1 && pathFindingFloor.blockArray[x - 1, y] && pathFindingFloor.blockArray[x - 1, y].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+
+        }
+        return false;
+    }
+
+
+
+    void SetVisited(int x, int y, int step)
+    {
+        if (pathFindingFloor.blockArray[x, y])
+        {
+            pathFindingFloor.blockArray[x, y].GetComponent<BlockStat>().visited = step;
+        }
+    }
+    #endregion
+
+
+    #region these functions are legacy mouse movement
     bool isCheckingNW()
     {
         foreach (Character c in charactersArray)
@@ -368,4 +732,5 @@ public class CharactersMovement : MonoBehaviour
         }
         return false;
     }
+    #endregion
 }

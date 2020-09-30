@@ -15,7 +15,7 @@ public class BlockStat : MonoBehaviour
     public Material CurrentBlockMat;
 
     private SpriteRenderer blockSprite;
-    private Vector3 blockPosition;
+    public Vector3 blockPosition;
     private Vector3 pushedPosition;
     private bool isSpringCompleted = false;
     private bool isDown = false;
@@ -24,6 +24,12 @@ public class BlockStat : MonoBehaviour
     //public Vector3 blockOriginalPos;
     public Vector2 charPosOffset;
     public Vector3 blockCharPos;
+
+    public int blockLevel = 0;
+
+    //these variables are for pathfinding test
+    public int x;
+    public int y;
 
     private void Awake()
     {

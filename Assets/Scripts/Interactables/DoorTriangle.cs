@@ -43,7 +43,7 @@ public class DoorTriangle : Door
     {
         if (collision.tag == "Character" /*&& collision.GetComponent<Character>().isHavingTriangleKey*/)
         {
-            if (collision.GetComponent<Character>().isHavingTriangleKey)
+            if (collision.GetComponent<Character>().isHavingTriangleKey && collision.gameObject.GetComponent<NormalCharacter>())
             {
                 isOpened = true;
                 characterObj = collision.gameObject;

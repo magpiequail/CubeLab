@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InteractionButton : MonoBehaviour
+public class InteractionButton : MonoBehaviour, IPointerClickHandler
 {
     Button interaction;
     public Text buttonText;
@@ -29,6 +28,12 @@ public class InteractionButton : MonoBehaviour
         ChangeButtonState();
         GetComponent<Canvas>().worldCamera = CameraManager.currentCam;
     }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        InteractionClick();
+    }
+
     public void ChangeButtonState()
     {
         if (Options.input == 0)

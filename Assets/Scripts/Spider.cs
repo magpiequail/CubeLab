@@ -14,7 +14,11 @@ public class Spider : Character
     // Start is called before the first frame update
     void Start()
     {
-        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 100, rayLayerMask);
+        if (hit && hit.collider.transform.parent.GetComponent<Floor>())
+        {
+            hit.collider.transform.parent.GetComponent<Floor>().charOnFloor = this;
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +39,8 @@ public class Spider : Character
         nextCharPos = transform.position;
         cm = FindObjectOfType<CharactersMovement>();
 
+        pf = FindObjectOfType<PathFinding>();
+
         characterAnim = GetComponentInChildren<Animator>();
         characterAnim.SetInteger("Idle", 1);
         characterAnim.SetInteger("StageClear", 0);
@@ -53,17 +59,17 @@ public class Spider : Character
         }
         characterAnim.SetInteger("Direction", 1);
         nextPos = new Vector2(currPos.x + gridX*scale, currPos.y - gridY * scale);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
-        {
-            nextPos = currPos;
-            SetCurrentBlock();
-            return false;
-        }
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
+        }
+
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        {
+            nextPos = currPos;
+            return false;
         }
 
 
@@ -84,17 +90,17 @@ public class Spider : Character
         characterAnim.SetInteger("Direction", 2);
 
         nextPos = new Vector2(currPos.x - gridX * scale, currPos.y - gridY * scale);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
-        {
-            nextPos = currPos;
-            SetCurrentBlock();
-            return false;
-        }
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
+        }
+
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        {
+            nextPos = currPos;
+            return false;
         }
 
         SetCurrentBlock();
@@ -113,17 +119,17 @@ public class Spider : Character
         }
         characterAnim.SetInteger("Direction", 3);
         nextPos = new Vector2(currPos.x + gridX * scale, currPos.y + gridY * scale);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
-        {
-            nextPos = currPos;
-            SetCurrentBlock();
-            return false;
-        }
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
+        }
+
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        {
+            nextPos = currPos;
+            return false;
         }
         SetCurrentBlock();
         characterAnim.SetInteger("Idle", 0);
@@ -142,22 +148,21 @@ public class Spider : Character
         }
         characterAnim.SetInteger("Direction", 4);
         nextPos = new Vector2(currPos.x - gridX * scale, currPos.y + gridY * scale);
-        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
-        {
-            nextPos = currPos;
-            SetCurrentBlock();
-            return false;
-        }
-
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
         }
-        
 
-        
+        if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
+        {
+            nextPos = currPos;
+            return false;
+        }
+
+
+
 
         SetCurrentBlock();
         characterAnim.SetInteger("Idle", 0);

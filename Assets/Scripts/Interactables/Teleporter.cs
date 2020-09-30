@@ -5,7 +5,7 @@ using UnityEngine;
 public class Teleporter : Interactables
 {
     public GameObject otherTele;
-    public int attachedFloor; //0 = floor 1 = ceiling
+    public int floorOrCeiling; //0 = floor 1 = ceiling
     //public GameObject attachedFloor;
     //bool isCharOn;
     //public bool isActivated = false;
@@ -19,10 +19,14 @@ public class Teleporter : Interactables
     //GameObject interactionObj;
     //public string interactionMsg = "사용";
 
+    public Floor attachedFloor;
+
+
     private void Awake()
     {
         teleAnim = GetComponentInChildren<Animator>();
         teleArray = FindObjectsOfType<Teleporter>();
+        attachedFloor = GetComponentInParent<Floor>();
     }
 
     // Start is called before the first frame update
@@ -94,6 +98,10 @@ public class Teleporter : Interactables
             characterObj = collision.gameObject;
             isActivated = true;
         }
+        if (collision.GetComponentInParent<Floor>())
+        {
+            
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -132,9 +140,17 @@ public class Teleporter : Interactables
         //while the sprite is disabled, flip the spider character 
         if (characterObj.GetComponent<Spider>())
         {
-            if (attachedFloor - otherTele.GetComponent<Teleporter>().attachedFloor != 0)
+            if (floorOrCeiling - otherTele.GetComponent<Teleporter>().floorOrCeiling != 0)
             {
                 characterObj.GetComponent<Spider>().Flip();
+            }
+        }
+        //if a normal character is trying to teleport to ceiling
+        if (characterObj.GetComponent<NormalCharacter>())
+        {
+            if (floorOrCeiling - otherTele.GetComponent<Teleporter>().floorOrCeiling != 0)
+            {
+                return;
             }
         }
         //
@@ -143,12 +159,17 @@ public class Teleporter : Interactables
         characterObj.GetComponent<Character>().nextPos = otherTele.transform.position;
         characterObj.GetComponent<Character>().nextCharPos = otherTele.transform.position;
 
+        attachedFloor.charOnFloor = null;
+        otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
+
 
     }
     public void PlayReceive()
     {
         otherTele.GetComponentInChildren<Animator>().Play("TeleportReceive");
     }
+
+
 
 }
 
