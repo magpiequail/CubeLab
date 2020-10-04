@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1287517597
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 33028b195755e374bac1956f592f6815, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,10 +108,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.40121558, y: 0.0019805655}
-      - {x: 0.0025205445, y: 0.20435707}
-      - {x: 0.406533, y: 0.0012125671}
-      - {x: 0.002274796, y: -0.20294262}
+    - - {x: -0.42462763, y: 0.0063703284}
+      - {x: 0.00105731, y: 0.22191612}
+      - {x: 0.43287155, y: 0.0041390657}
+      - {x: 0.002274796, y: -0.21464868}
 --- !u!114 &832360337037111084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,5 +131,9 @@ MonoBehaviour:
   originalMat: {fileID: 2100000, guid: 6fc816765e696654491344280b1b9526, type: 2}
   pathMat: {fileID: 0}
   CurrentBlockMat: {fileID: 2100000, guid: a1d40057c5131c34caf82893ec47b61c, type: 2}
+  blockPosition: {x: 0, y: 0, z: 0}
   charPosOffset: {x: 0, y: 0}
   blockCharPos: {x: 0, y: 0, z: 0}
+  blockLevel: 0
+  x: 0
+  y: 0

@@ -16,7 +16,7 @@ public class CharactersMovement : MonoBehaviour
 
     public Vector3 tileWorldPos;
     public Vector3Int clickedTilePos;
-    TilemapColor tmc;
+    //TilemapColor tmc;
 
     static public bool isInputAllowed = true;
     Battery b;
@@ -28,6 +28,7 @@ public class CharactersMovement : MonoBehaviour
     Floor pathFindingFloor;
     public List<GameObject> path = new List<GameObject>();
     public float delayTime;
+    float accumulatedTime;
 
     public int startX;
     public int startY;
@@ -36,12 +37,14 @@ public class CharactersMovement : MonoBehaviour
     public int endX;
     public int endY;
 
+    bool isPfMoveDone = true;
+
     private void Awake()
     {
         charactersArray = FindObjectsOfType<Character>();
         b = FindObjectOfType<Battery>();
         grid = FindObjectOfType<Grid>();
-        tmc = FindObjectOfType<TilemapColor>();
+        //tmc = FindObjectOfType<TilemapColor>();
         audioManager = FindObjectOfType<AudioManager>();
     }
 
@@ -72,7 +75,8 @@ public class CharactersMovement : MonoBehaviour
             //W = NE, A = NW, S = SW, D = SE
             if (Input.GetKeyDown(KeyCode.A) )
             {
-                tmc.ColorTiles();
+                //tilecolor is currently change by material swap
+                //tmc.ColorTiles();
                 if (isAllCharMovedNW())
                 {
                     b.MinusOneMove();
@@ -82,7 +86,7 @@ public class CharactersMovement : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                tmc.ColorTiles();
+                //tmc.ColorTiles();
                 if (isAllCharMovedSW())
                 {
                     b.MinusOneMove();
@@ -92,7 +96,7 @@ public class CharactersMovement : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.W))
             {
-                tmc.ColorTiles();
+                //tmc.ColorTiles();
                 if (isAllCharMovedNE())
                 {
                     b.MinusOneMove();
@@ -101,7 +105,7 @@ public class CharactersMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                tmc.ColorTiles();
+                //tmc.ColorTiles();
                 if (isAllCharMovedSE())
                 {
                     b.MinusOneMove();
@@ -115,7 +119,7 @@ public class CharactersMovement : MonoBehaviour
                 if (keyPressedTime > inputTriggerTime)
                 {
                     keyPressedTime = inputTriggerTime - inputWaitTime;
-                    tmc.ColorTiles();
+                    //tmc.ColorTiles();
                     if (isAllCharMovedNW())
                     {
                         b.MinusOneMove();
@@ -129,7 +133,7 @@ public class CharactersMovement : MonoBehaviour
                 if (keyPressedTime > inputTriggerTime)
                 {
                     keyPressedTime = inputTriggerTime - inputWaitTime;
-                    tmc.ColorTiles();
+                    //tmc.ColorTiles();
                     if (isAllCharMovedSW())
                     {
                         b.MinusOneMove();
@@ -143,7 +147,7 @@ public class CharactersMovement : MonoBehaviour
                 if (keyPressedTime > inputTriggerTime)
                 {
                     keyPressedTime = inputTriggerTime - inputWaitTime;
-                    tmc.ColorTiles();
+                    //tmc.ColorTiles();
                     if (isAllCharMovedNE())
                     {
                         b.MinusOneMove();
@@ -157,7 +161,7 @@ public class CharactersMovement : MonoBehaviour
                 if (keyPressedTime > inputTriggerTime)
                 {
                     keyPressedTime = inputTriggerTime - inputWaitTime;
-                    tmc.ColorTiles();
+                    //tmc.ColorTiles();
                     if (isAllCharMovedSE())
                     {
                         b.MinusOneMove();
@@ -167,7 +171,7 @@ public class CharactersMovement : MonoBehaviour
             }
         }
         //mouse
-        if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 1)
+        if (isInputAllowed && Battery.movesTillGameover > 0 && Options.input == 1 && isPfMoveDone)
         {
             if (Input.GetMouseButton(0))
             {
@@ -175,7 +179,7 @@ public class CharactersMovement : MonoBehaviour
                 Vector3 worldPoint = CameraManager.currentCam.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(worldPoint, transform.forward, 100, floorLayerMask);
                 Debug.DrawLine(worldPoint, transform.forward * 100, Color.red);
-                if (hit)
+                if (hit && hit.collider.GetComponent<BlockStat>())
                 {
 
                     pathFindingFloor = hit.collider.gameObject.transform.parent.GetComponent<Floor>();
@@ -200,14 +204,19 @@ public class CharactersMovement : MonoBehaviour
                 }
                 else
                 {
+
                     if(pathFindingFloor == null)
                     {
                         return;
                     }
-                    endX = startX;
-                    endY = startY;
-                    Run();
-                    pathFindingFloor.blockArray[startX, startY].GetComponent<BlockStat>().currentBlock = 1;
+                    else
+                    {
+                        pathFindingFloor = null;
+                    }
+                    //endX = startX;
+                    //endY = startY;
+                    //Run();
+                    //pathFindingFloor.blockArray[startX, startY].GetComponent<BlockStat>().currentBlock = 1;
                 }
 
 
@@ -221,6 +230,7 @@ public class CharactersMovement : MonoBehaviour
                     {
                         obj.GetComponent<BlockStat>().currentBlock = 0;
                     }
+                    //isPfMoveDone = false;
                     if (path.Count - 1 <= Battery.movesTillGameover)
                     {
                         StartCoroutine("Delay");
@@ -229,10 +239,16 @@ public class CharactersMovement : MonoBehaviour
                             return;
                         }
                     }
+                    
                     else
                     {
                         Debug.Log("not enough moves");
                     }
+                    
+                }
+                else
+                {
+
                 }
                 
             }
@@ -415,6 +431,7 @@ public class CharactersMovement : MonoBehaviour
     {
         for (int i = path.Count; i >= 2; i--)
         {
+            accumulatedTime += Time.deltaTime;
             if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
             {
                 yield break;
@@ -424,7 +441,7 @@ public class CharactersMovement : MonoBehaviour
                 //NE
                 if (pathFindingFloor.charOnFloor.currPos.y < path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
                 {
-                    foreach (Character c in charactersArray)
+                    /*foreach (Character c in charactersArray)
                     {
                         c.GetComponent<Character>().NEMovement();
 
@@ -432,19 +449,25 @@ public class CharactersMovement : MonoBehaviour
                         {
                             c.GetComponent<Character>().NEMovement();
                             b.MinusOneMove();
-                        }*/
-                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        }
+                        
+
+                    }
+                    b.MinusOneMove();*/
+                    if (isAllCharMovedNE())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
+                    if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
                         {
                             yield break;
                         }
-
-                    }
-                    b.MinusOneMove();
                 }
                 //SE
                 else if (pathFindingFloor.charOnFloor.currPos.y > path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
                 {
-                    foreach (Character c in charactersArray)
+                    /*foreach (Character c in charactersArray)
                     {
                         c.GetComponent<Character>().SEMovement();
 
@@ -452,14 +475,20 @@ public class CharactersMovement : MonoBehaviour
                         {
                             c.GetComponent<Character>().SEMovement();
                             b.MinusOneMove();
-                        }*/
-                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        }
+                        
+
+                    }
+                    b.MinusOneMove();*/
+                    if (isAllCharMovedSE())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
+                    if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
                         {
                             yield break;
                         }
-
-                    }
-                    b.MinusOneMove();
                 }
             }
             else if (pathFindingFloor.charOnFloor.currPos.x > path[i - 2].GetComponent<BlockStat>().blockCharPos.x)
@@ -467,7 +496,7 @@ public class CharactersMovement : MonoBehaviour
                 //NW
                 if (pathFindingFloor.charOnFloor.currPos.y < path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
                 {
-                    foreach (Character c in charactersArray)
+                    /*foreach (Character c in charactersArray)
                     {
                         c.GetComponent<Character>().NWMovement();
 
@@ -475,19 +504,25 @@ public class CharactersMovement : MonoBehaviour
                         {
                             c.GetComponent<Character>().NWMovement();
                             b.MinusOneMove();
-                        }*/
-                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        }
+                        
+
+                    }
+                    b.MinusOneMove();*/
+                    if (isAllCharMovedNW())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
+                    if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
                         {
                             yield break;
                         }
-
-                    }
-                    b.MinusOneMove();
                 }
                 //SW
                 else if (pathFindingFloor.charOnFloor.currPos.y > path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
                 {
-                    foreach (Character c in charactersArray)
+                    /*foreach (Character c in charactersArray)
                     {
                         c.GetComponent<Character>().SWMovement();
 
@@ -495,27 +530,31 @@ public class CharactersMovement : MonoBehaviour
                         {
                             c.GetComponent<Character>().SWMovement();
                             b.MinusOneMove();
-                        }*/
-                        if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+                        }
+                        
+
+                    }
+                    b.MinusOneMove();*/
+                    if (isAllCharMovedSW())
+                    {
+                        b.MinusOneMove();
+                        audioManager.PlayCharacterFootstep();
+                    }
+                    if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
                         {
                             yield break;
                         }
-
-                    }
-                    b.MinusOneMove();
                 }
             }
 
+            if(i == 2)
+            {
+                isPfMoveDone = true;
+            }
 
-
-            /*pathFindingFloor.charPosX = path[i - 2].GetComponent<BlockStat>().x;
-            pathFindingFloor.charPosY = path[i - 2].GetComponent<BlockStat>().y;
-
-            pathFindingFloor.SetAsCurrent(pathFindingFloor.charPosX, pathFindingFloor.charPosY);*/
-            //character.transform.position = path[i - 2].transform.position;
             yield return new WaitForSeconds(delayTime);
         }
-
+        
     }
     void InitializeBlockStat()
     {

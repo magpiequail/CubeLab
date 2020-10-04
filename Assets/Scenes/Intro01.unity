@@ -558,6 +558,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7929229089571105952}
+        m_MethodName: AllowMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &390571656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,7 +736,8 @@ MonoBehaviour:
   blueLight: {fileID: 21300000, guid: cd642d0cef4b99849ab2bf69c2093d35, type: 3}
   waitTillBlueLight: 1
   waitTillDoorOpen: 1
-  waitTillNextScene: 1
+  waitTillNextScene: 0
+  lightSprite: {fileID: 1383000681}
 --- !u!1 &533846533
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +909,17 @@ MonoBehaviour:
       - m_Target: {fileID: 7032225596119692872, guid: 3667949e87ccb2a4399a2732e697ea6e,
           type: 3}
         m_MethodName: ChangeToMouse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7929229089571105952}
+        m_MethodName: AllowMovement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1566,7 +1589,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2070166501
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 917688a9ba2e9d143934241c630e5956, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2668,7 +2691,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1287517597
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 7a8330d322a4c5247a68a2b08ee3f55b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2941,7 +2964,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1287517597
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7df0e2444e097a849acbc36719e3a056, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3281,7 +3304,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2070166501
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e7ea16493ece3114e9d633147c873404, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

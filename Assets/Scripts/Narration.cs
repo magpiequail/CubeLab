@@ -12,6 +12,13 @@ public enum Narrate
     Automatic,
     Both
 }
+public enum Scene
+{
+    Intro,
+    Lobby,
+    Memory,
+    Stage
+}
 
 public class Narration : MonoBehaviour
 {
@@ -25,6 +32,7 @@ public class Narration : MonoBehaviour
     public string whenFailed;
     int index;
     public Narrate howToConvey;
+    public Scene sceneID;
     float timePassed;
     public GameObject memoryPlaying;
     float endingLineTime = 3f;
@@ -52,6 +60,13 @@ public class Narration : MonoBehaviour
         {
             isThisSceneStage = false;
         }
+        if(sceneID == Scene.Lobby)
+        {
+            if(PlayerPrefs.GetInt("LobbyOnce") == 1)
+            {
+                subtitle.SetActive(false);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -61,6 +76,8 @@ public class Narration : MonoBehaviour
         {
             subtitle.SetActive(false);
         }
+
+        
 
         if (index < sentences.Length)
         {

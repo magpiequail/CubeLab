@@ -21,8 +21,9 @@ public class SceneController : MonoBehaviour
     public float delayTillGameOver = 0.5f;
     public float delayTillUI = 2.0f;
     bool isGameOver = false;
-    GameObject pauseUI;
-    GameObject optionUI;
+    public GameObject pauseUI;
+    public GameObject optionUI;
+    public GameObject stageSelectUI;
 
     bool isAudioPlayed = false;
 
@@ -30,12 +31,14 @@ public class SceneController : MonoBehaviour
 
     private void Awake()
     {
+        //stageSelectUI = GameObject.FindGameObjectWithTag("StageSelect");
         gameOver = GameObject.FindGameObjectWithTag("Game Over");
         gameOverUI = gameOver.GetComponentInChildren<Button>().transform.parent.gameObject;
         
         gameState = GameState.Running;
         pauseUI = GameObject.FindGameObjectWithTag("Pause");
         optionUI = pauseUI.GetComponentInChildren<Options>().gameObject;
+        stageSelectUI = GameObject.FindGameObjectWithTag("StageSelect");
 
         audioManager = FindObjectOfType<AudioManager>();
 
@@ -45,10 +48,12 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //stageSelectUI = GameObject.FindGameObjectWithTag("StageSelect");
         gameOverUI.SetActive(false);
         gameOver.SetActive(false);
         optionUI.SetActive(false);
         pauseUI.SetActive(false);
+        stageSelectUI.SetActive(false);
         CharactersMovement.isInputAllowed = true;
         FindObjectOfType<AudioManager>().PlayAudio("StageBgm");
     }
@@ -56,15 +61,24 @@ public class SceneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameState == GameState.GameOver && !isGameOver )
+        if (gameState == GameState.GameOver && !isGameOver)
         {
             StartCoroutine(GameOver());
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Running)
+        else if (Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Running)
         {
             gameState = GameState.Paused;
+            if (pauseUI == null)
+            {
+                pauseUI = GameObject.FindGameObjectWithTag("Pause");
+            }
+
             pauseUI.SetActive(true);
             //optionUI = pauseUI.GetComponentInChildren<Options>().gameObject;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && stageSelectUI.activeSelf ==true)
+        {
+            stageSelectUI.SetActive(false);
         }
         else if(gameState == GameState.Paused)
         {
@@ -92,10 +106,30 @@ public class SceneController : MonoBehaviour
     }
     public void BackToGame()
     {
-        pauseUI = GameObject.FindGameObjectWithTag("Pause");
-        pauseUI.SetActive(false);
+        if(stageSelectUI == null)
+        {
+            stageSelectUI = GameObject.FindGameObjectWithTag("StageSelect");
+        }
+        if(pauseUI == null)
+        {
+            pauseUI = GameObject.FindGameObjectWithTag("Pause");
+        }
+        
+        if (pauseUI)
+        {
+            pauseUI.SetActive(false);
+        }
+        if (stageSelectUI)
+        {
+            stageSelectUI.SetActive(false);
+        }
+       
         CharactersMovement.isInputAllowed = true;
-        gameState = GameState.Running;
+        if(gameState == GameState.Paused)
+        {
+            gameState = GameState.Running;
+        }
+        
     }
     public void BackToLobby()
     {
@@ -117,12 +151,31 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
     }
-    public void BackToLevelSelect()
+    public void BackToLevelSelect(GameObject obj)
     {
-        gameState = GameState.Running;
-        CharactersMovement.isInputAllowed = true;
+        //stageSelectUI = GameObject.FindGameObjectWithTag("StageSelect");
+        stageSelectUI = obj;
+        pauseUI = GameObject.FindGameObjectWithTag("Pause");
+        if(gameState == GameState.Running)
+        {
+            gameState = GameState.Paused;
+        }
+        
+        CharactersMovement.isInputAllowed = false;
+
+        if (pauseUI)
+        {
+            pauseUI.SetActive(false);
+        }
+        
+        stageSelectUI.SetActive(true);
+    }
+
+    public void LevelSelectScene()
+    {
         SceneManager.LoadScene("Stage Select");
     }
+
     public void QuitGame()
     {
         Application.Quit();

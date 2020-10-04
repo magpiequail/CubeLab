@@ -62,8 +62,16 @@ public class Options : MonoBehaviour
         }*/
         ChangeInputToggle(PlayerPrefs.GetInt("OptionValue"));
 
+        if(PlayerPrefs.GetInt("VolumeSaved") !=1)
+        {
+            volumeSilder.value = 0.5f;
+        }
+        else if (PlayerPrefs.GetInt("VolumeSaved") == 1)
+        {
+            volumeSilder.value = PlayerPrefs.GetFloat("Volume");
+        }
 
-        volumeSilder.value = PlayerPrefs.GetFloat("Volume");
+        
 
     }
 
@@ -131,6 +139,11 @@ public class Options : MonoBehaviour
     public void SaveCurrentOption()
     {
         PlayerPrefs.SetFloat("Volume", volumeSilder.value);
+        PlayerPrefs.SetInt("VolumeSaved", 1);
         PlayerPrefs.SetInt("SavedOption", 1);
+    }
+    private void OnDisable()
+    {
+        SaveCurrentOption();
     }
 }

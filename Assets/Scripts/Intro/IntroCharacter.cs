@@ -53,7 +53,7 @@ public class IntroCharacter : MonoBehaviour
     {
         characterAnim = GetComponentInChildren<Animator>();
         characterAnim.SetInteger("Idle", 1);
-        isInputAllowed = true;
+        //isInputAllowed = true;
 
         Debug.Log(Options.input);
     }
@@ -206,5 +206,10 @@ public class IntroCharacter : MonoBehaviour
     public void TriggerGetUp()
     {
         characterAnim.SetTrigger("GetUp");
+        characterAnim.SetInteger("Idle", 1);
+    }
+    public void AllowMovement()
+    {
+        isInputAllowed = true;
     }
 }

@@ -65,6 +65,9 @@ MonoBehaviour:
   gameOver: {fileID: 0}
   delayTillGameOver: 0
   delayTillUI: 2
+  pauseUI: {fileID: 0}
+  optionUI: {fileID: 0}
+  stageSelectUI: {fileID: 0}
 --- !u!114 &-92846712665676191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,5 +127,6 @@ MonoBehaviour:
   forHowLong: []
   whenSucceeded: 
   whenFailed: 
-  howToConvey: 0
+  howToConvey: 1
+  sceneID: 0
   memoryPlaying: {fileID: 0}

@@ -13,13 +13,13 @@ public class IntroDoor : MonoBehaviour
 
     public float waitTillBlueLight = 1.0f;
     public float waitTillDoorOpen = 1.0f;
-    public float waitTillNextScene = 1.0f;
+    public float waitTillNextScene = 0.0f;
     bool isOpen = false;
-    SpriteRenderer lightSprite;
+    public SpriteRenderer lightSprite;
 
     private void Awake()
     {
-        lightSprite = GetComponentInChildren<SpriteRenderer>();
+        
     }
 
     // Start is called before the first frame update
@@ -42,8 +42,10 @@ public class IntroDoor : MonoBehaviour
         if(collision.tag == "Character")
         {
             isOpen = true;
+            lightSprite.sprite = blueLight;
             collision.GetComponentInParent<IntroCharacter>().characterAnim.Play("Idle_NE");
-            if(collision.GetComponentInParent<IntroCharacter>().nextPos == collision.GetComponentInParent<IntroCharacter>().currPos)
+            collision.GetComponentInParent<IntroCharacter>().characterAnim.SetInteger("Direction", 2);
+            if (collision.GetComponentInParent<IntroCharacter>().nextPos == collision.GetComponentInParent<IntroCharacter>().currPos)
             {
                 IntroCharacter.isInputAllowed = false;
             }
@@ -55,7 +57,7 @@ public class IntroDoor : MonoBehaviour
     {
 
         yield return new WaitForSeconds(waitTillBlueLight);
-        /*lightSprite.sprite = blueLight;*/
+        
         IntroCharacter.isInputAllowed = false;
         FindObjectOfType<AudioManager>().PlayAudio("Lobby_door_open");
         GetComponent<SpriteRenderer>().sprite = openedDoor;

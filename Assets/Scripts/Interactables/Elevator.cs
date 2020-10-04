@@ -15,6 +15,7 @@ public class Elevator : Interactables
     Animator elevatorAnim; // state 1 is when it is opening, state 0 is when it is closing, open receive = 2, close receive = 3
 
     public Floor attachedFloor;
+    Elevator[] elevatorArray;
 
     private void Awake()
     {
@@ -22,6 +23,8 @@ public class Elevator : Interactables
         elevatorAnim = GetComponentInChildren<Animator>();
         isActivated = false;
         attachedFloor = GetComponentInParent<Floor>();
+
+        elevatorArray = FindObjectsOfType<Elevator>();
     }
 
     // Start is called before the first frame update
@@ -33,31 +36,43 @@ public class Elevator : Interactables
     // Update is called once per frame
     void Update()
     {
-        if (!Input.GetKey(KeyCode.A) &&
-            !Input.GetKey(KeyCode.S) &&
-            !Input.GetKey(KeyCode.D) &&
-            !Input.GetKey(KeyCode.W))
+        if (CharactersMovement.isInputAllowed)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+            if (!Input.GetKey(KeyCode.A) &&
+                        !Input.GetKey(KeyCode.S) &&
+                        !Input.GetKey(KeyCode.D) &&
+                        !Input.GetKey(KeyCode.W))
             {
-                ////캐릭터가 속한 플로어 바꾸기
-                //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
-                ////캐릭터의 플로어 스크립트 변경
-                //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
-                //캐릭터의 위치 변경
+                if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed /*&& CharactersMovement.isInputAllowed*/)
+                {
+                    ////캐릭터가 속한 플로어 바꾸기
+                    //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
+                    ////캐릭터의 플로어 스크립트 변경
+                    //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
+                    //캐릭터의 위치 변경
 
-                //이펙트 재생
+                    //이펙트 재생
+Debug.Log(gameObject.name + CharactersMovement.isInputAllowed);
 
 
-                StartInteraction();
+                    StartInteraction();
+                    Debug.Log("elevator interaction started, " + gameObject.name);
+                    
 
-                //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
-                // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
+
+                    //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
+                    // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
+                }
+
+
             }
-
-
         }
 
+        //if (Input.GetKeyDown(KeyCode.Space) && isActivated)
+        //{
+        //    Debug.Log("elevator interaction started, " + gameObject.name);
+        //    Debug.Log(gameObject.name + CharactersMovement.isInputAllowed);
+        //}
 
     }
 
@@ -86,18 +101,24 @@ public class Elevator : Interactables
         if (isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
             CharactersMovement.isInputAllowed = false;
-            characterObj.GetComponent<Character>().ResetBlockColor();
-
-            if (sprite.transform.position.x < characterObj.transform.position.x)
+            for (int i = 0; i < elevatorArray.Length; i++)
             {
-                characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 1);
-            }
-            else
-            {
-                characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 2);
-            }
-            elevatorAnim.SetInteger("State", 1);
+                if (elevatorArray[i].isActivated)
+                {
+                    elevatorArray[i].characterObj.GetComponent<Character>().ResetBlockColor();
 
+                    if (elevatorArray[i].sprite.transform.position.x < elevatorArray[i].characterObj.transform.position.x)
+                    {
+                        elevatorArray[i].characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 1);
+                    }
+                    else
+                    {
+                        elevatorArray[i].characterObj.GetComponent<Character>().characterAnim.SetInteger("Direction", 2);
+                    }
+                    elevatorArray[i].elevatorAnim.SetInteger("State", 1);
+                }
+
+            }
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
             //characterColl.transform.position = otherElevator.transform.position;
             //characterColl.GetComponent<Character>().currPos = otherElevator.transform.position;

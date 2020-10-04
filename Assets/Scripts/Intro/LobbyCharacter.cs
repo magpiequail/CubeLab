@@ -86,24 +86,24 @@ public class LobbyCharacter : MonoBehaviour
 
             if(Options.input == 0)
             {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKey(KeyCode.S))
                 {
                     SWMovement();
 
                 }
 
-                else if (Input.GetKeyDown(KeyCode.D))
+                else if (Input.GetKey(KeyCode.D))
                 {
                     SEMovement();
 
                 }
 
-                else if (Input.GetKeyDown(KeyCode.A))
+                else if (Input.GetKey(KeyCode.A))
                 {
                     NWMovement();
 
                 }
-                else if (Input.GetKeyDown(KeyCode.W))
+                else if (Input.GetKey(KeyCode.W))
                 {
                     NEMovement();
                 }

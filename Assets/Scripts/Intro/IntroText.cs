@@ -11,6 +11,8 @@ public class IntroText : MonoBehaviour
     public GameObject timeline;
     Image subtitleImg;
     public GameObject optionButton;
+
+    bool showedInpupOption = false;
     
 
     IntroCharacter introChar;
@@ -74,12 +76,13 @@ public class IntroText : MonoBehaviour
                 {
                     index = 7;
                 }
-                else if(index > 7)
+                else if(index > 7 && !showedInpupOption)
                 {
                     index = sentences.Length - 1;
                     introChar.TriggerGetUp();
-                    IntroCharacter.isInputAllowed = true;
+                    //IntroCharacter.isInputAllowed = true;
                     optionButton.SetActive(true);
+                    showedInpupOption = true;
                 }
 
             }
@@ -98,14 +101,14 @@ public class IntroText : MonoBehaviour
             //subtitleImg.enabled = true;
 
         }
-        if (index == sentences.Length - 1)
+        /*if (index == sentences.Length - 1)
         {
             IntroCharacter.isInputAllowed = true;
         }
         else
         {
             IntroCharacter.isInputAllowed = false;
-        }
+        }*/
         /*else if (state == 2)     
         {
             subtitleImg.enabled = true;

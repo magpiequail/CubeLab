@@ -449,6 +449,50 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &417389404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 417389406}
+  - component: {fileID: 417389405}
+  m_Layer: 0
+  m_Name: Script
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &417389405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417389404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57980493a07296047ad098538b605706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  continueButton: {fileID: 531812713}
+--- !u!4 &417389406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417389404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 861.6226, y: 428.24612, z: -288.1073}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517853162
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,7 +794,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5026729243466328649, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
           type: 3}
-        m_MethodName: BackToLevelSelect
+        m_MethodName: LevelSelectScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1189,6 +1233,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2026479728}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1050812317 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7032225596119692872, guid: 3667949e87ccb2a4399a2732e697ea6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2026479728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050812315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137443c30a13eb942a152084b4b62a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1368740422
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,6 +2383,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518984383682975615, guid: 3667949e87ccb2a4399a2732e697ea6e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518984383682975615, guid: 3667949e87ccb2a4399a2732e697ea6e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518984383682975615, guid: 3667949e87ccb2a4399a2732e697ea6e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518984383682975615, guid: 3667949e87ccb2a4399a2732e697ea6e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1050812317}
+    - target: {fileID: 8518984383682975615, guid: 3667949e87ccb2a4399a2732e697ea6e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveCurrentOption
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518984383682975615, guid: 3667949e87ccb2a4399a2732e697ea6e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3667949e87ccb2a4399a2732e697ea6e, type: 3}

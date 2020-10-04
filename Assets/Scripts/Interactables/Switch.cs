@@ -51,7 +51,9 @@ public class Switch : Interactables
             {
                 laser.LaserActivation();
             }
+            ShowInteractionUI();
         }
+
         
     }
 
@@ -71,6 +73,7 @@ public class Switch : Interactables
         if (collision.tag == "Character")
         {
             HideInteractionUI();
+            characterObj = null;
         }
     }
 

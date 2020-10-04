@@ -20,7 +20,7 @@ public class Teleporter : Interactables
     //public string interactionMsg = "사용";
 
     public Floor attachedFloor;
-
+    
 
     private void Awake()
     {
@@ -44,26 +44,24 @@ public class Teleporter : Interactables
             !Input.GetKey(KeyCode.D) &&
             !Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                ////캐릭터가 속한 플로어 바꾸기
-                //characterColl.GetComponentInParent<CharacterMovement>().floor = otherTele.GetComponent<Teleporter>().attachedFloor;
-                ////캐릭터의 플로어 스크립트 변경
-                //characterColl.GetComponentInParent<CharacterMovement>().fl = characterColl.GetComponentInParent<CharacterMovement>().floor.GetComponent<Floor>();
-                //캐릭터의 위치 변경
+                //detect characterObj by raycast
+                /*RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 100, ~(1 << 10));
+                if (hit && hit.collider.tag == "Character")
+                {
+                    characterObj = hit.collider.gameObject;
+                    Debug.Log("characterObj Detected");
+                }*/
+                if (/*Input.GetKeyDown(KeyCode.Space) && */isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+                {
+                    
+                    StartInteraction();
 
-                //이펙트 재생
-
-                //teleAnim.Play("TeleportSend");
-                StartInteraction();
-
-                /*characterColl.transform.parent.gameObject.transform.position = otherTele.transform.position;
-                characterColl.GetComponentInParent<Character>().currPos = otherTele.transform.position;
-                characterColl.GetComponentInParent<Character>().nextPos = otherTele.transform.position;*/
-
-                //characterColl.GetComponentInParent<Character>().fl.charPosX = otherTele.GetComponent<Teleporter>().posX;
-                // characterColl.GetComponentInParent<Character>().fl.charPosY = otherTele.GetComponent<Teleporter>().posY;
+                    
+                }
             }
+
         }
 
     }
@@ -73,6 +71,7 @@ public class Teleporter : Interactables
         base.StartInteraction();
         if(characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
+            
             for (int i = 0; i < teleArray.Length; i++)
             {
                 if (teleArray[i].isActivated)
@@ -159,8 +158,17 @@ public class Teleporter : Interactables
         characterObj.GetComponent<Character>().nextPos = otherTele.transform.position;
         characterObj.GetComponent<Character>().nextCharPos = otherTele.transform.position;
 
-        attachedFloor.charOnFloor = null;
-        otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
+        if (otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor)
+        {
+            otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
+
+        }
+        else if(!otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor)
+        {
+            attachedFloor.charOnFloor = null;
+            otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
+        }
+        
 
 
     }

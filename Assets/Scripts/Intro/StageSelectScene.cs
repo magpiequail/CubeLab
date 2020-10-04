@@ -24,14 +24,15 @@ public class StageSelectScene : MonoBehaviour
     void Update()
     {
         UpdateButton();
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && option)
         {
-            if (!isPause)
+            if (!isPause && Time.timeScale !=0)
             {
+                
                 option.SetActive(true);
                 isPause = true;
             }
-            else if (isPause)
+            else if (isPause && Time.timeScale != 0)
             {
                 option.SetActive(false);
                 isPause = false;
