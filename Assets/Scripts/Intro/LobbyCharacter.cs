@@ -18,6 +18,8 @@ public class LobbyCharacter : MonoBehaviour
 
     public float speed;
 
+    float inputWaitTime = 0.3f;
+    float keyPressedTime;
 
     //public Floor fl;
 
@@ -86,27 +88,77 @@ public class LobbyCharacter : MonoBehaviour
 
             if(Options.input == 0)
             {
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    keyPressedTime = 0f;
+                    SWMovement();
+                    audioManager.PlayCharacterFootstep();
+                }
+
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    keyPressedTime = 0f;
+                    SEMovement();
+                    audioManager.PlayCharacterFootstep();
+                }
+
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    keyPressedTime = 0f;
+                    NWMovement();
+                    audioManager.PlayCharacterFootstep();
+
+                }
+                else if (Input.GetKeyDown(KeyCode.W))
+                {
+                    keyPressedTime = 0f;
+                    NEMovement();
+                    audioManager.PlayCharacterFootstep();
+                }
+
                 if (Input.GetKey(KeyCode.S))
                 {
                     SWMovement();
-
+                    keyPressedTime += Time.deltaTime;
+                    if(keyPressedTime > inputWaitTime)
+                    {
+                        keyPressedTime = 0f;
+                        audioManager.PlayCharacterFootstep();
+                    }
                 }
 
                 else if (Input.GetKey(KeyCode.D))
                 {
                     SEMovement();
-
+                    keyPressedTime += Time.deltaTime;
+                    if (keyPressedTime > inputWaitTime)
+                    {
+                        keyPressedTime = 0f;
+                        audioManager.PlayCharacterFootstep();
+                    }
                 }
 
                 else if (Input.GetKey(KeyCode.A))
                 {
                     NWMovement();
-
+                    keyPressedTime += Time.deltaTime;
+                    if (keyPressedTime > inputWaitTime)
+                    {
+                        keyPressedTime = 0f;
+                        audioManager.PlayCharacterFootstep();
+                    }
                 }
                 else if (Input.GetKey(KeyCode.W))
                 {
                     NEMovement();
+                    keyPressedTime += Time.deltaTime;
+                    if (keyPressedTime > inputWaitTime)
+                    {
+                        keyPressedTime = 0f;
+                        audioManager.PlayCharacterFootstep();
+                    }
                 }
+
             }
             else if(Options.input == 1)
             {
@@ -121,19 +173,22 @@ public class LobbyCharacter : MonoBehaviour
                     if (clickedTilePos.x == currentCharPos.x && clickedTilePos.y == currentCharPos.y + 1 && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
                     {
                         NWMovement();
+                        audioManager.PlayCharacterFootstep();
                     }
                     if (clickedTilePos.x == currentCharPos.x + 1 && clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
                     {
                         NEMovement();
+                        audioManager.PlayCharacterFootstep();
                     }
                     if (clickedTilePos.x == currentCharPos.x - 1 && clickedTilePos.y == currentCharPos.y && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
                     {
                         SWMovement();
+                        audioManager.PlayCharacterFootstep();
                     }
                     if (clickedTilePos.x == currentCharPos.x && clickedTilePos.y == currentCharPos.y - 1 && Physics2D.OverlapCircle(tileWorldPos, 0.01f, accessible))
                     {
                         SEMovement();
-
+                        audioManager.PlayCharacterFootstep();
                     }
                 }
             }
@@ -157,7 +212,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SW");
-        audioManager.PlayCharacterFootstep();
+        //audioManager.PlayCharacterFootstep();
     }
     public void SEMovement()
     {
@@ -173,7 +228,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.SetInteger("Idle", 0);
         characterAnim.Play("Walk_SE");
-        audioManager.PlayCharacterFootstep();
+        //audioManager.PlayCharacterFootstep();
     }
     public void NWMovement()
     {
@@ -187,7 +242,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.Play("Walk_NW");
         characterAnim.SetInteger("Idle", 0);
-        audioManager.PlayCharacterFootstep();
+        //audioManager.PlayCharacterFootstep();
     }
 
     public void NEMovement()
@@ -202,7 +257,7 @@ public class LobbyCharacter : MonoBehaviour
 
         characterAnim.Play("Walk_NE");
         characterAnim.SetInteger("Idle", 0);
-        audioManager.PlayCharacterFootstep();
+        //audioManager.PlayCharacterFootstep();
     }
 
 

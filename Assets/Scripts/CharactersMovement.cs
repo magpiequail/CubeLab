@@ -75,6 +75,7 @@ public class CharactersMovement : MonoBehaviour
             //W = NE, A = NW, S = SW, D = SE
             if (Input.GetKeyDown(KeyCode.A) )
             {
+                keyPressedTime = 0f;
                 //tilecolor is currently change by material swap
                 //tmc.ColorTiles();
                 if (isAllCharMovedNW())
@@ -86,6 +87,7 @@ public class CharactersMovement : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.S))
             {
+                keyPressedTime = 0f;
                 //tmc.ColorTiles();
                 if (isAllCharMovedSW())
                 {
@@ -96,6 +98,7 @@ public class CharactersMovement : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.W))
             {
+                keyPressedTime = 0f;
                 //tmc.ColorTiles();
                 if (isAllCharMovedNE())
                 {
@@ -105,6 +108,7 @@ public class CharactersMovement : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
+                keyPressedTime = 0f;
                 //tmc.ColorTiles();
                 if (isAllCharMovedSE())
                 {
@@ -230,9 +234,14 @@ public class CharactersMovement : MonoBehaviour
                     {
                         obj.GetComponent<BlockStat>().currentBlock = 0;
                     }
-                    //isPfMoveDone = false;
-                    if (path.Count - 1 <= Battery.movesTillGameover)
+                    
+                    if (startX == endX && startY == endY)
                     {
+                        return;
+                    }
+                    if (path.Count - 1 <= Battery.movesTillGameover )
+                    {
+                        
                         StartCoroutine("Delay");
                         if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
                         {
@@ -242,7 +251,7 @@ public class CharactersMovement : MonoBehaviour
                     
                     else
                     {
-                        Debug.Log("not enough moves");
+                        isPfMoveDone = true;
                     }
                     
                 }
@@ -429,6 +438,8 @@ public class CharactersMovement : MonoBehaviour
     
     IEnumerator Delay()
     {
+        isPfMoveDone = false;
+
         for (int i = path.Count; i >= 2; i--)
         {
             accumulatedTime += Time.deltaTime;
@@ -546,8 +557,12 @@ public class CharactersMovement : MonoBehaviour
                         }
                 }
             }
+            /*if (path[i - 2].GetComponent<BlockStat>().blockCharPos.x == endX && path[i - 2].GetComponent<BlockStat>().blockCharPos.y == endY)
+            {
+                isPfMoveDone = true;
+            }*/
 
-            if(i == 2)
+            if (i == 2)
             {
                 isPfMoveDone = true;
             }

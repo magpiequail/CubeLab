@@ -27,8 +27,9 @@ public class LobbyCapsule : Interactables
     // Update is called once per frame
     void Update()
     {
-        if (isActivated && Input.GetKeyDown(KeyCode.Space))
+        if (isActivated && Input.GetKeyDown(KeyCode.Space) && LobbyCharacter.isInputAllowed)
         {
+            LobbyCharacter.isInputAllowed = false;
             HideInteractionUI();
             capsuleAnim.Play("Open_Lobby");
             FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
@@ -38,6 +39,7 @@ public class LobbyCapsule : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
+        
         HideInteractionUI();
         capsuleAnim.Play("Open_Lobby");
         FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
@@ -62,6 +64,7 @@ public class LobbyCapsule : Interactables
 
     public void PlayCharAnim()
     {
+        
         LobbyChar.GetComponentInChildren<Animator>().Play("LieDown");
     }
     public void LoadStageSelect()

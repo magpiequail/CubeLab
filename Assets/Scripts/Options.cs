@@ -29,10 +29,12 @@ public class Options : MonoBehaviour
     {
         //d = GetComponentInChildren<Dropdown>();
         interaction = FindObjectOfType<InteractionButton>();
+        
+        volumeSilder = GetComponentInChildren<Slider>();
         inputToggleGroup = GetComponentInChildren<ToggleGroup>();
         toggleArray = inputToggleGroup.GetComponentsInChildren<Toggle>();
 
-        volumeSilder = GetComponentInChildren<Slider>();
+        
 
     }
 

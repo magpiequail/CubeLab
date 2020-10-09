@@ -11,8 +11,10 @@ public class IntroText : MonoBehaviour
     public GameObject timeline;
     Image subtitleImg;
     public GameObject optionButton;
+    
 
-    bool showedInpupOption = false;
+    bool showedInputOption = false;
+    
     
 
     IntroCharacter introChar;
@@ -35,12 +37,13 @@ public class IntroText : MonoBehaviour
         index = 0;
         IntroCharacter.isInputAllowed = false;
         introChar = FindObjectOfType<IntroCharacter>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(index < sentences.Length)
+        if(index < sentences.Length && Time.timeScale !=0f)
         {
 
             if (Input.GetKeyDown(KeyCode.Space)/* && state == 0 && index < 7*/)
@@ -55,6 +58,7 @@ public class IntroText : MonoBehaviour
                     if (index == sentences.Length - 1)
                     {
                         optionButton.SetActive(true);
+                        showedInputOption = true;
                     }
                 }
 
@@ -76,13 +80,13 @@ public class IntroText : MonoBehaviour
                 {
                     index = 7;
                 }
-                else if(index > 7 && !showedInpupOption)
+                else if(index > 7 && !showedInputOption)
                 {
                     index = sentences.Length - 1;
                     introChar.TriggerGetUp();
                     //IntroCharacter.isInputAllowed = true;
                     optionButton.SetActive(true);
-                    showedInpupOption = true;
+                    showedInputOption = true;
                 }
 
             }
@@ -120,6 +124,7 @@ public class IntroText : MonoBehaviour
 
 
         currentText.text = sentences[index];
+        
     }
 
     public void SkipIntro()

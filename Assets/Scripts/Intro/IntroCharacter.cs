@@ -63,7 +63,7 @@ public class IntroCharacter : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && IntroText.state == 2)
+        if (Input.GetKeyDown(KeyCode.Space) && IntroText.state == 2 && Time.timeScale !=0f )
         {
             characterAnim.SetTrigger("GetUp");
 
@@ -75,7 +75,7 @@ public class IntroCharacter : MonoBehaviour
         {
 
         }*/
-        if (isInputAllowed)
+        if (isInputAllowed && Time.timeScale != 0f)
         {
             if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
             {
