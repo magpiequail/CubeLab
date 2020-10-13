@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 905724561
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -8
   m_Sprite: {fileID: 21300000, guid: c6c584e3791926848a105fcca2a8610a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82506da2416e97c479fabdbcac4c0fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
-    type: 3}
+  spaceInteractionPrefab: {fileID: 0}
+  mouseInteractionPrefab: {fileID: 0}
   interactionObj: {fileID: 0}
   isActivated: 0
   interactionMsg: "\uC0AC\uC6A9"
@@ -131,7 +131,7 @@ Animator:
   m_GameObject: {fileID: 107505662872914258}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dbd7f215f8181864984dffd6624c9b2b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9fba1a60b0c6f4e47855461eb33b5aa2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

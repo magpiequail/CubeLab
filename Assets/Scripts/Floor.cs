@@ -9,6 +9,7 @@ public class Floor : MonoBehaviour
     public int rows = 5;
     Transform[] childObj;
     bool brightSprite;
+    bool isOriginalColor;
 
     private void Awake()
     {
@@ -29,14 +30,42 @@ public class Floor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isOriginalColor = true ;
         if (charOnFloor)
         {
             brightSprite = false;
+            
         }
         else if(charOnFloor == null)
         {
             brightSprite = true;
         }
+        /*if (charOnFloor == null && brightSprite == true)
+        {
+
+            foreach (Transform child in childObj)
+            {
+                if (child.GetComponent<SpriteRenderer>())
+                {
+                    DarkenSprites(child.GetComponent<SpriteRenderer>());
+                }
+                
+            }
+            brightSprite = false;
+
+        }
+        else if (charOnFloor && brightSprite == false)
+        {
+            foreach (Transform child in childObj)
+            {
+                if (child.GetComponent<SpriteRenderer>())
+                {
+                    LightenSprites(child.GetComponent<SpriteRenderer>());
+                }
+
+            }
+            brightSprite = true;
+        }*/
     }
 
     // Update is called once per frame
@@ -59,6 +88,7 @@ public class Floor : MonoBehaviour
                 }*/
             }
             brightSprite = false;
+            isOriginalColor = false;
             
         }
         else if( charOnFloor && brightSprite == false)
@@ -83,11 +113,15 @@ public class Floor : MonoBehaviour
 
     void DarkenSprites(SpriteRenderer sr)
     {
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.3f);
+        sr.color = new Color(sr.color.r*0.5f, sr.color.g * 0.5f, sr.color.b * 0.5f, sr.color.a);
     }
     void LightenSprites(SpriteRenderer sr)
     {
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1.0f);
+        if (!isOriginalColor)
+        {
+            sr.color = new Color(sr.color.r*2f, sr.color.g * 2f, sr.color.b * 2f, sr.color.a);
+        }
+        
     }
 
 

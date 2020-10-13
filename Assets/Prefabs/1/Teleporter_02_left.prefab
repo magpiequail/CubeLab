@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 842361093630813733}
   - component: {fileID: 842361093630813732}
   m_Layer: 2
-  m_Name: Teleporter_02_left
+  m_Name: Teleporter_02_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 905724561
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 93272b3292a7d764b8a8c70fed8c7afe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -113,16 +113,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3b140376b9a494a81484069166d12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+  spaceInteractionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+    type: 3}
+  mouseInteractionPrefab: {fileID: 103197233348189515, guid: 27a4cdd7da09d374bb64aa8ee5d2a374,
     type: 3}
   interactionObj: {fileID: 0}
   isActivated: 0
   interactionMsg: "\uC0AC\uC6A9"
   otherTele: {fileID: 842361093630813752, guid: 6d7dcbd29b3d3b540ad7d3f65792aca5,
     type: 3}
+  floorOrCeiling: 0
   posX: 2
   posY: 4
   teleAnim: {fileID: 0}
+  attachedFloor: {fileID: 0}
 --- !u!1 &2041898939980984599
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +197,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2070166501
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 0.7122642, g: 1, b: 0.73633766, a: 1}

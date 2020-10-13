@@ -140,7 +140,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8777216617656073631}
-  - {fileID: 9052303281318957367}
+  - {fileID: 243293177170169326}
   - {fileID: 7482503575317489396}
   - {fileID: 5837765668790212655}
   - {fileID: 6929196799979699661}
@@ -619,7 +619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f09298445453e74a87decdedf1825ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionPrefab: {fileID: 0}
+  spaceInteractionPrefab: {fileID: 0}
+  mouseInteractionPrefab: {fileID: 0}
   interactionObj: {fileID: 0}
   isActivated: 0
   interactionMsg: SPACE
@@ -946,7 +947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84fc13cdcd4f44d479d8dbf80aa613ec, type: 3}
---- !u!4 &9052303281318957367 stripped
+--- !u!4 &243293177170169326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9133410014858287188, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
     type: 3}
@@ -4158,7 +4159,7 @@ PrefabInstance:
     - target: {fileID: 5017464963640850844, guid: 05558bb6753680a48b7ba35e77d49d85,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5110691056944514476, guid: 05558bb6753680a48b7ba35e77d49d85,
         type: 3}

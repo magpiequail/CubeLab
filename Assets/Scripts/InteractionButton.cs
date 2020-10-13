@@ -25,7 +25,7 @@ public class InteractionButton : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        ChangeButtonState();
+        //ChangeButtonState();
         GetComponent<Canvas>().worldCamera = CameraManager.currentCam;
     }
 
@@ -40,11 +40,23 @@ public class InteractionButton : MonoBehaviour, IPointerClickHandler
         {
             interaction.interactable = false;
             buttonText.text = keyInputString;
+            /*interactablesArray = FindObjectsOfType<Interactables>();
+            foreach (Interactables inter in interactablesArray)
+            {
+                inter.HideInteractionUI();
+                inter.ShowInteractionUI();
+            }*/
         }
         if (Options.input == 1)
         {
             interaction.interactable = true;
             buttonText.text = mouseInputString;
+            /*interactablesArray = FindObjectsOfType<Interactables>();
+            foreach (Interactables inter in interactablesArray)
+            {
+                inter.HideInteractionUI();
+                inter.ShowInteractionUI();
+            }*/
         }
     }
     public void InteractionClick()

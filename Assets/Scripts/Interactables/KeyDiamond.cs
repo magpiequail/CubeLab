@@ -7,7 +7,7 @@ public class KeyDiamond : Key
     public float keyPosition;
     Animator diamondKeyAnim;
     Vector2 originPos;
-    public SpriteRenderer sprite;
+    //public SpriteRenderer sprite;
     bool isWithChar = false;
     //GameObject character;
     public Animator effectAnim;
@@ -17,7 +17,7 @@ public class KeyDiamond : Key
     {
         diamondKeyAnim = GetComponentInChildren<Animator>();
         originPos = transform.position;
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;
     }
 
@@ -45,7 +45,7 @@ public class KeyDiamond : Key
         }
         if (Door.isAllOpen)
         {
-            sprite.enabled = false;
+            keyMesh.SetActive(false);
         }
 
     }
@@ -119,7 +119,7 @@ public class KeyDiamond : Key
             {
                 isActivated = false;
                 diamondKeyAnim.SetInteger("State", 0);
-                sprite.gameObject.transform.position = originPos;
+                //sprite.gameObject.transform.position = originPos;
             }
             HideInteractionUI();
 

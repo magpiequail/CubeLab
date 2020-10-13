@@ -160,7 +160,7 @@ Debug.Log(gameObject.name + CharactersMovement.isInputAllowed);
         characterObj.GetComponentInChildren<SpriteRenderer>().enabled = true;
         if (characterObj.GetComponentInChildren<Key>())
         {
-            characterObj.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            characterObj.GetComponentInChildren<Key>().keyMesh.SetActive(true);
         }
         /*if (characterObj.GetComponentInChildren<InteractionButton>())
         {
@@ -174,7 +174,7 @@ Debug.Log(gameObject.name + CharactersMovement.isInputAllowed);
         characterObj.GetComponentInChildren<SpriteRenderer>().enabled = false;
         if (characterObj.GetComponentInChildren<Key>())
         {
-            characterObj.GetComponentInChildren<Key>().gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            characterObj.GetComponentInChildren<Key>().keyMesh.SetActive(false);
         }
 
     }

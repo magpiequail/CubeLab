@@ -7,7 +7,8 @@ public class KeyRound : Key
     public float keyPosition;
     Animator roundKeyAnim;
     Vector2 originPos;
-    public SpriteRenderer sprite;
+    //public SpriteRenderer sprite;
+
     bool isWithChar = false;
     //GameObject character;
     public Animator effectAnim;
@@ -17,7 +18,7 @@ public class KeyRound : Key
     {
         roundKeyAnim = GetComponentInChildren<Animator>();
         originPos = transform.position;
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;
     }
 
@@ -45,7 +46,7 @@ public class KeyRound : Key
         }
         if (Door.isAllOpen)
         {
-            sprite.enabled = false;
+            keyMesh.SetActive(false);
         }
 
     }
@@ -122,7 +123,7 @@ public class KeyRound : Key
             {
                 isActivated = false;
                 roundKeyAnim.SetInteger("State", 0);
-                sprite.gameObject.transform.position = originPos;
+                //sprite.gameObject.transform.position = originPos;
             }
             HideInteractionUI();
 

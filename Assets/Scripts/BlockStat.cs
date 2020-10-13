@@ -10,9 +10,9 @@ public class BlockStat : MonoBehaviour
     public float springSpeed;
     public float springDepth;
 
-    public Material originalMat;
-    public Material pathMat;
-    public Material CurrentBlockMat;
+    public Sprite originalSprite;
+    public Sprite pathSprite;
+    public Sprite CurrentSprite;
 
     private SpriteRenderer blockSprite;
     public Vector3 blockPosition;
@@ -37,7 +37,7 @@ public class BlockStat : MonoBehaviour
         blockCharPos = new Vector3(blockPosition.x + charPosOffset.x, blockPosition.y + charPosOffset.y);
 
         isSpringCompleted = true;
-        blockSprite = gameObject.GetComponentInChildren<SpriteRenderer>();
+        blockSprite = gameObject.GetComponent<SpriteRenderer>();
 
         pushedPosition = new Vector3(blockPosition.x, blockPosition.y - springDepth, blockPosition.z);
     }
@@ -59,15 +59,15 @@ public class BlockStat : MonoBehaviour
         if (currentBlock == 1)
         {
             
-            blockSprite.material = CurrentBlockMat;
+            blockSprite.sprite = CurrentSprite;
         }
         if (currentBlock == 2)
         {
-            blockSprite.material = pathMat;
+            blockSprite.sprite = pathSprite;
         }
         if (currentBlock == 0)
         {
-            blockSprite.material = originalMat;
+            blockSprite.sprite = originalSprite;
 
         }
         if (!isSpringCompleted)

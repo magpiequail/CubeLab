@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 905724561
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d501847b5582965429191b4f263967f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -113,16 +113,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3b140376b9a494a81484069166d12b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+  spaceInteractionPrefab: {fileID: 103197233348189515, guid: e6f27909e8ecb934e83945c70407c2ad,
+    type: 3}
+  mouseInteractionPrefab: {fileID: 103197233348189515, guid: 27a4cdd7da09d374bb64aa8ee5d2a374,
     type: 3}
   interactionObj: {fileID: 0}
   isActivated: 0
   interactionMsg: "\uC0AC\uC6A9"
   otherTele: {fileID: 842361093630813752, guid: 445e59c268d92ae4ebf4bf3867000fcf,
     type: 3}
+  floorOrCeiling: 0
   posX: 2
   posY: 4
   teleAnim: {fileID: 0}
+  attachedFloor: {fileID: 0}
 --- !u!95 &4676148676382749807
 Animator:
   serializedVersion: 3
@@ -243,7 +247,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2070166501
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 0.6556604, g: 0.9744934, b: 1, a: 1}

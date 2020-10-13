@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Key : Interactables
 {
+    public GameObject keyMesh;
+
     private void Awake()
     {
         //interactionMsg = "획득";

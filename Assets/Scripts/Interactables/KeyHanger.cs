@@ -27,7 +27,7 @@ public class KeyHanger : MonoBehaviour
 
     public GameObject interactionPrefab;
     GameObject interactionObj;
-    public string interactionMsg = "사용";
+    public string interactionMsg = "사\r\n용";
 
     private void Awake()
     {
@@ -51,7 +51,7 @@ public class KeyHanger : MonoBehaviour
             {
                 characterColl.GetComponent<Character>().isHavingRoundKey = false;
                 characterColl.GetComponent<Character>().isHavingTriangleKey = false;
-                characterColl.GetComponentInChildren<KeyRound>().sprite.enabled = false;
+                characterColl.GetComponentInChildren<KeyRound>().keyMesh.SetActive(false);
                 hangerState = HangerState.RoundKey;
 
                 isRoundKey = false;
@@ -61,7 +61,7 @@ public class KeyHanger : MonoBehaviour
             {
                 characterColl.GetComponent<Character>().isHavingRoundKey = false;
                 characterColl.GetComponent<Character>().isHavingTriangleKey = false;
-                characterColl.GetComponentInChildren<KeyTriangle>().sprite.enabled = false;
+                characterColl.GetComponentInChildren<KeyTriangle>().keyMesh.SetActive(false);
                 hangerState = HangerState.TriangleKey;
 
                 isRoundKey = false;
@@ -71,7 +71,7 @@ public class KeyHanger : MonoBehaviour
             {
                 characterColl.GetComponent<Character>().isHavingRoundKey = true;
                 characterColl.GetComponent<Character>().isHavingTriangleKey = false;
-                characterColl.GetComponentInChildren<KeyRound>().sprite.enabled = true;
+                characterColl.GetComponentInChildren<KeyRound>().keyMesh.SetActive( true);
                 hangerState = HangerState.Empty;
 
                 isTriangleKey = false;
@@ -81,8 +81,8 @@ public class KeyHanger : MonoBehaviour
             {
                 characterColl.GetComponent<Character>().isHavingRoundKey = true;
                 characterColl.GetComponent<Character>().isHavingTriangleKey = false;
-                characterColl.GetComponentInChildren<KeyRound>().sprite.enabled = true;
-                characterColl.GetComponentInChildren<KeyTriangle>().sprite.enabled = false;
+                characterColl.GetComponentInChildren<KeyRound>().keyMesh.SetActive( true);
+                characterColl.GetComponentInChildren<KeyTriangle>().keyMesh.SetActive(false);
                 hangerState = HangerState.TriangleKey;
 
                 isTriangleKey = false;
@@ -92,7 +92,7 @@ public class KeyHanger : MonoBehaviour
             {
                 characterColl.GetComponent<Character>().isHavingRoundKey = false;
                 characterColl.GetComponent<Character>().isHavingTriangleKey = true;
-                characterColl.GetComponentInChildren<KeyTriangle>().sprite.enabled = true;
+                characterColl.GetComponentInChildren<KeyTriangle>().keyMesh.SetActive(true);
                 hangerState = HangerState.Empty;
 
                 isRoundKey = false;
@@ -102,8 +102,8 @@ public class KeyHanger : MonoBehaviour
             {
                 characterColl.GetComponent<Character>().isHavingRoundKey = false;
                 characterColl.GetComponent<Character>().isHavingTriangleKey = true;
-                characterColl.GetComponentInChildren<KeyRound>().sprite.enabled = false;
-                characterColl.GetComponentInChildren<KeyTriangle>().sprite.enabled = true;
+                characterColl.GetComponentInChildren<KeyRound>().keyMesh.SetActive( false);
+                characterColl.GetComponentInChildren<KeyTriangle>().keyMesh.SetActive(true);
                 hangerState = HangerState.RoundKey;
 
                 isRoundKey = false;

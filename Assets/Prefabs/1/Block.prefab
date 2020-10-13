@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fc816765e696654491344280b1b9526, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1287517597
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ff1bf18b5c876de4982e2fd63a04faed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e66099fca4839ea4496a500a2ee2d293, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,11 +128,12 @@ MonoBehaviour:
   visited: 1
   springSpeed: 0.5
   springDepth: 0
-  originalMat: {fileID: 2100000, guid: 6fc816765e696654491344280b1b9526, type: 2}
-  pathMat: {fileID: 2100000, guid: 367c40fb11dcfb4459898e3d0c8eaf31, type: 2}
-  CurrentBlockMat: {fileID: 2100000, guid: 367c40fb11dcfb4459898e3d0c8eaf31, type: 2}
+  originalSprite: {fileID: 21300000, guid: e66099fca4839ea4496a500a2ee2d293, type: 3}
+  pathSprite: {fileID: 21300000, guid: e3227cbe6e0cced489c5bada332b39a6, type: 3}
+  CurrentSprite: {fileID: 21300000, guid: e3227cbe6e0cced489c5bada332b39a6, type: 3}
   blockPosition: {x: 0, y: 0, z: 0}
   charPosOffset: {x: 0, y: 0.25}
   blockCharPos: {x: 0, y: 0, z: 0}
+  blockLevel: 0
   x: 0
   y: 0

@@ -8,7 +8,7 @@ public class KeyTriangle : Key
     Animator triangleKeyAnim;
     bool isWithChar = false;
     Vector2 originPos;
-    public SpriteRenderer sprite;
+    //public SpriteRenderer sprite;
     //bool isCharOn = false;
     //GameObject character;
     public Animator effectAnim;
@@ -18,7 +18,7 @@ public class KeyTriangle : Key
     {
         triangleKeyAnim = GetComponentInChildren<Animator>();
         originPos = transform.position;
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;
     }
 
@@ -46,7 +46,7 @@ public class KeyTriangle : Key
         }
         if (Door.isAllOpen)
         {
-            sprite.enabled = false;
+            keyMesh.SetActive(false);
         }
 
     }
@@ -119,7 +119,7 @@ public class KeyTriangle : Key
             {
                 isActivated = false;
                 triangleKeyAnim.SetInteger("State", 0);
-                sprite.gameObject.transform.position = originPos;
+                //sprite.gameObject.transform.position = originPos;
             }
 
             HideInteractionUI();

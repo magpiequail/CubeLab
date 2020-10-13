@@ -7,7 +7,7 @@ public class KeySquare : Key
     public float keyPosition;
     Animator squareKeyAnim;
     Vector2 originPos;
-    public SpriteRenderer sprite;
+    //public SpriteRenderer sprite;
     bool isWithChar = false;
     //GameObject character;
     public Animator effectAnim;
@@ -17,7 +17,7 @@ public class KeySquare : Key
     {
         squareKeyAnim = GetComponentInChildren<Animator>();
         originPos = transform.position;
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;
     }
 
@@ -45,7 +45,7 @@ public class KeySquare : Key
         }
         if (Door.isAllOpen)
         {
-            sprite.enabled = false;
+            keyMesh.SetActive(false);
         }
 
     }
@@ -120,7 +120,7 @@ public class KeySquare : Key
             {
                 isActivated = false;
                 squareKeyAnim.SetInteger("State", 0);
-                sprite.gameObject.transform.position = originPos;
+                //sprite.gameObject.transform.position = originPos;
             }
             HideInteractionUI();
 
