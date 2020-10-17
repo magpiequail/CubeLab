@@ -9,16 +9,18 @@ public class Spider : Character
     {
         Initialize();
         scale = transform.localScale.x;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 100, rayLayerMask);
         if (hit && hit.collider.transform.parent.GetComponent<Floor>())
         {
             hit.collider.transform.parent.GetComponent<Floor>().charOnFloor = this;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
@@ -176,5 +178,13 @@ public class Spider : Character
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y *-1, transform.localScale.z);
         scale = scale * -1;
     }
-    
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<NormalCharacter>())
+        {
+            SceneController.gameState = GameState.GameOver;
+        }
+    }
 }

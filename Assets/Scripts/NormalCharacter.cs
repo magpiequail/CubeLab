@@ -7,16 +7,17 @@ public class NormalCharacter : Character
     private void Awake()
     {
         Initialize();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, 100, rayLayerMask);
         if (hit && hit.collider.transform.parent.GetComponent<Floor>())
         {
             hit.collider.transform.parent.GetComponent<Floor>().charOnFloor = this;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame

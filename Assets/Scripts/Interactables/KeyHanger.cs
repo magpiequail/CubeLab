@@ -4,13 +4,24 @@ public enum HangerState
 {
     Empty,
     RoundKey,
-    TriangleKey
+    TriangleKey,
+    SquareKey,
+    DiamondKey
     
 }
+/*public enum CharacterKey
+{
+    Empty,
+    RoundKey,
+    TriangleKey,
+    SquareKey,
+    DiamondKey
+}*/
 
 public class KeyHanger : MonoBehaviour
 {
     public HangerState hangerState;
+    //private CharacterKey charKey;
     public Sprite emptySprite;
     public Sprite roundKeySprite;
     public Sprite triangleKeySprite;
@@ -24,6 +35,7 @@ public class KeyHanger : MonoBehaviour
     bool isTriangleKey = false;
     GameObject characterColl;
     bool isCharOn = false;
+    Character currChar;
 
     public GameObject interactionPrefab;
     GameObject interactionObj;
@@ -46,8 +58,123 @@ public class KeyHanger : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && isCharOn)
         {
-            
-            if (hangerState == HangerState.Empty && isRoundKey && !isTriangleKey)
+
+
+            if (hangerState == HangerState.Empty)
+            {
+                currChar.characterKey = CharKeyState.Empty;
+                switch (currChar.characterKey)
+                {
+                    case CharKeyState.RoundKey:
+
+                        hangerState = HangerState.RoundKey;
+                        break;
+                    case CharKeyState.TriangleKey:
+                        hangerState = HangerState.TriangleKey;
+                        break;
+                    case CharKeyState.SquareKey:
+                        hangerState = HangerState.SquareKey;
+                        break;
+                    case CharKeyState.DiamondKey:
+                        hangerState = HangerState.DiamondKey;
+                        break;
+                }
+            }
+            if(hangerState == HangerState.RoundKey)
+            {
+                currChar.characterKey = CharKeyState.RoundKey;
+                switch (currChar.characterKey)
+                {
+                    case CharKeyState.RoundKey:
+
+                        hangerState = HangerState.RoundKey;
+                        break;
+                    case CharKeyState.TriangleKey:
+                        hangerState = HangerState.TriangleKey;
+                        break;
+                    case CharKeyState.SquareKey:
+                        hangerState = HangerState.SquareKey;
+                        break;
+                    case CharKeyState.DiamondKey:
+                        hangerState = HangerState.DiamondKey;
+                        break;
+                    case CharKeyState.Empty:
+                        hangerState = HangerState.Empty;
+                        break;
+                }
+            }
+            if (hangerState == HangerState.TriangleKey)
+            {
+                currChar.characterKey = CharKeyState.TriangleKey;
+                switch (currChar.characterKey)
+                {
+                    case CharKeyState.RoundKey:
+
+                        hangerState = HangerState.RoundKey;
+                        break;
+                    case CharKeyState.TriangleKey:
+                        hangerState = HangerState.TriangleKey;
+                        break;
+                    case CharKeyState.SquareKey:
+                        hangerState = HangerState.SquareKey;
+                        break;
+                    case CharKeyState.DiamondKey:
+                        hangerState = HangerState.DiamondKey;
+                        break;
+                    case CharKeyState.Empty:
+                        hangerState = HangerState.Empty;
+                        break;
+                }
+            }
+            if (hangerState == HangerState.SquareKey)
+            {
+                currChar.characterKey = CharKeyState.SquareKey;
+                switch (currChar.characterKey)
+                {
+                    case CharKeyState.RoundKey:
+
+                        hangerState = HangerState.RoundKey;
+                        break;
+                    case CharKeyState.TriangleKey:
+                        hangerState = HangerState.TriangleKey;
+                        break;
+                    case CharKeyState.SquareKey:
+                        hangerState = HangerState.SquareKey;
+                        break;
+                    case CharKeyState.DiamondKey:
+                        hangerState = HangerState.DiamondKey;
+                        break;
+                    case CharKeyState.Empty:
+                        hangerState = HangerState.Empty;
+                        break;
+                }
+            }
+            if (hangerState == HangerState.DiamondKey)
+            {
+                currChar.characterKey = CharKeyState.DiamondKey;
+                switch (currChar.characterKey)
+                {
+                    case CharKeyState.RoundKey:
+
+                        hangerState = HangerState.RoundKey;
+                        break;
+                    case CharKeyState.TriangleKey:
+                        hangerState = HangerState.TriangleKey;
+                        break;
+                    case CharKeyState.SquareKey:
+                        hangerState = HangerState.SquareKey;
+                        break;
+                    case CharKeyState.DiamondKey:
+                        hangerState = HangerState.DiamondKey;
+                        break;
+                    case CharKeyState.Empty:
+                        hangerState = HangerState.Empty;
+                        break;
+                }
+            }
+
+
+            /*if (hangerState == HangerState.Empty && isRoundKey && !isTriangleKey)
             {
                 characterColl.GetComponent<Character>().isHavingRoundKey = false;
                 characterColl.GetComponent<Character>().isHavingTriangleKey = false;
@@ -108,9 +235,9 @@ public class KeyHanger : MonoBehaviour
 
                 isRoundKey = false;
                 isTriangleKey = true;
-            }
+            }*/
 
-            
+
             ChangeHangerSprite();
         }
         
@@ -122,22 +249,29 @@ public class KeyHanger : MonoBehaviour
         {
             isCharOn = true;
             characterColl = collision.gameObject;
+            currChar = characterColl.GetComponent<Character>();
 
-            if (characterColl.GetComponent<Character>().isHavingRoundKey == true)
+            /*if (characterColl.GetComponent<Character>().characterKey == CharKeyState.RoundKey)
             {
-                isTriangleKey = false;
-                isRoundKey = true;
+                charKey = CharacterKey.RoundKey;
             }
-            else if (characterColl.GetComponent<Character>().isHavingTriangleKey == true)
+            else if (characterColl.GetComponent<Character>().characterKey == CharKeyState.TriangleKey)
             {
-                isRoundKey = false;
-                isTriangleKey = true;
+                charKey = CharacterKey.TriangleKey;
+            }
+            else if(characterColl.GetComponent<Character>().isHavingSquareKey == true)
+            {
+                charKey = CharacterKey.SquareKey;
+            }
+            else if (characterColl.GetComponent<Character>().isHavingDiamondKey)
+            {
+                charKey = CharacterKey.DiamondKey;
             }
             else
             {
-                isRoundKey = false;
-                isTriangleKey = false;
-            }
+                charKey = CharacterKey.Empty;
+
+            }*/
         }
 
     }
@@ -174,6 +308,14 @@ public class KeyHanger : MonoBehaviour
         else if (hangerState == HangerState.TriangleKey)
         {
             hangerSprite.sprite = triangleKeySprite;
+        }
+        else if( hangerState == HangerState.SquareKey)
+        {
+            
+        }
+        else if( hangerState == HangerState.DiamondKey)
+        {
+
         }
     }
 }

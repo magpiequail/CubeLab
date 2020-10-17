@@ -8,7 +8,8 @@ public class LobbyCapsule : Interactables
 
     GameObject LobbyChar;
     Animator capsuleAnim;
-    public int stageNumber;
+    public int sceneIndex;
+    
     
 
     private void Awake()
@@ -44,6 +45,7 @@ public class LobbyCapsule : Interactables
         capsuleAnim.Play("Open_Lobby");
         FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
         FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_steam");
+        //SceneManager.LoadScene(sceneBuildIndex: sceneIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -69,6 +71,6 @@ public class LobbyCapsule : Interactables
     }
     public void LoadStageSelect()
     {
-        SceneManager.LoadScene("Stage Select");
+        SceneManager.LoadScene(sceneBuildIndex:sceneIndex);
     }
 }

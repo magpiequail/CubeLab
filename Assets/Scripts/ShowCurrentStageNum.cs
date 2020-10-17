@@ -12,6 +12,11 @@ public class ShowCurrentStageNum : MonoBehaviour
     {
         numberText = GetComponent<Text>();
         numberText.text = ""+SceneManager.GetActiveScene().buildIndex;
+        if (SceneManager.GetActiveScene().buildIndex > 20)
+        {
+            numberText.text = "" + (SceneManager.GetActiveScene().buildIndex - 20);
+        }
+        
     }
 
     // Start is called before the first frame update

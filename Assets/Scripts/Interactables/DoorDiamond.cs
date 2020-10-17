@@ -43,7 +43,7 @@ public class DoorDiamond : Door
     {
         if (collision.tag == "Character" /*&& collision.GetComponent<Character>().isHavingDiamondKey*/)
         {
-            if (collision.GetComponent<Character>().isHavingDiamondKey && collision.gameObject.GetComponent<NormalCharacter>())
+            if (collision.GetComponent<Character>().characterKey == CharKeyState.DiamondKey && collision.gameObject.GetComponent<NormalCharacter>())
             {
                 isOpened = true;
                 characterObj = collision.gameObject;

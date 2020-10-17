@@ -44,7 +44,7 @@ public class DoorSquare : Door
         if (collision.tag == "Character" /*&& collision.GetComponent<Character>().isHavingSquareKey*/)
         {
             characterObj = collision.gameObject;
-            if (collision.GetComponent<Character>().isHavingSquareKey && collision.gameObject.GetComponent<NormalCharacter>())
+            if (collision.GetComponent<Character>().characterKey == CharKeyState.SquareKey && collision.gameObject.GetComponent<NormalCharacter>())
             {
                 isOpened = true;
                 characterObj = collision.gameObject;

@@ -52,10 +52,7 @@ public class KeyDiamond : Key
 
     private void GetKey()
     {
-        if (characterObj.GetComponent<Character>().isHavingRoundKey == false
-                && characterObj.GetComponent<Character>().isHavingTriangleKey == false
-                && characterObj.GetComponent<Character>().isHavingSquareKey == false
-                && characterObj.GetComponent<Character>().isHavingDiamondKey == false)
+        if (characterObj.GetComponent<Character>().characterKey == CharKeyState.Empty)
         {
             isWithChar = true;
             diamondKeyAnim.SetInteger("State", 2);
@@ -76,7 +73,7 @@ public class KeyDiamond : Key
             gameObject.transform.SetParent(characterObj.transform);
             //currently position is controlled by animation
             //gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition); //keyPosition not working properly. shifting position with animation
-            characterObj.GetComponent<Character>().isHavingDiamondKey = true;
+            characterObj.GetComponent<Character>().characterKey = CharKeyState.DiamondKey;
             isActivated = false;
         }
 

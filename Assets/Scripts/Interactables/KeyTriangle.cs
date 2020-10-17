@@ -53,10 +53,7 @@ public class KeyTriangle : Key
 
     private void GetKey()
     {
-        if (characterObj.GetComponent<Character>().isHavingRoundKey == false
-                && characterObj.GetComponent<Character>().isHavingTriangleKey == false
-                && characterObj.GetComponent<Character>().isHavingSquareKey == false
-                && characterObj.GetComponent<Character>().isHavingDiamondKey == false)
+        if (characterObj.GetComponent<Character>().characterKey == CharKeyState.Empty)
         {
             triangleKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");
@@ -76,7 +73,7 @@ public class KeyTriangle : Key
             gameObject.transform.SetParent(characterObj.transform);
             //currently the position of this key is controlled by animation
             //gameObject.transform.position = new Vector2(originPos.x, originPos.y + keyPosition);
-            characterObj.GetComponent<Character>().isHavingTriangleKey = true;
+            characterObj.GetComponent<Character>().characterKey = CharKeyState.TriangleKey;
             isActivated = false;
         }
 

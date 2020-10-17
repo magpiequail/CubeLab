@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public enum CharKeyState
+{
+    Empty,
+    RoundKey,
+    TriangleKey,
+    SquareKey,
+    DiamondKey
+}
+
 public class Character : MonoBehaviour
 {
+    public CharKeyState characterKey;
     public Animator characterAnim;
     public bool isUnitMoveAllowed = true;
     //bool isInputAllowed = true;
     public bool isDeathByLaser = false;
-    public bool isHavingRoundKey = false;
+    /*public bool isHavingRoundKey = false;
     public bool isHavingTriangleKey = false;
     public bool isHavingDiamondKey = false;
-    public bool isHavingSquareKey = false;
+    public bool isHavingSquareKey = false;*/
     // public GameObject floor;
     protected float keyPressedTime = 0f;
 

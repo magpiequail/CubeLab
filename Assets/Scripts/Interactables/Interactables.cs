@@ -41,7 +41,7 @@ public class Interactables : MonoBehaviour
             }
             else if(Options.input == 1)
             {
-                interactionObj = Instantiate(mouseInteractionPrefab, /*characterObj.transform.position, Quaternion.identity, */characterObj.transform);
+                interactionObj = Instantiate(spaceInteractionPrefab, /*characterObj.transform.position, Quaternion.identity, */characterObj.transform);
                 interactionObj.GetComponent<InteractionButton>().mouseInputString = interactionMsg;
             }
         }

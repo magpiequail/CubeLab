@@ -43,7 +43,7 @@ void Start()
     {
         if (collision.tag == "Character" /*&& collision.GetComponent<Character>().isHavingRoundKey*/)
         {
-            if (collision.GetComponent<Character>().isHavingRoundKey && collision.gameObject.GetComponent<NormalCharacter>())
+            if (collision.GetComponent<Character>().characterKey == CharKeyState.RoundKey && collision.gameObject.GetComponent<NormalCharacter>())
             {
                 isOpened = true;
                 characterObj = collision.gameObject;
