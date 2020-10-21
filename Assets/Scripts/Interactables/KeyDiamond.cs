@@ -10,12 +10,13 @@ public class KeyDiamond : Key
     //public SpriteRenderer sprite;
     bool isWithChar = false;
     //GameObject character;
-    public Animator effectAnim;
+    
 
 
     private void Awake()
     {
         diamondKeyAnim = GetComponentInChildren<Animator>();
+        keyAnim = diamondKeyAnim;
         originPos = transform.position;
         //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;

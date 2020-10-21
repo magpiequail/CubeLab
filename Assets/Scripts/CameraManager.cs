@@ -42,22 +42,18 @@ public class CameraManager : MonoBehaviour
         if (Input.mousePosition.x < halfWidth && Input.mousePosition.y > halfHeight)
         {
             currentCam = topLeftCam;
-            currentCam.clearFlags = CameraClearFlags.Depth;
         }
         else if(Input.mousePosition.x < halfWidth && Input.mousePosition.y < halfHeight)
         {
             currentCam = bottomLeftCam;
-            currentCam.clearFlags = CameraClearFlags.Depth;
         }
         else if (Input.mousePosition.x > halfWidth && Input.mousePosition.y > halfHeight)
         {
             currentCam = topRightCam;
-            currentCam.clearFlags = CameraClearFlags.Depth;
         }
         else if(Input.mousePosition.x > halfWidth && Input.mousePosition.y < halfHeight)
         {
             currentCam = bottomRightCam;
-            currentCam.clearFlags = CameraClearFlags.Depth;
         }
     }
     

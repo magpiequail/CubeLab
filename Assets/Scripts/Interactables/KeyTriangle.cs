@@ -11,12 +11,13 @@ public class KeyTriangle : Key
     //public SpriteRenderer sprite;
     //bool isCharOn = false;
     //GameObject character;
-    public Animator effectAnim;
+
 
 
     private void Awake()
     {
         triangleKeyAnim = GetComponentInChildren<Animator>();
+        keyAnim = triangleKeyAnim;
         originPos = transform.position;
         //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;

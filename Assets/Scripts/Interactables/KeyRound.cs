@@ -11,12 +11,13 @@ public class KeyRound : Key
 
     bool isWithChar = false;
     //GameObject character;
-    public Animator effectAnim;
+
 
 
     private void Awake()
     {
         roundKeyAnim = GetComponentInChildren<Animator>();
+        keyAnim = roundKeyAnim;
         originPos = transform.position;
         //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;

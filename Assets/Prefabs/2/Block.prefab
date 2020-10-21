@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 1287517597
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 33028b195755e374bac1956f592f6815, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c618c708efc4d2469d2846682c98156, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0444444, y: 0.53333336}
+    oldSize: {x: 1.019802, y: 0.5148515}
     newSize: {x: 1.0106384, y: 1.0106384}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -128,9 +128,10 @@ MonoBehaviour:
   visited: 1
   springSpeed: 0.5
   springDepth: 0.04
-  originalSprite: {fileID: 21300000, guid: 33028b195755e374bac1956f592f6815, type: 3}
-  pathSprite: {fileID: 21300000, guid: 21e87e883213a644d84848ac21b03f84, type: 3}
-  CurrentSprite: {fileID: 21300000, guid: 21e87e883213a644d84848ac21b03f84, type: 3}
+  originalSprite: {fileID: 21300000, guid: 8c618c708efc4d2469d2846682c98156, type: 3}
+  pathSprite: {fileID: 21300000, guid: 043ae2af5b674744d8702b58568bad32, type: 3}
+  CurrentSprite: {fileID: 21300000, guid: 043ae2af5b674744d8702b58568bad32, type: 3}
+  impossible: {fileID: 21300000, guid: 3911fcde4d41893419b87c74e22c98e4, type: 3}
   blockPosition: {x: 0, y: 0, z: 0}
   charPosOffset: {x: 0, y: 0}
   blockCharPos: {x: 0, y: 0, z: 0}

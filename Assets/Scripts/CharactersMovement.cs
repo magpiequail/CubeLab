@@ -192,7 +192,7 @@ public class CharactersMovement : MonoBehaviour
                     endX = hit.collider.gameObject.GetComponent<BlockStat>().x;
                     endY = hit.collider.gameObject.GetComponent<BlockStat>().y;
 
-                    if (pathFindingFloor.charOnFloor)
+                    if (pathFindingFloor.charOnFloor && pathFindingFloor.charOnFloor.gameObject.GetComponent<NormalCharacter>())
                     {
                         RaycastHit2D charHit = Physics2D.Raycast(pathFindingFloor.charOnFloor.transform.position, transform.forward, 100, floorLayerMask);
                         if (charHit)
@@ -236,6 +236,10 @@ public class CharactersMovement : MonoBehaviour
                     }
                     
                     if (startX == endX && startY == endY)
+                    {
+                        return;
+                    }
+                    if (pathFindingFloor.charOnFloor.gameObject.GetComponent<Spider>())
                     {
                         return;
                     }
@@ -333,26 +337,24 @@ public class CharactersMovement : MonoBehaviour
         {
             c.characterAnim.SetInteger("Direction", 3);
         }
-        foreach (Character c in charactersArray)
+        if (isCheckingSW())
         {
-            
-            if (!c.SWMovement())
+            foreach (Character c in charactersArray)
             {
-                /*foreach(Character ch in charactersArray)
-                {
-                    ch.nextPos = ch.currPos;
-                }*/
-                return false;
+                c.nextCharPos = c.tempNextCharPos;
             }
-        }
-        /*foreach (Character c in charactersArray)
-        {
-            
-            c.nextCharPos = c.tempNextCharPos;
-
-        }*/
-
             return true;
+        }
+        else 
+        {
+            foreach (Character c in charactersArray)
+            {
+                c.nextPos = c.currPos;
+                c.tempNextCharPos = c.currPos;
+            }
+            return false;
+        }
+
     }
     bool isAllCharMovedSE()
     {
@@ -361,23 +363,23 @@ public class CharactersMovement : MonoBehaviour
             c.characterAnim.SetInteger("Direction", 4);
             
         }
-        foreach (Character c in charactersArray)
+        if (isCheckingSE())
         {
-            if (!c.SEMovement())
+            foreach (Character c in charactersArray)
             {
-                /*foreach (Character ch in charactersArray)
-                {
-                    ch.nextPos = ch.currPos;
-                }*/
-                return false;
+                c.nextCharPos = c.tempNextCharPos;
             }
+            return true;
         }
-        /*foreach (Character c in charactersArray)
+        else
         {
-            
-            c.nextCharPos = c.tempNextCharPos;
-        }*/
-        return true;
+            foreach (Character c in charactersArray)
+            {
+                c.nextPos = c.currPos;
+                c.tempNextCharPos = c.currPos;
+            }
+            return false;
+        }
     }
     bool isAllCharMovedNW()
     {
@@ -385,23 +387,23 @@ public class CharactersMovement : MonoBehaviour
         {
             c.characterAnim.SetInteger("Direction", 1);
         }
-        foreach (Character c in charactersArray)
+        if (isCheckingNW())
         {
-            if (!c.NWMovement())
+            foreach (Character c in charactersArray)
             {
-                /*foreach (Character ch in charactersArray)
-                {
-                    ch.nextPos = ch.currPos;
-                }*/
-                return false;
+                c.nextCharPos = c.tempNextCharPos;
             }
+            return true;
         }
-        /*foreach (Character c in charactersArray)
+        else
         {
-            
-            c.nextCharPos = c.tempNextCharPos;
-        }*/
-        return true;
+            foreach (Character c in charactersArray)
+            {
+                c.nextPos = c.currPos;
+                c.tempNextCharPos = c.currPos;
+            }
+            return false;
+        }
     }
     bool isAllCharMovedNE()
     {
@@ -409,23 +411,23 @@ public class CharactersMovement : MonoBehaviour
         {
             c.characterAnim.SetInteger("Direction", 2);
         }
-        foreach (Character c in charactersArray)
+        if (isCheckingNE())
         {
-            if (!c.NEMovement())
+            foreach (Character c in charactersArray)
             {
-                /*foreach (Character ch in charactersArray)
-                {
-                    ch.nextPos = ch.currPos;
-                }*/
-                return false;
+                c.nextCharPos = c.tempNextCharPos;
             }
+            return true;
         }
-        /*foreach (Character c in charactersArray)
+        else
         {
-            
-            c.nextCharPos = c.tempNextCharPos;
-        }*/
-        return true;
+            foreach (Character c in charactersArray)
+            {
+                c.nextPos = c.currPos;
+                c.tempNextCharPos = c.currPos;
+            }
+            return false;
+        }
     }
 
     #endregion
@@ -595,9 +597,13 @@ public class CharactersMovement : MonoBehaviour
         //run = false;
         foreach (GameObject obj in pathFindingFloor.blockArray)
         {
-            if (path.Contains(obj) && obj != path[path.Count - 1])
+            if (path.Contains(obj) && obj != path[path.Count - 1] && path.Count - 1 <= Battery.movesTillGameover)
             {
                 obj.GetComponent<BlockStat>().currentBlock = 2;
+            }
+            else if(path.Contains(obj) && path.Count - 1 > Battery.movesTillGameover)
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 3;
             }
             else if (obj == pathFindingFloor.blockArray[startX, startY])
             {
@@ -737,54 +743,55 @@ public class CharactersMovement : MonoBehaviour
     #endregion
 
 
-    #region these functions are legacy mouse movement
+    #region /*these functions are legacy mouse movement*/
     bool isCheckingNW()
     {
         foreach (Character c in charactersArray)
         {
-            if (c.isCharCanMoveNW())
+            //if one of the characters can't move
+            if (!c.NWMovement())
             {
-                return true;
+                return false;
             }
            
         }
-        return false;
+        return true;
     }
     bool isCheckingNE()
     {
         foreach (Character c in charactersArray)
         {
-            if (c.isCharCanMoveNE())
+            if (!c.NEMovement())
             {
-                return true;
+                return false;
             }
 
         }
-        return false;
+        return true;
     }
     bool isCheckingSW()
     {
         foreach (Character c in charactersArray)
         {
-            if (c.isCharCanMoveSW())
+            if (!c.SWMovement())
             {
-                return true;
+                return false;
             }
 
         }
-        return false;
+        return true;
     }
     bool isCheckingSE()
     {
         foreach (Character c in charactersArray)
         {
-            if (c.isCharCanMoveSE())
+            if (!c.SEMovement())
             {
-                return true;
+                return false;
             }
 
         }
-        return false;
+        return true;
     }
     #endregion
 }

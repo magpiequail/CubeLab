@@ -10,12 +10,13 @@ public class KeySquare : Key
     //public SpriteRenderer sprite;
     bool isWithChar = false;
     //GameObject character;
-    public Animator effectAnim;
+
 
 
     private void Awake()
     {
         squareKeyAnim = GetComponentInChildren<Animator>();
+        keyAnim = squareKeyAnim;
         originPos = transform.position;
         //sprite = GetComponentInChildren<SpriteRenderer>();
         isActivated = false;

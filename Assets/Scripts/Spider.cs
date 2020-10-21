@@ -64,7 +64,7 @@ public class Spider : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
         }
 
@@ -95,7 +95,7 @@ public class Spider : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
         }
 
@@ -124,7 +124,7 @@ public class Spider : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
         }
 
@@ -153,7 +153,7 @@ public class Spider : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
 
         }
 
@@ -182,8 +182,9 @@ public class Spider : Character
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<NormalCharacter>())
+        if (collision.collider.tag == "Character" && collision.gameObject.GetComponent<NormalCharacter>())
         {
+            Debug.Log("collider name = " + collision.collider.name);
             SceneController.gameState = GameState.GameOver;
         }
     }

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 1287517597
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e66099fca4839ea4496a500a2ee2d293, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24b20649e76f0924688f6b2fe33f071f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!60 &3341083854111141604
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0106384, y: 1.0106384}
+    oldSize: {x: 0.95, y: 0.95}
     newSize: {x: 1.0106384, y: 1.0106384}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -128,9 +128,10 @@ MonoBehaviour:
   visited: 1
   springSpeed: 0.5
   springDepth: 0.04
-  originalSprite: {fileID: 21300000, guid: e66099fca4839ea4496a500a2ee2d293, type: 3}
-  pathSprite: {fileID: 21300000, guid: e3227cbe6e0cced489c5bada332b39a6, type: 3}
-  CurrentSprite: {fileID: 21300000, guid: e3227cbe6e0cced489c5bada332b39a6, type: 3}
+  originalSprite: {fileID: 21300000, guid: 24b20649e76f0924688f6b2fe33f071f, type: 3}
+  pathSprite: {fileID: 21300000, guid: fbed17d7e4dab27448d97db3fc2f3d66, type: 3}
+  CurrentSprite: {fileID: 21300000, guid: fbed17d7e4dab27448d97db3fc2f3d66, type: 3}
+  impossible: {fileID: 21300000, guid: 87e31d929c2f67d4297a06f0d27816a6, type: 3}
   blockPosition: {x: 0, y: 0, z: 0}
   charPosOffset: {x: 0, y: 0.25}
   blockCharPos: {x: 0, y: 0, z: 0}

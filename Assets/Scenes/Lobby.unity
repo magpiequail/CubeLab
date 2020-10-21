@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 82217500}
   - component: {fileID: 82217499}
   m_Layer: 0
-  m_Name: Lobby_arrow
+  m_Name: Arrow01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -638,7 +638,7 @@ SpriteRenderer:
   m_SortingLayerID: 1287517597
   m_SortingLayer: 3
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: d1083202221b90d4197b9c89442c26c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ad1d2b445ffe594d88e31f7f1dc19b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -657,7 +657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82217498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.55, y: -3.745, z: 0}
+  m_LocalPosition: {x: -6.55, y: -3.821, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5082,7 +5082,7 @@ GameObject:
   - component: {fileID: 891401423}
   - component: {fileID: 891401422}
   m_Layer: 0
-  m_Name: Lobby_arrow (1)
+  m_Name: Arrow02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5127,7 +5127,7 @@ SpriteRenderer:
   m_SortingLayerID: 1287517597
   m_SortingLayer: 3
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: d1083202221b90d4197b9c89442c26c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 246a180bb6d1e7e47932eecae8668685, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7751,7 +7751,7 @@ MonoBehaviour:
   interactionObj: {fileID: 0}
   isActivated: 0
   interactionMsg: SPACE
-  sceneIndex: 28
+  sceneIndex: 29
 --- !u!58 &1219478642
 CircleCollider2D:
   m_ObjectHideFlags: 0

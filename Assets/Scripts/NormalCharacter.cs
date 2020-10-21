@@ -62,8 +62,12 @@ public class NormalCharacter : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
-            
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            RaycastHit2D currHit = Physics2D.Raycast(currPos, transform.forward, 100, rayLayerMask);
+            if (Mathf.Abs(currHit.collider.GetComponent<BlockStat>().blockLevel - hit.collider.gameObject.GetComponent<BlockStat>().blockLevel) > 1)
+            {
+                return false;
+            }
         }
 
         
@@ -91,8 +95,12 @@ public class NormalCharacter : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
-            
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            RaycastHit2D currHit = Physics2D.Raycast(currPos, transform.forward, 100, rayLayerMask);
+            if (Mathf.Abs(currHit.collider.GetComponent<BlockStat>().blockLevel - hit.collider.gameObject.GetComponent<BlockStat>().blockLevel) > 1)
+            {
+                return false;
+            }
         }
         
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
@@ -119,8 +127,14 @@ public class NormalCharacter : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
-            
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            RaycastHit2D currHit = Physics2D.Raycast(currPos, transform.forward, 100, rayLayerMask);
+            if(Mathf.Abs(currHit.collider.GetComponent<BlockStat>().blockLevel - hit.collider.gameObject.GetComponent<BlockStat>().blockLevel) > 1)
+            {
+                return false;
+            }
+
+
         }
         
         if (!Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
@@ -148,8 +162,13 @@ public class NormalCharacter : Character
         RaycastHit2D hit = Physics2D.Raycast(nextPos, transform.forward, 100, rayLayerMask);
         if (hit)
         {
-            nextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
-            
+            tempNextCharPos = hit.collider.gameObject.GetComponent<BlockStat>().blockCharPos;
+            //if(Mathf.Abs( hit.collider.gameObject.GetComponent<BlockStat>().blockLevel-)
+            RaycastHit2D currHit = Physics2D.Raycast(currPos, transform.forward, 100, rayLayerMask);
+            if (Mathf.Abs(currHit.collider.GetComponent<BlockStat>().blockLevel - hit.collider.gameObject.GetComponent<BlockStat>().blockLevel) > 1)
+            {
+                return false;
+            }
         }
         
 

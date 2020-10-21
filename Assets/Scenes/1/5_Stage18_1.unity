@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2249,6 +2249,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3166905467290306300, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: orthographic size
+      value: 5.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3166905467290306301, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -4244,6 +4249,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7540923982289803227, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 5.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540923983456065737, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 5.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7558515723401617921, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4453,6 +4468,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9109719843316358119, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: orthographic size
+      value: 5.8
       objectReference: {fileID: 0}
     - target: {fileID: 9149480931587469885, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}

@@ -116,13 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1704e4a54f5ec2841b9f4413441ce880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterKey: 0
   characterAnim: {fileID: 0}
   isUnitMoveAllowed: 1
   isDeathByLaser: 0
-  isHavingRoundKey: 0
-  isHavingTriangleKey: 0
-  isHavingDiamondKey: 0
-  isHavingSquareKey: 0
   rows: 5
   speed: 3
   inputTriggerTime: 0
@@ -244,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 2070166501
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 62d6df27d0db0e9499c25e78ce6a8d9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be7287bbc56386342947c2ebeaa0aeb3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -265,7 +262,7 @@ Animator:
   m_GameObject: {fileID: 7929229091185135876}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4edaffd2205ea5c4d90151a6b05b6b3a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1aa4b876045e6884d8ed043a44a51372, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

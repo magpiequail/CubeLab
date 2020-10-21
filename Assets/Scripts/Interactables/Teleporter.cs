@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Teleporter : Interactables
 {
+    //otherTele is better with Teleporter, not GameObject
     public GameObject otherTele;
+    Teleporter otherT;
     public int floorOrCeiling; //0 = floor 1 = ceiling
     //public GameObject attachedFloor;
     //bool isCharOn;
@@ -20,13 +22,17 @@ public class Teleporter : Interactables
     //public string interactionMsg = "사용";
 
     public Floor attachedFloor;
-    
+    AudioManager audioManager;
+    public bool isCharOn = false;
+
 
     private void Awake()
     {
         teleAnim = GetComponentInChildren<Animator>();
         teleArray = FindObjectsOfType<Teleporter>();
         attachedFloor = GetComponentInParent<Floor>();
+        audioManager = FindObjectOfType<AudioManager>();
+        otherT = otherTele.GetComponent<Teleporter>();
     }
 
     // Start is called before the first frame update
@@ -39,6 +45,11 @@ public class Teleporter : Interactables
     void Update()
     {
         
+        if(characterObj == null)
+        {
+            Debug.Log("no character obj");
+        }
+
         if(!Input.GetKey(KeyCode.A)&&
             !Input.GetKey(KeyCode.S) &&
             !Input.GetKey(KeyCode.D) &&
@@ -72,19 +83,33 @@ public class Teleporter : Interactables
         if(characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
         {
             
-            for (int i = 0; i < teleArray.Length; i++)
+            //character is on the deactivated teleporter
+            if(Options.input == 1 && isCharOn && !isActivated)
             {
-                if (teleArray[i].isActivated)
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < teleArray.Length; i++)
                 {
                     characterObj.GetComponent<Character>().ResetBlockColor();
-                    
+                    if (teleArray[i].isActivated)
+                    {
+                        
 
-
-                    teleAnim.Play("TeleportSend");
-                    FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
+                        teleAnim.Play("TeleportSend");
+                        FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
+                    }
+                    else if(teleArray[i].isActivated == false && teleArray[i].isCharOn == true)
+                    {
+                        audioManager.PlayAudio("Ingame_battery");
+                        return;
+                    }
                 }
             }
+            
         }
+       
 
         //otherTele.GetComponent<Teleporter>().teleAnim.Play("TeleportSend");
     }
@@ -95,17 +120,35 @@ public class Teleporter : Interactables
         if(collision.tag == "Character")
         {
             characterObj = collision.gameObject;
-            isActivated = true;
-        }
-        if (collision.GetComponentInParent<Floor>())
-        {
             
+            if (characterObj.GetComponent<NormalCharacter>() && otherT.floorOrCeiling == 1)
+            {
+                isActivated = false;
+                HideInteractionUI();
+            }
+            else if (characterObj.GetComponent<Spider>() && floorOrCeiling == 1 && otherT.isCharOn == true && otherT.characterObj.GetComponent<NormalCharacter>())
+            {
+                isActivated = false;
+                HideInteractionUI();
+            }
+            else
+            {
+                isActivated = true;
+            }
+
+            //if (isActivated)
+            //{
+            //    ShowInteractionUI();
+            //}
+
         }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Character")
         {
+            isCharOn = false;
             isActivated = false;
             HideInteractionUI();
 
@@ -116,7 +159,27 @@ public class Teleporter : Interactables
         if (collision.tag == "Character")
         {
             characterObj = collision.gameObject;
-            ShowInteractionUI();
+            isCharOn = true;
+            
+            //if normal character moves from floor to ceiling
+            if(characterObj.GetComponent<NormalCharacter>() && otherT.floorOrCeiling ==1)
+            {
+                isActivated = false;
+            }
+            else if(characterObj.GetComponent<Spider>() && floorOrCeiling == 1 && otherT.isCharOn == true&&otherT.characterObj.GetComponent<NormalCharacter>())
+            {
+                isActivated = false;
+            }
+            else
+            {
+                isActivated = true;
+            }
+
+            if (isActivated)
+            {
+                ShowInteractionUI();
+            }
+            
         }
     }
 
@@ -139,7 +202,7 @@ public class Teleporter : Interactables
         //while the sprite is disabled, flip the spider character 
         if (characterObj.GetComponent<Spider>())
         {
-            if (floorOrCeiling - otherTele.GetComponent<Teleporter>().floorOrCeiling != 0)
+            if (floorOrCeiling - otherT.floorOrCeiling != 0)
             {
                 characterObj.GetComponent<Spider>().Flip();
             }
@@ -147,10 +210,12 @@ public class Teleporter : Interactables
         //if a normal character is trying to teleport to ceiling
         if (characterObj.GetComponent<NormalCharacter>())
         {
-            if (floorOrCeiling - otherTele.GetComponent<Teleporter>().floorOrCeiling != 0)
+            if (floorOrCeiling - otherT.floorOrCeiling != 0)
             {
+                audioManager.PlayAudio("Ingame_battery");
                 return;
             }
+            //return;
         }
         //
         characterObj.transform.position = otherTele.transform.position;
@@ -158,15 +223,15 @@ public class Teleporter : Interactables
         characterObj.GetComponent<Character>().nextPos = otherTele.transform.position;
         characterObj.GetComponent<Character>().nextCharPos = otherTele.transform.position;
 
-        if (otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor)
+        if (otherT.attachedFloor.charOnFloor)
         {
-            otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
+            otherT.attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
 
         }
-        else if(!otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor)
+        else if(!otherT.attachedFloor.charOnFloor)
         {
             attachedFloor.charOnFloor = null;
-            otherTele.GetComponent<Teleporter>().attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
+            otherT.attachedFloor.charOnFloor = characterObj.GetComponent<Character>();
         }
         
 

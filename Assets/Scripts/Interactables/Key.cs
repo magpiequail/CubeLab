@@ -5,6 +5,8 @@ using UnityEngine;
 public class Key : Interactables
 {
     public GameObject keyMesh;
+    public Animator keyAnim;
+    public Animator effectAnim;
 
     private void Awake()
     {

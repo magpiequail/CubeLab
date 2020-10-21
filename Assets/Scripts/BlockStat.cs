@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockStat : MonoBehaviour
 {
-    public int currentBlock = 0; //1 is current block //2 is path block
+    public int currentBlock = 0; //1 is current block //2 is path block // 3 is impossible block
     public int visited = 1;
 
     public float springSpeed;
@@ -13,6 +13,7 @@ public class BlockStat : MonoBehaviour
     public Sprite originalSprite;
     public Sprite pathSprite;
     public Sprite CurrentSprite;
+    public Sprite impossible;
 
     private SpriteRenderer blockSprite;
     public Vector3 blockPosition;
@@ -58,8 +59,15 @@ public class BlockStat : MonoBehaviour
     {
         if (currentBlock == 1)
         {
-            
+            if (!isSpringCompleted)
+            {
+                StartCoroutine("SpringAnimation");
+            }
             blockSprite.sprite = CurrentSprite;
+        }
+        if(currentBlock == 3)
+        {
+            blockSprite.sprite = impossible;
         }
         if (currentBlock == 2)
         {
@@ -70,10 +78,7 @@ public class BlockStat : MonoBehaviour
             blockSprite.sprite = originalSprite;
 
         }
-        if (!isSpringCompleted)
-        {
-            StartCoroutine("SpringAnimation");
-        }
+        
     }
 
 

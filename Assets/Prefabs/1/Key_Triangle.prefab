@@ -179,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7546502942932128803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: -1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2377373948439453422}
@@ -222,8 +222,9 @@ MonoBehaviour:
   isActivated: 0
   interactionMsg: "\uD68D\uB4DD"
   keyMesh: {fileID: 8042754076580112208}
-  keyPosition: 1
+  keyAnim: {fileID: 0}
   effectAnim: {fileID: 4450046231721522915}
+  keyPosition: 1
 --- !u!1001 &2070660968277261913
 PrefabInstance:
   m_ObjectHideFlags: 0

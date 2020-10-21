@@ -37,6 +37,7 @@ public class Switch : Interactables
     public override void StartInteraction()
     {
         base.StartInteraction();
+        HideInteractionUI();
         if (isActivated && CharactersMovement.isInputAllowed)
         {
             if (currentSprite.sprite == sprite1)

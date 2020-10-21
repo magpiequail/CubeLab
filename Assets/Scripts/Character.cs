@@ -279,6 +279,7 @@ public class Character : MonoBehaviour
 
         if (Physics2D.OverlapCircle(nextPos, 0.1f, accessible))
         {
+            //move to nextCharPos
             transform.position = Vector3.MoveTowards(transform.position, nextCharPos, speed * Time.deltaTime);
         }
         if (Vector3.Distance(transform.position, nextCharPos) < 0.01f)
