@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 7546502942932128803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: -1, z: 1}
   m_Children:
   - {fileID: 8273321814682217942}
   m_Father: {fileID: 0}
@@ -222,8 +222,9 @@ MonoBehaviour:
   isActivated: 0
   interactionMsg: "\uD68D\uB4DD"
   keyMesh: {fileID: 0}
-  keyPosition: 1
+  keyAnim: {fileID: 0}
   effectAnim: {fileID: 1687985960}
+  keyPosition: 1
 --- !u!1001 &3973088481316844474
 PrefabInstance:
   m_ObjectHideFlags: 0

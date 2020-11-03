@@ -47,7 +47,7 @@ public class Teleporter : Interactables
         
         if(characterObj == null)
         {
-            Debug.Log("no character obj");
+
         }
 
         if(!Input.GetKey(KeyCode.A)&&

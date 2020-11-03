@@ -370,7 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f09298445453e74a87decdedf1825ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionPrefab: {fileID: 0}
+  spaceInteractionPrefab: {fileID: 0}
+  mouseInteractionPrefab: {fileID: 0}
   interactionObj: {fileID: 0}
   isActivated: 0
   interactionMsg: SPACE
@@ -4421,7 +4422,12 @@ PrefabInstance:
     - target: {fileID: 1144692805348646661, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
         type: 3}
       propertyPath: howToConvey
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144692805348646661, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
+        type: 3}
+      propertyPath: sceneID
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4676232670409894582, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
         type: 3}
@@ -5104,12 +5110,12 @@ PrefabInstance:
     - target: {fileID: 8960865201889711563, guid: 138f2904b8b0ecd49b9aac37438449bd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.07999998
       objectReference: {fileID: 0}
     - target: {fileID: 8960865201889711563, guid: 138f2904b8b0ecd49b9aac37438449bd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -50
+      value: -50.12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 138f2904b8b0ecd49b9aac37438449bd, type: 3}

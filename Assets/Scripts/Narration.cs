@@ -10,7 +10,8 @@ public enum Narrate
 {
     Manual,
     Automatic,
-    Both
+    Both,
+    VoiceOver
 }
 public enum Scene
 {
@@ -28,8 +29,12 @@ public class Narration : MonoBehaviour
     [TextArea(3,10)]
     public string[] sentences;
     public float[] forHowLong;
+    public Sound[] ttsAudio;
     public string whenSucceeded;
+    public Sound succeededAudio;
     public string whenFailed;
+    public Sound failedAudio;
+
     int index;
     public Narrate howToConvey;
     public Scene sceneID;
@@ -40,16 +45,29 @@ public class Narration : MonoBehaviour
     private int letterIndex;
 
     bool isThisSceneStage;
+    bool isEndingTTSPlayed = false;
+    float timeTillNextSentence;
 
     private void Awake()
     {
         subtitleText = subtitle.GetComponentInChildren<Text>();
+        InitializeTTS();
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        index = 0;
+
+        if(sceneID == Scene.Stage)
+        {
+            index = PlayerPrefs.GetInt("TTSIndex" + SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("index is " + index);
+        }
+        else
+        {
+            index = 0;
+        }
         subtitle.SetActive(true);
         
         if (SceneManager.GetActiveScene().name != "Stage Select" && SceneManager.GetActiveScene().name != "Lobby")
@@ -67,6 +85,14 @@ public class Narration : MonoBehaviour
                 subtitle.SetActive(false);
             }
         }
+        if(sceneID == Scene.Stage && howToConvey == Narrate.VoiceOver)
+        {
+            if (index < ttsAudio.Length)
+            {
+                ttsAudio[index].source.Play();
+            }
+            
+        }
     }
 
     // Update is called once per frame
@@ -76,7 +102,15 @@ public class Narration : MonoBehaviour
         {
             subtitle.SetActive(false);
         }
-
+        //if(SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
+        //{
+        //    Debug.Log("failedAudio");
+        //    if (index < ttsAudio.Length)
+        //    {
+        //        ttsAudio[index].source.Stop();
+        //    }
+        //    failedAudio.source.Play();
+        //}
         
 
         if (index < sentences.Length)
@@ -104,6 +138,7 @@ public class Narration : MonoBehaviour
                 timePassed += Time.deltaTime;
                 if (timePassed >= forHowLong[index])
                 {
+
                     index++;
                     timePassed = 0f;
                 }
@@ -117,6 +152,30 @@ public class Narration : MonoBehaviour
                     timePassed = 0f;
                 }
             }
+            else if(howToConvey == Narrate.VoiceOver)
+            {
+                if (!ttsAudio[index].source.isPlaying && subtitle.activeSelf && index < ttsAudio.Length && SceneController.gameState == GameState.Running)
+                {
+                    timeTillNextSentence += Time.deltaTime;
+                    if(timeTillNextSentence >= 0.5f)
+                    {
+                        index++;
+                        PlayerPrefs.SetInt("TTSIndex" + SceneManager.GetActiveScene().buildIndex, index);
+                        if (index < ttsAudio.Length)
+                        {
+                            ttsAudio[index].source.Play();
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt("TTSIndex" + SceneManager.GetActiveScene().buildIndex, index);
+                        }
+                        timeTillNextSentence = 0f;
+                    }
+                    
+
+                }
+ 
+            }
         }
 
         if (index == sentences.Length)
@@ -127,17 +186,29 @@ public class Narration : MonoBehaviour
                 memoryPlaying.SetActive(false);
                 subtitle.SetActive(true);
             }
-            index = 0;
+            //index = 0;
         }
 
         if (isThisSceneStage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex + "stars") == 0)
         {
             if (Door.isAllOpen && whenSucceeded != "")
             {
+                if (isEndingTTSPlayed == false)
+                {
+                    if (index < ttsAudio.Length)
+                    {
+                        ttsAudio[index].source.Stop();
+                    }
+
+                    succeededAudio.source.Play();
+                    isEndingTTSPlayed = true;
+                }
+                    
                 if (timePassed < endingLineTime)
                 {
                     subtitle.SetActive(true);
                     subtitleText.text = whenSucceeded;
+                    
                     timePassed += Time.deltaTime;
                 }
                 else
@@ -148,25 +219,37 @@ public class Narration : MonoBehaviour
 
             if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
             {
-               if( whenFailed != "")
+                if(isEndingTTSPlayed == false)
                 {
+                    if (index < ttsAudio.Length)
+                    {
+                        ttsAudio[index].source.Stop();
+                    }
+                    failedAudio.source.Play();
+                    isEndingTTSPlayed = true;
+                }
+                
+                if (whenFailed != "")
+                {
+
+
                     if (timePassed < endingLineTime)
                     {
                         subtitle.SetActive(true);
                         subtitleText.text = whenFailed;
+
                         timePassed += Time.deltaTime;
                     }
                     else
                     {
                         subtitle.SetActive(false);
                     }
-                }
+               }
 
             }
         }
-            
-        
     }
+
 
     IEnumerator Type()
     {
@@ -185,5 +268,30 @@ public class Narration : MonoBehaviour
     public void SkipNarration()
     {
         index = sentences.Length;
+    }
+    void InitializeTTS()
+    {
+        if (sceneID == Scene.Stage)
+        {
+            foreach (Sound s in ttsAudio)
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+                s.source.clip = s.clip;
+                s.source.volume = s.volume;
+                //s.source.pitch = s.pitch;
+                s.source.loop = s.loop;
+            }
+            succeededAudio.source = gameObject.AddComponent<AudioSource>();
+            succeededAudio.source.clip = succeededAudio.clip;
+            succeededAudio.source.volume = succeededAudio.volume;
+            //succeededAudio.source.pitch = succeededAudio.pitch;
+            succeededAudio.source.loop = succeededAudio.loop;
+
+            failedAudio.source = gameObject.AddComponent<AudioSource>();
+            failedAudio.source.clip = failedAudio.clip;
+            failedAudio.source.volume = failedAudio.volume;
+            //failedAudio.source.pitch = failedAudio.pitch;
+            failedAudio.source.loop = failedAudio.loop;
+        }
     }
 }

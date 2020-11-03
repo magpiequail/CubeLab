@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f09298445453e74a87decdedf1825ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionPrefab: {fileID: 0}
+  spaceInteractionPrefab: {fileID: 0}
+  mouseInteractionPrefab: {fileID: 0}
   interactionObj: {fileID: 0}
   isActivated: 0
   interactionMsg: SPACE
@@ -6199,6 +6200,16 @@ PrefabInstance:
       propertyPath: subtitle
       value: 
       objectReference: {fileID: 8337183483083386443}
+    - target: {fileID: 1144692805348646661, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
+        type: 3}
+      propertyPath: sceneID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144692805348646661, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
+        type: 3}
+      propertyPath: howToConvey
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4676232670409894582, guid: 84fc13cdcd4f44d479d8dbf80aa613ec,
         type: 3}
       propertyPath: topLeftCam
@@ -8415,7 +8426,7 @@ PrefabInstance:
     - target: {fileID: 4851966515889460222, guid: 0fcaf8fc9582cff4282919c5f91cd638,
         type: 3}
       propertyPath: orthographic size
-      value: 3
+      value: 3.15
       objectReference: {fileID: 0}
     - target: {fileID: 8672079188711530761, guid: 0fcaf8fc9582cff4282919c5f91cd638,
         type: 3}

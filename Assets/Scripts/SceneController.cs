@@ -84,6 +84,10 @@ public class SceneController : MonoBehaviour
         {
             Time.timeScale = 0f;
             CharactersMovement.isInputAllowed = false;
+            if(AudioListener.pause == false)
+            {
+                AudioListener.pause = true;
+            }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 optionUI.SetActive(false);
@@ -94,6 +98,10 @@ public class SceneController : MonoBehaviour
         else if(gameState == GameState.Running)
         {
             Time.timeScale = 1f;
+            if(AudioListener.pause == true)
+            {
+                AudioListener.pause = false;
+            }
         }
 
         //else if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Paused)
@@ -169,6 +177,18 @@ public class SceneController : MonoBehaviour
         }
         
         stageSelectUI.SetActive(true);
+    }
+    public void NextStage()
+    {
+        Door.isAllOpen = false;
+        if (SceneManager.GetActiveScene().buildIndex == 25)
+        {
+            SceneManager.LoadScene("Stage Select");
+        }
+        CharactersMovement.isInputAllowed = true;
+        
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void LevelSelectScene()

@@ -118,22 +118,9 @@ public class Door :Interactables
 
         yield return new WaitForSeconds(delayTillNextStage);
 
+        //go to next stage
 
-        
-        isAllOpen = false;
-        if (SceneManager.GetActiveScene().buildIndex == 25)
-        {
-            SceneManager.LoadScene("Stage Select");
-        }
-        CharactersMovement.isInputAllowed = true;
-        Analytics.CustomEvent("StageClear", new Dictionary<string, object>
-    {
-        { "stage_index", SceneManager.GetActiveScene().buildIndex },
-        { "how_many_stars", Battery.stars },
-        { "how_many_moves_left", (Battery.movesforEmotion + Battery.movesforStageClear+Battery.movesTillGameover) }
-
-    });
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //GoToNextStage();
 
     }
     public void Rate()
@@ -149,6 +136,25 @@ public class Door :Interactables
         stars.gameObject.SetActive(true);
         stars.SetInteger("Stars", Battery.stars);
     }
+    public void GoToNextStage()
+    {
+        isAllOpen = false;
+        if (SceneManager.GetActiveScene().buildIndex == 25)
+        {
+            SceneManager.LoadScene("Stage Select");
+        }
+        CharactersMovement.isInputAllowed = true;
+        /*Analytics.CustomEvent("StageClear", new Dictionary<string, object>
+    {
+        { "stage_index", SceneManager.GetActiveScene().buildIndex },
+        { "how_many_stars", Battery.stars },
+        { "how_many_moves_left", (Battery.movesforEmotion + Battery.movesforStageClear+Battery.movesTillGameover) }
+
+    });*/
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void CollectStageClearData()
     {
         Analytics.CustomEvent("StageClear", new Dictionary<string, object>

@@ -1763,6 +1763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
+      propertyPath: ttsAudio.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
       propertyPath: forHowLong.Array.data[0]
       value: 3
       objectReference: {fileID: 0}
@@ -1797,7 +1802,52 @@ PrefabInstance:
     - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
       propertyPath: howToConvey
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: ttsAudio.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 47a5b41df69db1242b89747c287fcd3e, type: 3}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: ttsAudio.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: dc57c7d66270de845bcc199108597a09, type: 3}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: ttsAudio.Array.data[1].volume
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: ttsAudio.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: succeededAudio.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c78743b712746449bea2b47c142df3e, type: 3}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: succeededAudio.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: failedAudio.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c64c23cdb5a81c946aea6ff4699455c5, type: 3}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: failedAudio.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 901456399324763750, guid: e2efce5601ff403488ef0a435d3cc06e,
+        type: 3}
+      propertyPath: sceneID
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 941116570413618740, guid: e2efce5601ff403488ef0a435d3cc06e,
         type: 3}
