@@ -56,7 +56,11 @@ public class KeyTriangle : Key
     {
         if (characterObj.GetComponent<Character>().characterKey == CharKeyState.Empty)
         {
-            triangleKeyAnim.SetInteger("State", 2);
+            if (characterObj.GetComponent<Spider>())
+            {
+                gameObject.transform.localScale = new Vector3(-1, -1, 1);
+            }
+            triangleKeyAnim.SetInteger("State", 2); 
             effectAnim.SetTrigger("EffectTrigger");
 
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
@@ -64,10 +68,13 @@ public class KeyTriangle : Key
             {
                 Expression.faceAnim.Play("Happy");
             }
-            characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
-            if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+            if (characterObj.GetComponent<NormalCharacter>())
             {
-                characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+                characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
+                if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+                {
+                    characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+                }
             }
 
             isWithChar = true;

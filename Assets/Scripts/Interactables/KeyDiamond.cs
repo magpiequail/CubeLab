@@ -56,7 +56,11 @@ public class KeyDiamond : Key
         if (characterObj.GetComponent<Character>().characterKey == CharKeyState.Empty)
         {
             isWithChar = true;
-            diamondKeyAnim.SetInteger("State", 2);
+            if (characterObj.GetComponent<Spider>())
+            {
+                gameObject.transform.localScale = new Vector3(-1, -1, 1);
+            }
+                diamondKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");
 
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
@@ -64,11 +68,15 @@ public class KeyDiamond : Key
             {
                 Expression.faceAnim.Play("Happy");
             }
-            characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
-            if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+            if (characterObj.GetComponent<NormalCharacter>())
             {
-                characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+                characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
+                if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+                {
+                    characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+                }
             }
+            
 
 
             gameObject.transform.SetParent(characterObj.transform);

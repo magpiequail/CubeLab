@@ -62,6 +62,10 @@ public class Laser : MonoBehaviour
                 {
                     c.characterAnim.Play("GameOver");
                 }*/
+                if (collision.GetComponent<Spider>())
+                {
+                    SceneController.gameState = GameState.GameOver;
+                }
                 collision.GetComponentInChildren<Animator>().Play(animationName);
                 //SceneController.gameState = GameState.GameOver;
             }

@@ -57,6 +57,10 @@ public class KeyRound : Key
         if (characterObj.GetComponent<Character>().characterKey == CharKeyState.Empty)
         {
             isWithChar = true;
+            if (characterObj.GetComponent<Spider>())
+            {
+                gameObject.transform.localScale = new Vector3(-1, -1, 1);
+            }
             roundKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");
 
@@ -67,12 +71,15 @@ public class KeyRound : Key
             {
                 Expression.faceAnim.Play("Happy");
             }
-            
-            if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
-            {
-                characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
-            }
 
+            if (characterObj.GetComponent<NormalCharacter>())
+            {
+                characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
+                if (characterObj.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+                {
+                    characterObj.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+                }
+            }
 
             gameObject.transform.SetParent(characterObj.transform);
             //currently position is controlled by animation

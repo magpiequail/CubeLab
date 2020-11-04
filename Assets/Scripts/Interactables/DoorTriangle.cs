@@ -13,7 +13,7 @@ public class DoorTriangle : Door
     private void Awake()
     {
         isOpened = false;
-        triDoorAnim = GetComponent<Animator>();
+        triDoorAnim = GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update

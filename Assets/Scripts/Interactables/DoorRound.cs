@@ -13,7 +13,7 @@ public class DoorRound : Door
     private void Awake()
     {
         isOpened = false;
-        roundDoorAnim =  GetComponent<Animator>();
+        roundDoorAnim =  GetComponentInChildren<Animator>();
     }
 
 // Start is called before the first frame update

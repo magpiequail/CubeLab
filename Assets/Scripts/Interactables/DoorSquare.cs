@@ -13,7 +13,7 @@ public class DoorSquare : Door
     private void Awake()
     {
         isOpened = false;
-        squareDoorAnim = GetComponent<Animator>();
+        squareDoorAnim = GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update

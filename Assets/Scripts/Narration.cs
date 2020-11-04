@@ -84,6 +84,7 @@ public class Narration : MonoBehaviour
             {
                 subtitle.SetActive(false);
             }
+            Debug.Log("LobbyOnce = " + PlayerPrefs.GetInt("LobbyOnce"));
         }
         if(sceneID == Scene.Stage && howToConvey == Narrate.VoiceOver)
         {
@@ -93,6 +94,7 @@ public class Narration : MonoBehaviour
             }
             
         }
+        
     }
 
     // Update is called once per frame
@@ -154,7 +156,7 @@ public class Narration : MonoBehaviour
             }
             else if(howToConvey == Narrate.VoiceOver)
             {
-                if (!ttsAudio[index].source.isPlaying && subtitle.activeSelf && index < ttsAudio.Length && SceneController.gameState == GameState.Running)
+                if (!ttsAudio[index].source.isPlaying && subtitle.activeSelf && index < ttsAudio.Length && SceneController.gameState == GameState.Running && !Door.isAllOpen)
                 {
                     timeTillNextSentence += Time.deltaTime;
                     if(timeTillNextSentence >= 0.5f)

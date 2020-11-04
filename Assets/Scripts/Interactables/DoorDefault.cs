@@ -10,7 +10,7 @@ public class DoorDefault : Door
     private void Awake()
     {
         isOpened = false;
-        defaultDoorAnim = GetComponent<Animator>();
+        defaultDoorAnim = GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update

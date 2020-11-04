@@ -260,5 +260,171 @@ public class LobbyCharacter : MonoBehaviour
         //audioManager.PlayCharacterFootstep();
     }
 
+    /*void InitializeBlockStat()
+    {
+        if (pathFindingFloor == null)
+        {
+            return;
+        }
+        foreach (GameObject obj in pathFindingFloor.blockArray)
+        {
+            obj.GetComponent<BlockStat>().visited = -1;
+        }
+        pathFindingFloor.blockArray[startX, startY].GetComponent<BlockStat>().visited = 0;
 
+        //fl.gridArray[fl.charPosX, fl.charPosY].GetComponent<BlockStat>().currentBlock = 1;
+        //character.transform.position = fl.gridArray[charPosX, charPosY].transform.position;
+    }
+
+    void Run()
+    {
+        //run = true;
+        SetSteps();
+        SetPath();
+        //run = false;
+        foreach (GameObject obj in pathFindingFloor.blockArray)
+        {
+            if (path.Contains(obj) && obj != path[path.Count - 1] && path.Count - 1 <= Battery.movesTillGameover)
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 2;
+            }
+            else if (path.Contains(obj) && path.Count - 1 > Battery.movesTillGameover)
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 3;
+            }
+            else if (obj == pathFindingFloor.blockArray[startX, startY])
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 1;
+            }
+            else
+            {
+                obj.GetComponent<BlockStat>().currentBlock = 0;
+            }
+        }
+
+    }
+
+    void SetSteps()
+    {
+        //Initialize();
+        //int x = startX;
+        //int y = startY;
+        //int[] moveArray = new int[Moves.possibleMoves];
+        for (int step = 1; step < pathFindingFloor.rows * pathFindingFloor.rows; step++)
+        {
+            foreach (GameObject obj in pathFindingFloor.blockArray)
+            {
+                if (obj.GetComponent<BlockStat>().visited == step - 1)
+                    CheckDirections(obj.GetComponent<BlockStat>().x, obj.GetComponent<BlockStat>().y, step);
+            }
+        }
+    }
+
+    void SetPath()
+    {
+        int step;
+        int x = endX;
+        int y = endY;
+        List<GameObject> temp = new List<GameObject>();
+        path.Clear();
+        if (pathFindingFloor.blockArray[endX, endY] && pathFindingFloor.blockArray[endX, endY].GetComponent<BlockStat>().visited > 0)
+        {
+            path.Add(pathFindingFloor.blockArray[x, y]);
+            step = pathFindingFloor.blockArray[x, y].GetComponent<BlockStat>().visited - 1;
+        }
+        else
+        {
+            print("impossible move");
+            return;
+        }
+        for (int i = step; step > -1; step--)
+        {
+            if (DirectionTest(x, y, step, 1))
+                temp.Add(pathFindingFloor.blockArray[x, y + 1]);
+            if (DirectionTest(x, y, step, 2))
+                temp.Add(pathFindingFloor.blockArray[x, y - 1]);
+            if (DirectionTest(x, y, step, 3))
+                temp.Add(pathFindingFloor.blockArray[x + 1, y]);
+            if (DirectionTest(x, y, step, 4))
+                temp.Add(pathFindingFloor.blockArray[x - 1, y]);
+
+            GameObject tempObj = FindClosest(pathFindingFloor.blockArray[endX, endY].transform, temp);
+            path.Add(tempObj);
+            x = tempObj.GetComponent<BlockStat>().x;
+            y = tempObj.GetComponent<BlockStat>().y;
+            temp.Clear();
+
+        }
+    }
+
+    GameObject FindClosest(Transform destination, List<GameObject> list)
+    {
+        float currentDist = pathFindingFloor.rows * pathFindingFloor.rows;
+        int indexNum = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (Vector2.Distance(destination.position, list[i].transform.position) < currentDist)
+            {
+                currentDist = Vector2.Distance(destination.position, list[i].transform.position);
+                indexNum = i;
+            }
+        }
+        return list[indexNum];
+    }
+
+    void CheckDirections(float xf, float yf, int step)
+    {
+        int x = (int)xf;
+        int y = (int)yf;
+
+
+        if (DirectionTest(x, y, -1, 1))
+            SetVisited(x, y + 1, step);
+        if (DirectionTest(x, y, -1, 2))
+            SetVisited(x, y - 1, step);
+        if (DirectionTest(x, y, -1, 3))
+            SetVisited(x + 1, y, step);
+        if (DirectionTest(x, y, -1, 4))
+            SetVisited(x - 1, y, step);
+
+    }
+
+    bool DirectionTest(int x, int y, int step, int direction)
+    {
+        switch (direction)
+        {
+            case 1:
+                if (y + 1 < pathFindingFloor.rows && pathFindingFloor.blockArray[x, y + 1] && pathFindingFloor.blockArray[x, y + 1].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 2:
+                if (y - 1 > -1 && pathFindingFloor.blockArray[x, y - 1] && pathFindingFloor.blockArray[x, y - 1].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 3:
+                if (x + 1 < pathFindingFloor.rows && pathFindingFloor.blockArray[x + 1, y] && pathFindingFloor.blockArray[x + 1, y].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+            case 4:
+                if (x - 1 > -1 && pathFindingFloor.blockArray[x - 1, y] && pathFindingFloor.blockArray[x - 1, y].GetComponent<BlockStat>().visited == step)
+                    return true;
+                else
+                    return false;
+
+        }
+        return false;
+    }
+
+
+
+    void SetVisited(int x, int y, int step)
+    {
+        if (pathFindingFloor.blockArray[x, y])
+        {
+            pathFindingFloor.blockArray[x, y].GetComponent<BlockStat>().visited = step;
+        }
+    }*/
 }

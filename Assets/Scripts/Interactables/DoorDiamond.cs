@@ -13,7 +13,7 @@ public class DoorDiamond : Door
     private void Awake()
     {
         isOpened = false;
-        diaDoorAnim = GetComponent<Animator>();
+        diaDoorAnim = GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update
