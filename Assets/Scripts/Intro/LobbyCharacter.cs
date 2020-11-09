@@ -44,8 +44,8 @@ public class LobbyCharacter : MonoBehaviour
         gridX = grid.cellSize.x / 2;
         gridY = grid.cellSize.y / 2;
 
-        currPos = transform.position;
-        nextPos = transform.position;
+        //currPos = transform.position;
+        //nextPos = transform.position;
 
         mainCam = Camera.main;
         audioManager = FindObjectOfType<AudioManager>();
@@ -66,6 +66,8 @@ public class LobbyCharacter : MonoBehaviour
         {
             Options.input = 1;
         }
+        //currPos = transform.position;
+        //nextPos = transform.position;
     }
 
 

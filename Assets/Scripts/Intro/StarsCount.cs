@@ -7,9 +7,11 @@ public class StarsCount : MonoBehaviour
 {
     LevelSelectButton[] levelsArray;
     public int totalStars;
+    //public int minimumStar;
     public Slider starsCollected;
     public GameObject[] memories;
     public int[] starsToUnlock;
+
 
     private void Awake()
     {
@@ -19,15 +21,33 @@ public class StarsCount : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < levelsArray.Length; i++)
+       // CountAndEnable();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnEnable()
+    {
+        CountAndEnable();
+    }
+
+    void CountAndEnable()
+    {
+        totalStars = 0;
+        for (int i = 0; i < levelsArray.Length; i++)
         {
             totalStars += levelsArray[i].GetStar();
         }
+        
         starsCollected.value = totalStars;
-        for(int i = 0; i < memories.Length; i++)
+        for (int i = 0; i < memories.Length; i++)
         {
             //able to unlock matching memory
-            if(starsToUnlock[i] <= totalStars)
+            if (starsToUnlock[i] <= totalStars)
             {
                 memories[i].GetComponentInChildren<Button>().interactable = true;
             }
@@ -39,9 +59,4 @@ public class StarsCount : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

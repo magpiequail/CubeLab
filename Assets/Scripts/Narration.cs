@@ -56,6 +56,16 @@ public class Narration : MonoBehaviour
     }
 
     // Start is called before the first frame update
+    private void OnEnable()
+    {
+        if (sceneID == Scene.Memory)
+        {
+            index = 0;
+            subtitle.SetActive(true);
+        }
+        
+        Debug.Log("index is " + index);
+    }
     void Start()
     {
 
@@ -94,13 +104,14 @@ public class Narration : MonoBehaviour
             }
             
         }
+        Debug.Log(gameObject.name + " index is " + index);
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isThisSceneStage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex+ "stars") != 0)
+        if(sceneID == Scene.Stage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex+ "stars") != 0)
         {
             subtitle.SetActive(false);
         }
@@ -134,6 +145,10 @@ public class Narration : MonoBehaviour
                 {
                     index++;
                 }
+                else if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    SkipNarration();
+                }
             }
             else if (howToConvey == Narrate.Automatic)
             {
@@ -156,7 +171,7 @@ public class Narration : MonoBehaviour
             }
             else if(howToConvey == Narrate.VoiceOver)
             {
-                if (!ttsAudio[index].source.isPlaying && subtitle.activeSelf && index < ttsAudio.Length && SceneController.gameState == GameState.Running && !Door.isAllOpen)
+                if (!ttsAudio[index].source.isPlaying && subtitle.activeSelf && index < ttsAudio.Length && SceneController.gameState == GameState.Running &&Time.timeScale !=0&& !Door.isAllOpen)
                 {
                     timeTillNextSentence += Time.deltaTime;
                     if(timeTillNextSentence >= 0.5f)
@@ -183,12 +198,18 @@ public class Narration : MonoBehaviour
         if (index == sentences.Length)
         {
             subtitle.SetActive(false);
-            if (SceneManager.GetActiveScene().name == "Stage Select")
+            if (sceneID == Scene.Memory)
             {
                 memoryPlaying.SetActive(false);
                 subtitle.SetActive(true);
+                index = 0;
+                if(SceneController.gameState == GameState.MemoryPlaying)
+                {
+                    SceneController.gameState = GameState.Running;
+                }
+
             }
-            //index = 0;
+            //
         }
 
         if (isThisSceneStage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex + "stars") == 0)

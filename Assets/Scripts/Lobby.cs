@@ -7,16 +7,21 @@ public class Lobby : MonoBehaviour
 {
     bool isPause = false;
     public GameObject option;
+    GameObject lobbyChar;
+    public Transform[] charPositions;
 
     private void Awake()
     {
         //pauseUI = GameObject.FindGameObjectWithTag("Pause");
+        lobbyChar = FindObjectOfType<LobbyCharacter>().gameObject;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        lobbyChar.transform.position = charPositions[ PlayerPrefs.GetInt("CharPosIndex")].position;
+        lobbyChar.GetComponent<LobbyCharacter>().currPos = charPositions[PlayerPrefs.GetInt("CharPosIndex")].position;
+        lobbyChar.GetComponent<LobbyCharacter>().nextPos = charPositions[PlayerPrefs.GetInt("CharPosIndex")].position;
     }
 
     // Update is called once per frame

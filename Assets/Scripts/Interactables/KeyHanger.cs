@@ -18,7 +18,7 @@ public enum HangerState
     DiamondKey
 }*/
 
-public class KeyHanger : MonoBehaviour
+public class KeyHanger : Interactables
 {
     public HangerState hangerState;
     //private CharacterKey charKey;
@@ -41,8 +41,8 @@ public class KeyHanger : MonoBehaviour
     Character currChar;
 
     public GameObject interactionPrefab;
-    GameObject interactionObj;
-    public string interactionMsg = "사\r\n용";
+    //GameObject interactionObj;
+    //public string interactionMsg = "사\r\n용";
 
     private void Awake()
     {
@@ -62,59 +62,8 @@ public class KeyHanger : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isCharOn)
         {
 
-
-            if (hangerState == HangerState.Empty)
-            {
-                
-                if (characterColl.GetComponentInChildren<Key>())
-                {
-                    Destroy(characterColl.GetComponentInChildren<Key>().gameObject);
-                }
-                    
-                switch (currChar.characterKey)
-                {
-                    case CharKeyState.Empty:
-                        hangerState = HangerState.Empty;
-                        break;
-                    case CharKeyState.RoundKey:
-
-                        hangerState = HangerState.RoundKey;
-                        break;
-                    case CharKeyState.TriangleKey:
-                        hangerState = HangerState.TriangleKey;
-                        break;
-                    case CharKeyState.SquareKey:
-                        hangerState = HangerState.SquareKey;
-                        break;
-                    case CharKeyState.DiamondKey:
-                        hangerState = HangerState.DiamondKey;
-                        break;
-                }
-                currChar.characterKey = CharKeyState.Empty;
-            }
-            else if(hangerState == HangerState.RoundKey)
-            {
-
-                SwapKeys(roundKeyPrefab, CharKeyState.RoundKey);
-            }
-            else if (hangerState == HangerState.TriangleKey)
-            {
-                SwapKeys(triangleKeyPrefab, CharKeyState.TriangleKey);
-            }
-            else if (hangerState == HangerState.SquareKey)
-            {
-
-                SwapKeys(squareKeyPrefab, CharKeyState.SquareKey);
-            }
-            else if (hangerState == HangerState.DiamondKey)
-            {
-                SwapKeys(diamondKeyPrefab,CharKeyState.DiamondKey);
-
-            }
-
-
-
-            ChangeHangerSprite();
+            StartInteraction();
+            
         }
         
     }
@@ -204,7 +153,14 @@ public class KeyHanger : MonoBehaviour
         FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
         tempKey.GetComponent<Key>().effectAnim.SetTrigger("EffectTrigger");
         tempKey.GetComponent<Key>().keyAnim.SetInteger("State", 2);
-        characterColl.GetComponentInChildren<Animator>().SetTrigger("Joy");
+        if (characterColl.GetComponent<NormalCharacter>())
+        {
+            characterColl.GetComponentInChildren<Animator>().SetTrigger("Joy");
+            if (characterColl.GetComponentInChildren<Animator>().GetInteger("Direction") < 3)
+            {
+                characterColl.GetComponentInChildren<Animator>().SetInteger("Direction", 3);
+            }
+        }
         switch (currChar.characterKey)
         {
             case CharKeyState.RoundKey:
@@ -225,5 +181,61 @@ public class KeyHanger : MonoBehaviour
                 break;
         }
         currChar.characterKey = state;
+    }
+    public override void StartInteraction()
+    {
+        base.StartInteraction();
+        if (hangerState == HangerState.Empty)
+        {
+
+            if (characterColl.GetComponentInChildren<Key>())
+            {
+                Destroy(characterColl.GetComponentInChildren<Key>().gameObject);
+            }
+
+            switch (currChar.characterKey)
+            {
+                case CharKeyState.Empty:
+                    hangerState = HangerState.Empty;
+                    break;
+                case CharKeyState.RoundKey:
+
+                    hangerState = HangerState.RoundKey;
+                    break;
+                case CharKeyState.TriangleKey:
+                    hangerState = HangerState.TriangleKey;
+                    break;
+                case CharKeyState.SquareKey:
+                    hangerState = HangerState.SquareKey;
+                    break;
+                case CharKeyState.DiamondKey:
+                    hangerState = HangerState.DiamondKey;
+                    break;
+            }
+            currChar.characterKey = CharKeyState.Empty;
+        }
+        else if (hangerState == HangerState.RoundKey)
+        {
+
+            SwapKeys(roundKeyPrefab, CharKeyState.RoundKey);
+        }
+        else if (hangerState == HangerState.TriangleKey)
+        {
+            SwapKeys(triangleKeyPrefab, CharKeyState.TriangleKey);
+        }
+        else if (hangerState == HangerState.SquareKey)
+        {
+
+            SwapKeys(squareKeyPrefab, CharKeyState.SquareKey);
+        }
+        else if (hangerState == HangerState.DiamondKey)
+        {
+            SwapKeys(diamondKeyPrefab, CharKeyState.DiamondKey);
+
+        }
+
+
+
+        ChangeHangerSprite();
     }
 }

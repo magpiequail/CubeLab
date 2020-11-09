@@ -10,7 +10,8 @@ public enum GameState
     Running,
     Paused,
     Died,
-    GameOver
+    GameOver,
+    MemoryPlaying
 }
 
 public class SceneController : MonoBehaviour
@@ -56,6 +57,15 @@ public class SceneController : MonoBehaviour
         stageSelectUI.SetActive(false);
         CharactersMovement.isInputAllowed = true;
         FindObjectOfType<AudioManager>().PlayAudio("StageBgm");
+
+        if (SceneManager.GetActiveScene().buildIndex <= 20)
+        {
+            PlayerPrefs.SetInt("CharPosIndex", 1);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex > 20)
+        {
+            PlayerPrefs.SetInt("CharPosIndex", 2);
+        }
     }
 
     // Update is called once per frame
@@ -64,21 +74,21 @@ public class SceneController : MonoBehaviour
         if (gameState == GameState.GameOver && !isGameOver)
         {
             StartCoroutine(GameOver());
+            
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Running)
+        else if ( gameState == GameState.Running)
         {
-            gameState = GameState.Paused;
-            if (pauseUI == null)
+            ShowPauseScreen();
+            Time.timeScale = 1f;
+            if(AudioListener.pause == true)
             {
-                pauseUI = GameObject.FindGameObjectWithTag("Pause");
+                AudioListener.pause = false;
             }
-
-            pauseUI.SetActive(true);
-            //optionUI = pauseUI.GetComponentInChildren<Options>().gameObject;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && stageSelectUI.activeSelf ==true)
         {
             stageSelectUI.SetActive(false);
+            gameState = GameState.Running;
         }
         else if(gameState == GameState.Paused)
         {
@@ -95,13 +105,18 @@ public class SceneController : MonoBehaviour
             }
             
         }
-        else if(gameState == GameState.Running)
+        
+        else if(gameState == GameState.MemoryPlaying)
         {
-            Time.timeScale = 1f;
-            if(AudioListener.pause == true)
+            ShowPauseScreen();
+            if (AudioListener.pause == false)
             {
-                AudioListener.pause = false;
+                AudioListener.pause = true;
             }
+        }
+        else if(gameState == GameState.GameOver)
+        {
+            ShowPauseScreen();
         }
 
         //else if(Input.GetKeyDown(KeyCode.Escape) && gameState == GameState.Paused)
@@ -144,6 +159,15 @@ public class SceneController : MonoBehaviour
         gameState = GameState.Running;
         SceneManager.LoadScene("Lobby");
         CharactersMovement.isInputAllowed = true;
+        if (SceneManager.GetActiveScene().buildIndex <= 20)
+        {
+            PlayerPrefs.SetInt("CharPosIndex", 1);
+        }
+        else if(SceneManager.GetActiveScene().buildIndex > 20)
+        {
+            PlayerPrefs.SetInt("CharPosIndex", 2);
+        }
+        Debug.Log("playerpref CharPosIndex is " + PlayerPrefs.GetInt("CharPosIndex"));
     }
     public void BackToTitle()
     {
@@ -224,10 +248,22 @@ public class SceneController : MonoBehaviour
         isGameOver = true;
         
     }
+    void ShowPauseScreen()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameState = GameState.Paused;
+            if (pauseUI == null)
+            {
+                pauseUI = GameObject.FindGameObjectWithTag("Pause");
+            }
+            pauseUI.SetActive(true);
+        }
+    }
     public void InitializeOptions()
     {
         PlayerPrefs.SetFloat("Volume",1.0f);
     }
-
+    
 
 }

@@ -57,16 +57,16 @@ public class KeyRound : Key
         if (characterObj.GetComponent<Character>().characterKey == CharKeyState.Empty)
         {
             isWithChar = true;
-            if (characterObj.GetComponent<Spider>())
+            /*if (characterObj.GetComponent<Spider>())
             {
                 gameObject.transform.localScale = new Vector3(-1, -1, 1);
-            }
+            }*/
             roundKeyAnim.SetInteger("State", 2);
             effectAnim.SetTrigger("EffectTrigger");
 
             FindObjectOfType<AudioManager>().PlayAudio("Ingame_elevator");
 
-            characterObj.GetComponentInChildren<Animator>().SetTrigger("Joy");
+            
             if (FindObjectOfType<Expression>())
             {
                 Expression.faceAnim.Play("Happy");
