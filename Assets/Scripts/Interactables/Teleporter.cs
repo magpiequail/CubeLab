@@ -64,7 +64,7 @@ public class Teleporter : Interactables
                     characterObj = hit.collider.gameObject;
                     Debug.Log("characterObj Detected");
                 }*/
-                if (/*Input.GetKeyDown(KeyCode.Space) && */isActivated && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
+                if (/*Input.GetKeyDown(KeyCode.Space) && */isCharOn && characterObj.GetComponent<Character>().isUnitMoveAllowed && CharactersMovement.isInputAllowed)
                 {
                     
                     StartInteraction();
@@ -84,11 +84,12 @@ public class Teleporter : Interactables
         {
             
             //character is on the deactivated teleporter
-            if(Options.input == 1 && isCharOn && !isActivated)
+            /*if(Options.input == 1 && isCharOn && !isActivated)
             {
+                Debug.Log("can't play battery audio ");
                 return;
             }
-            else
+            else*/
             {
                 for (int i = 0; i < teleArray.Length; i++)
                 {
@@ -102,6 +103,7 @@ public class Teleporter : Interactables
                     }
                     else if(teleArray[i].isActivated == false && teleArray[i].isCharOn == true)
                     {
+                        Debug.Log("play battery audio");
                         audioManager.PlayAudio("Ingame_battery");
                         return;
                     }
@@ -212,6 +214,7 @@ public class Teleporter : Interactables
         {
             if (floorOrCeiling - otherT.floorOrCeiling != 0)
             {
+                Debug.Log("play battery audio");
                 audioManager.PlayAudio("Ingame_battery");
                 return;
             }

@@ -10,7 +10,7 @@ public class Bgm : MonoBehaviour
 
     private void Awake()
     {
-        
+        //a = gameObject.GetComponent<AudioSource>();
         if (a == null)
         {
             a = gameObject.GetComponent<AudioSource>();
@@ -20,6 +20,7 @@ public class Bgm : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
         //am = FindObjectOfType<AudioManager>();
     }
 

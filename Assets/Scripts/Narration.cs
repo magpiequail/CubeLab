@@ -216,7 +216,7 @@ public class Narration : MonoBehaviour
         {
             if (Door.isAllOpen && whenSucceeded != "")
             {
-                if (isEndingTTSPlayed == false)
+                if (isEndingTTSPlayed == false && howToConvey == Narrate.VoiceOver)
                 {
                     if (index < ttsAudio.Length)
                     {
@@ -242,13 +242,14 @@ public class Narration : MonoBehaviour
 
             if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
             {
-                if(isEndingTTSPlayed == false)
+                if(isEndingTTSPlayed == false && howToConvey == Narrate.VoiceOver)
                 {
                     if (index < ttsAudio.Length)
                     {
                         ttsAudio[index].source.Stop();
                     }
                     failedAudio.source.Play();
+                    
                     isEndingTTSPlayed = true;
                 }
                 

@@ -276,6 +276,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4766530530276094043, guid: be09c314fd71c87479019fbb763160a2,
+          type: 3}
+        m_MethodName: SetStateToMem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7400649317598101964}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5059092428004253808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +757,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MemoryNarration
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299058906479528853, guid: 5d9994f90c097ba4f98bcc241ff79e79,
+        type: 3}
+      propertyPath: sceneID
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9004914783998967099, guid: 5d9994f90c097ba4f98bcc241ff79e79,
         type: 3}
