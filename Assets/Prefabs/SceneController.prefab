@@ -125,8 +125,23 @@ MonoBehaviour:
   typingSpeed: 0
   sentences: []
   forHowLong: []
+  ttsAudio: []
   whenSucceeded: 
+  succeededAudio:
+    name: 
+    clip: {fileID: 0}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   whenFailed: 
+  failedAudio:
+    name: 
+    clip: {fileID: 0}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
+  ttsAudioMixerGroup: {fileID: -1724727230147926245, guid: c831a6110a99ddd4182ccedff26cb2be,
+    type: 2}
   howToConvey: 1
   sceneID: 0
   memoryPlaying: {fileID: 0}

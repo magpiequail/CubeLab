@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -34,6 +35,7 @@ public class Narration : MonoBehaviour
     public Sound succeededAudio;
     public string whenFailed;
     public Sound failedAudio;
+    public AudioMixerGroup ttsAudioMixerGroup;
 
     int index;
     public Narrate howToConvey;
@@ -304,18 +306,22 @@ public class Narration : MonoBehaviour
                 s.source.volume = s.volume;
                 //s.source.pitch = s.pitch;
                 s.source.loop = s.loop;
+                s.source.outputAudioMixerGroup = ttsAudioMixerGroup;
             }
             succeededAudio.source = gameObject.AddComponent<AudioSource>();
             succeededAudio.source.clip = succeededAudio.clip;
             succeededAudio.source.volume = succeededAudio.volume;
             //succeededAudio.source.pitch = succeededAudio.pitch;
             succeededAudio.source.loop = succeededAudio.loop;
+            succeededAudio.source.outputAudioMixerGroup = ttsAudioMixerGroup;
 
             failedAudio.source = gameObject.AddComponent<AudioSource>();
             failedAudio.source.clip = failedAudio.clip;
             failedAudio.source.volume = failedAudio.volume;
             //failedAudio.source.pitch = failedAudio.pitch;
             failedAudio.source.loop = failedAudio.loop;
+            failedAudio.source.outputAudioMixerGroup = ttsAudioMixerGroup;
         }
+        
     }
 }

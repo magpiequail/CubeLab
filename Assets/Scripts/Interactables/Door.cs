@@ -139,7 +139,7 @@ public class Door :Interactables
     public void GoToNextStage()
     {
         isAllOpen = false;
-        if (SceneManager.GetActiveScene().buildIndex == 25)
+        if (SceneManager.GetActiveScene().buildIndex == 32)
         {
             SceneManager.LoadScene("Stage Select");
         }

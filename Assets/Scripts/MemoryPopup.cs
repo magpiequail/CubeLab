@@ -8,7 +8,7 @@ public class MemoryPopup : MonoBehaviour
     AudioManager audioManager;
     public float visableForHowLong;
     public GameObject[] memoryPopupPrefab = new GameObject[2];
-    int totalLevelNum =20;
+    int totalLevelNum =32;
     int totalStars;
     public int[] requiredStars;
     GameObject MemoryPopupUI;

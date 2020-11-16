@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioMixerGroup sfxAudioMixerGroup;
     public Sound[] sounds;
     public Sound[] footsteps;
 
@@ -17,13 +18,14 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             //s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = sfxAudioMixerGroup ;
         }
         foreach (Sound s in footsteps)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
-
+            s.source.outputAudioMixerGroup = sfxAudioMixerGroup;
         }
     }
 
