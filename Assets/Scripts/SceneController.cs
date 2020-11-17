@@ -87,8 +87,9 @@ public class SceneController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && stageSelectUI.activeSelf ==true)
         {
-            stageSelectUI.SetActive(false);
-            gameState = GameState.Running;
+            //stageSelectUI.SetActive(false);
+            //gameState = GameState.Running;
+            BackToGame();
         }
         else if(gameState == GameState.Paused)
         {
@@ -172,6 +173,7 @@ public class SceneController : MonoBehaviour
     public void BackToTitle()
     {
         gameState = GameState.Running;
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("Title");
         CharactersMovement.isInputAllowed = true;
     }
