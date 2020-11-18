@@ -75,18 +75,14 @@ public class Floor : MonoBehaviour
 
         if (charOnFloor == null && brightSprite == true)
         {
-            
-            foreach(Transform child in childObj)
+            for(int i = 0; i < childObj.Length; i++)
             {
-                if (child.GetComponent<SpriteRenderer>())
+                if(childObj[i] == true && childObj[i].GetComponent<SpriteRenderer>())
                 {
-                    DarkenSprites(child.GetComponent<SpriteRenderer>());
+                    DarkenSprites(childObj[i].GetComponent<SpriteRenderer>());
                 }
-                /*if (child.GetComponentInChildren<SpriteRenderer>())
-                {
-                    DarkenSprites(child.GetComponentInChildren<SpriteRenderer>());
-                }*/
             }
+            
             brightSprite = false;
             isOriginalColor = false;
             
