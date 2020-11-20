@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    public GameObject[,] blockArray = new GameObject[5,5];
+    public int rows=5;
+    public GameObject[,] blockArray;
     public Character charOnFloor;
-    public int rows = 5;
+    
     Transform[] childObj;
     bool brightSprite;
     bool isOriginalColor;
 
     private void Awake()
     {
+        blockArray = new GameObject[rows, rows];
         //put blocks in block array
         foreach (Transform child in transform)
         {

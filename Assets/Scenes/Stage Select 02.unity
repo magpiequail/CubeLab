@@ -1638,7 +1638,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f4168c7f51d744b4f854dec1df471de2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 24546e04be768404a89a6fd3d4128925, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -8984,6 +8984,7 @@ MonoBehaviour:
     volume: 0
     loop: 0
     source: {fileID: 0}
+  ttsAudioMixerGroup: {fileID: 0}
   howToConvey: 0
   sceneID: 0
   memoryPlaying: {fileID: 1026859782}
@@ -12707,8 +12708,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2.3099976, y: 0.000015258789}
+  m_SizeDelta: {x: 41.23, y: 2.8824}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1377760079
 MonoBehaviour:
@@ -12723,12 +12724,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.88305783, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf791bc52ca58f44e88c66c417758699, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aeb587b0e3e33f042a7c3f6fec89edc3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14951,6 +14952,7 @@ MonoBehaviour:
     volume: 0
     loop: 0
     source: {fileID: 0}
+  ttsAudioMixerGroup: {fileID: 0}
   howToConvey: 0
   sceneID: 0
   memoryPlaying: {fileID: 1600336714}
