@@ -31,14 +31,33 @@ public class IntroOption : MonoBehaviour
 
     private void Awake()
     {
-       
+        if (PlayerPrefs.GetInt("VolumeSaved") != 1)
+        {
+            masterVolumeSilder.value = 0.0f;
+            voiceVolumeSilder.value = 0.0f;
+            SFXVolumeSilder.value = 0.0f;
+            BGMVolumeSilder.value = 0.0f;
+        }
+        else if (PlayerPrefs.GetInt("VolumeSaved") == 1)
+        {
 
+            masterVolumeSilder.value = PlayerPrefs.GetFloat("MasterVolume");
+            voiceVolumeSilder.value = PlayerPrefs.GetFloat("VoiceVolume");
+            SFXVolumeSilder.value = PlayerPrefs.GetFloat("SFXVolume");
+            BGMVolumeSilder.value = PlayerPrefs.GetFloat("BGMVolume");
+        }
+        masterMixer.SetFloat("MasterVolume", masterVolumeSilder.value);
+        masterMixer.SetFloat("VoiceVolume", voiceVolumeSilder.value);
+        masterMixer.SetFloat("SFXVolume", SFXVolumeSilder.value);
+        masterMixer.SetFloat("BGMVolume", BGMVolumeSilder.value);
     }
 
     private void OnEnable()
     {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(initialSelection);
+
+
     }
 
     // Start is called before the first frame update
@@ -61,21 +80,7 @@ public class IntroOption : MonoBehaviour
         }
         ChangeInputToggle(PlayerPrefs.GetInt("OptionValue"));*/
 
-        if (PlayerPrefs.GetInt("VolumeSaved") != 1)
-        {
-            masterVolumeSilder.value = 0.0f;
-            voiceVolumeSilder.value = 0.0f;
-            SFXVolumeSilder.value = 0.0f;
-            BGMVolumeSilder.value = 0.0f;
-        }
-        else if (PlayerPrefs.GetInt("VolumeSaved") == 1)
-        {
-
-            masterVolumeSilder.value = PlayerPrefs.GetFloat("MasterVolume");
-            voiceVolumeSilder.value = PlayerPrefs.GetFloat("VoiceVolume");
-            SFXVolumeSilder.value = PlayerPrefs.GetFloat("SFXVolume");
-            BGMVolumeSilder.value = PlayerPrefs.GetFloat("BGMVolume");
-        }
+        
 
 
 
@@ -89,7 +94,7 @@ public class IntroOption : MonoBehaviour
         masterMixer.SetFloat("SFXVolume", SFXVolumeSilder.value);
         masterMixer.SetFloat("BGMVolume", BGMVolumeSilder.value);
         //AudioListener.volume = volumeSilder.value;
-        if (masterVolumeSilder.value == -40)
+        if (masterVolumeSilder.value == masterVolumeSilder.minValue)
         {
             masterSpeakerImage.sprite = soundOff;
         }
@@ -97,7 +102,7 @@ public class IntroOption : MonoBehaviour
         {
             masterSpeakerImage.sprite = soundOn;
         }
-        if (voiceVolumeSilder.value == -40)
+        if (voiceVolumeSilder.value == voiceVolumeSilder.minValue)
         {
             voiceSpeakerImage.sprite = soundOff;
         }
@@ -105,7 +110,7 @@ public class IntroOption : MonoBehaviour
         {
             voiceSpeakerImage.sprite = soundOn;
         }
-        if (SFXVolumeSilder.value == -40)
+        if (SFXVolumeSilder.value == SFXVolumeSilder.minValue)
         {
             SFXSpeakerImage.sprite = soundOff;
         }
@@ -113,7 +118,7 @@ public class IntroOption : MonoBehaviour
         {
             SFXSpeakerImage.sprite = soundOn;
         }
-        if (BGMVolumeSilder.value == -40)
+        if (BGMVolumeSilder.value == BGMVolumeSilder.minValue)
         {
             BGMSpeakerImage.sprite = soundOff;
         }
@@ -122,6 +127,8 @@ public class IntroOption : MonoBehaviour
             BGMSpeakerImage.sprite = soundOn;
         }
     }
+
+    
 
     /*public void ChangeInputToggle(int i)
     {
@@ -189,6 +196,25 @@ public class IntroOption : MonoBehaviour
         PlayerPrefs.SetInt("VolumeSaved", 1);
         PlayerPrefs.SetInt("SavedOption", 1);
     }
+
+    public void Volume()
+    {
+        if (PlayerPrefs.GetInt("VolumeSaved") != 1)
+        {
+            masterVolumeSilder.value = 0.0f;
+            voiceVolumeSilder.value = 0.0f;
+            SFXVolumeSilder.value = 0.0f;
+            BGMVolumeSilder.value = 0.0f;
+        }
+        else if (PlayerPrefs.GetInt("VolumeSaved") == 1)
+        {
+
+            masterVolumeSilder.value = PlayerPrefs.GetFloat("MasterVolume");
+            voiceVolumeSilder.value = PlayerPrefs.GetFloat("VoiceVolume");
+            SFXVolumeSilder.value = PlayerPrefs.GetFloat("SFXVolume");
+            BGMVolumeSilder.value = PlayerPrefs.GetFloat("BGMVolume");
+        }
+    }
     /*public void BackToIntro()
     {
         gameObject.SetActive(false);
@@ -199,4 +225,5 @@ public class IntroOption : MonoBehaviour
     {
 
     }*/
+
 }

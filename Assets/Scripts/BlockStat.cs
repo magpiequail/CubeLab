@@ -59,10 +59,8 @@ public class BlockStat : MonoBehaviour
     {
         if (currentBlock == 1)
         {
-            if (!isSpringCompleted)
-            {
-                StartCoroutine("SpringAnimation");
-            }
+            //isSpringCompleted = false;
+            
             blockSprite.sprite = CurrentSprite;
         }
         if(currentBlock == 3)
@@ -78,7 +76,10 @@ public class BlockStat : MonoBehaviour
             blockSprite.sprite = originalSprite;
 
         }
-        
+        if (!isSpringCompleted)
+        {
+            StartCoroutine("SpringAnimation");
+        }
     }
 
 

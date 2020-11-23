@@ -448,13 +448,13 @@ public class Character : MonoBehaviour
 
 
     public void ResetBlockColor()
-{
-    RaycastHit2D hit = Physics2D.Raycast(currPos, transform.forward,100,rayLayerMask);
-
-    if(hit)
     {
-        hit.collider.gameObject.GetComponent<BlockStat>().currentBlock = 0;
-    }
+        RaycastHit2D hit = Physics2D.Raycast(currPos, transform.forward, 100, rayLayerMask);
+
+        if (hit)
+        {
+            hit.collider.gameObject.GetComponent<BlockStat>().currentBlock = 0;
+        }
     }
     public void SetCurrentBlock()
     {

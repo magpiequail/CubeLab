@@ -100,7 +100,7 @@ public class Options : MonoBehaviour
         masterMixer.SetFloat("SFXVolume", SFXVolumeSilder.value);
         masterMixer.SetFloat("BGMVolume", BGMVolumeSilder.value);
         //AudioListener.volume = volumeSilder.value;
-        if(masterVolumeSilder.value == -40)
+        if (masterVolumeSilder.value == masterVolumeSilder.minValue)
         {
             masterSpeakerImage.sprite = soundOff;
         }
@@ -108,7 +108,7 @@ public class Options : MonoBehaviour
         {
             masterSpeakerImage.sprite = soundOn;
         }
-        if (voiceVolumeSilder.value == -40)
+        if (voiceVolumeSilder.value == voiceVolumeSilder.minValue)
         {
             voiceSpeakerImage.sprite = soundOff;
         }
@@ -116,7 +116,7 @@ public class Options : MonoBehaviour
         {
             voiceSpeakerImage.sprite = soundOn;
         }
-        if (SFXVolumeSilder.value == -40)
+        if (SFXVolumeSilder.value == SFXVolumeSilder.minValue)
         {
             SFXSpeakerImage.sprite = soundOff;
         }
@@ -124,7 +124,7 @@ public class Options : MonoBehaviour
         {
             SFXSpeakerImage.sprite = soundOn;
         }
-        if (BGMVolumeSilder.value == -40)
+        if (BGMVolumeSilder.value == BGMVolumeSilder.minValue)
         {
             BGMSpeakerImage.sprite = soundOff;
         }
