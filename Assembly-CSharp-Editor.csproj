@@ -711,6 +711,22 @@
       <Project>{D437FC8C-6D9D-E869-D9B3-AE209A1C0D1F}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="spine-unity-examples.csproj">
+      <Project>{2CAD5D6B-C583-1E4A-0B63-1347095CA665}</Project>
+      <Name>spine-unity-examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity.csproj">
+      <Project>{2D591D2F-0B59-AD0E-3E93-8BA55EFE6AE1}</Project>
+      <Name>spine-unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-examples-editor.csproj">
+      <Project>{8B5D1B9B-EB7A-234A-CB67-A142F65CDF68}</Project>
+      <Name>spine-unity-examples-editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="spine-unity-editor.csproj">
+      <Project>{465879FC-1158-D65F-DC4B-BC9F931B0EF2}</Project>
+      <Name>spine-unity-editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

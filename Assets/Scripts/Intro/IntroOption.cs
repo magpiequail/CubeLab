@@ -3,17 +3,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 
 public class IntroOption : MonoBehaviour
 {
 
 
-    Slider volumeSilder;
+    public Slider masterVolumeSilder;
+    public Slider voiceVolumeSilder;
+    public Slider SFXVolumeSilder;
+    public Slider BGMVolumeSilder;
 
-    public Image speakerImage;
+    public Image masterSpeakerImage;
+    public Image voiceSpeakerImage;
+    public Image SFXSpeakerImage;
+    public Image BGMSpeakerImage;
     public Sprite soundOn;
     public Sprite soundOff;
     public GameObject initialSelection;
+
+    public AudioMixer masterMixer;
 
     /*public Toggle currentOption
     {
@@ -22,7 +31,7 @@ public class IntroOption : MonoBehaviour
 
     private void Awake()
     {
-        volumeSilder = GetComponentInChildren<Slider>();
+       
 
     }
 
@@ -54,11 +63,18 @@ public class IntroOption : MonoBehaviour
 
         if (PlayerPrefs.GetInt("VolumeSaved") != 1)
         {
-            volumeSilder.value = 0.5f;
+            masterVolumeSilder.value = 0.0f;
+            voiceVolumeSilder.value = 0.0f;
+            SFXVolumeSilder.value = 0.0f;
+            BGMVolumeSilder.value = 0.0f;
         }
         else if (PlayerPrefs.GetInt("VolumeSaved") == 1)
         {
-            volumeSilder.value = PlayerPrefs.GetFloat("Volume");
+
+            masterVolumeSilder.value = PlayerPrefs.GetFloat("MasterVolume");
+            voiceVolumeSilder.value = PlayerPrefs.GetFloat("VoiceVolume");
+            SFXVolumeSilder.value = PlayerPrefs.GetFloat("SFXVolume");
+            BGMVolumeSilder.value = PlayerPrefs.GetFloat("BGMVolume");
         }
 
 
@@ -68,14 +84,42 @@ public class IntroOption : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AudioListener.volume = volumeSilder.value;
-        if (volumeSilder.value == 0)
+        masterMixer.SetFloat("MasterVolume", masterVolumeSilder.value);
+        masterMixer.SetFloat("VoiceVolume", voiceVolumeSilder.value);
+        masterMixer.SetFloat("SFXVolume", SFXVolumeSilder.value);
+        masterMixer.SetFloat("BGMVolume", BGMVolumeSilder.value);
+        //AudioListener.volume = volumeSilder.value;
+        if (masterVolumeSilder.value == -40)
         {
-            speakerImage.sprite = soundOff;
+            masterSpeakerImage.sprite = soundOff;
         }
         else
         {
-            speakerImage.sprite = soundOn;
+            masterSpeakerImage.sprite = soundOn;
+        }
+        if (voiceVolumeSilder.value == -40)
+        {
+            voiceSpeakerImage.sprite = soundOff;
+        }
+        else
+        {
+            voiceSpeakerImage.sprite = soundOn;
+        }
+        if (SFXVolumeSilder.value == -40)
+        {
+            SFXSpeakerImage.sprite = soundOff;
+        }
+        else
+        {
+            SFXSpeakerImage.sprite = soundOn;
+        }
+        if (BGMVolumeSilder.value == -40)
+        {
+            BGMSpeakerImage.sprite = soundOff;
+        }
+        else
+        {
+            BGMSpeakerImage.sprite = soundOn;
         }
     }
 
@@ -138,8 +182,12 @@ public class IntroOption : MonoBehaviour
     }*/
     public void SaveVolume()
     {
-        PlayerPrefs.SetFloat("Volume", volumeSilder.value);
+        PlayerPrefs.SetFloat("MasterVolume", masterVolumeSilder.value);
+        PlayerPrefs.SetFloat("VoiceVolume", voiceVolumeSilder.value);
+        PlayerPrefs.SetFloat("SFXVolume", SFXVolumeSilder.value);
+        PlayerPrefs.SetFloat("BGMVolume", BGMVolumeSilder.value);
         PlayerPrefs.SetInt("VolumeSaved", 1);
+        PlayerPrefs.SetInt("SavedOption", 1);
     }
     /*public void BackToIntro()
     {

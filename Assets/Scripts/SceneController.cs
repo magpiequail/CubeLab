@@ -207,7 +207,7 @@ public class SceneController : MonoBehaviour
     public void NextStage()
     {
         Door.isAllOpen = false;
-        if (SceneManager.GetActiveScene().buildIndex == 20)
+        if (SceneManager.GetActiveScene().buildIndex == 40)
         {
             SceneManager.LoadScene("Stage Select");
         }

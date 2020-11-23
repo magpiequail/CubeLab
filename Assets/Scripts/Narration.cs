@@ -173,7 +173,7 @@ public class Narration : MonoBehaviour
             }
             else if(howToConvey == Narrate.VoiceOver)
             {
-                if (!ttsAudio[index].source.isPlaying && subtitle.activeSelf && index < ttsAudio.Length && SceneController.gameState == GameState.Running &&Time.timeScale !=0&& !Door.isAllOpen)
+                if (!ttsAudio[index].source.isPlaying && subtitle.activeSelf && index < ttsAudio.Length && SceneController.gameState == GameState.Running &&Time.timeScale !=0 && !Door.isAllOpen)
                 {
                     timeTillNextSentence += Time.deltaTime;
                     if(timeTillNextSentence >= 0.5f)

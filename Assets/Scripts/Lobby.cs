@@ -33,12 +33,14 @@ public class Lobby : MonoBehaviour
             {
                 option.SetActive(true);
                 isPause = true;
+                LobbyCharacter.isInputAllowed = false;
             }
             else if (isPause)
             {
                 option.SetActive(false);
                 isPause = false;
                 option.GetComponentInChildren<Options>().SaveCurrentOption();
+                LobbyCharacter.isInputAllowed = true;
             }
         }
     }

@@ -40,6 +40,7 @@ public class Door :Interactables
     {
         if (IsAllDoorsOpen() == true && Input.GetKeyDown(KeyCode.Space) && CharactersMovement.isInputAllowed)
         {
+            
             if (FindObjectOfType<Expression>())
             {
                 Expression.faceAnim.Play("Happy");
@@ -80,6 +81,7 @@ public class Door :Interactables
             return false;
         }
         isActivated = true;
+        Rate();
         return true;
     }
 
@@ -93,7 +95,7 @@ public class Door :Interactables
     {
 
         isAllOpen = true;
-
+        //Rate();
         if (!isAudioPlayed)
         {
             FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_steam");
@@ -111,7 +113,7 @@ public class Door :Interactables
 
 
         yield return new WaitForSeconds(delayTillStageClear);
-        Rate();
+        
         FindObjectOfType<AudioManager>().PlayAudio("UI_change");
         text.SetActive(true);
         ShowStars();
@@ -139,7 +141,7 @@ public class Door :Interactables
     public void GoToNextStage()
     {
         isAllOpen = false;
-        if (SceneManager.GetActiveScene().buildIndex == 32)
+        if (SceneManager.GetActiveScene().buildIndex == 40)
         {
             SceneManager.LoadScene("Stage Select");
         }

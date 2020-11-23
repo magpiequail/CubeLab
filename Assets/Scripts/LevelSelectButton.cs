@@ -59,4 +59,20 @@ public class LevelSelectButton : MonoBehaviour/*, IPointerEnterHandler, IPointer
     {
         image.rectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }*/
+    private void OnEnable()
+    {
+        //PlayerPrefs.GetInt("" + buildIndex + "stars");
+        if (PlayerPrefs.GetInt("" + buildIndex + "stars") == 1)
+        {
+            image.sprite = oneStar;
+        }
+        else if (PlayerPrefs.GetInt("" + buildIndex + "stars") == 2)
+        {
+            image.sprite = twoStars;
+        }
+        else if (PlayerPrefs.GetInt("" + buildIndex + "stars") == 3)
+        {
+            image.sprite = threeStars;
+        }
+    }
 }
