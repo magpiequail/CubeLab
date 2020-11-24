@@ -31,6 +31,7 @@ public class LobbyCapsule : Interactables
         if (isActivated && Input.GetKeyDown(KeyCode.Space) && LobbyCharacter.isInputAllowed)
         {
             LobbyCharacter.isInputAllowed = false;
+            LobbyChar.GetComponentInChildren<Animator>().SetInteger("Idle", 1);
             HideInteractionUI();
             capsuleAnim.Play("Open_Lobby");
             FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
@@ -45,6 +46,7 @@ public class LobbyCapsule : Interactables
         capsuleAnim.Play("Open_Lobby");
         FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_open");
         FindObjectOfType<AudioManager>().PlayAudio("Lobby_incu_steam");
+        PlayerPrefs.SetInt("LobbyOnce", 1);
         //SceneManager.LoadScene(sceneBuildIndex: sceneIndex);
     }
 

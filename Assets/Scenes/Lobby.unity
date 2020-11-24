@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1229,7 +1229,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -4743,7 +4743,7 @@ GameObject:
   - component: {fileID: 370849956}
   - component: {fileID: 370849955}
   m_Layer: 0
-  m_Name: Monitor_Light
+  m_Name: Monitor_Light 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4765,7 +4765,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.5257209, g: 0.6120765, b: 0.6226415, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -5923,7 +5923,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -6297,12 +6297,12 @@ GameObject:
   - component: {fileID: 494976082}
   - component: {fileID: 494976081}
   m_Layer: 0
-  m_Name: Monitor_Light (1)
+  m_Name: Monitor_Light 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &494976081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7814,6 +7814,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 652915766}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &662073070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662073071}
+  - component: {fileID: 662073072}
+  m_Layer: 0
+  m_Name: Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662073071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662073070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &662073072
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662073070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 7f3a6ddb788567749a81bd0f8866dc1b, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
 --- !u!1001 &671799046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8603,7 +8651,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -13774,7 +13822,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -15467,7 +15515,7 @@ PrefabInstance:
     - target: {fileID: 1718619728803969182, guid: 0fde154828e81a2448c100869a7b0d2a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1718619728803969182, guid: 0fde154828e81a2448c100869a7b0d2a,
         type: 3}
@@ -16722,7 +16770,7 @@ PrefabInstance:
     - target: {fileID: 103197233348189519, guid: e6f27909e8ecb934e83945c70407c2ad,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 103197233348189519, guid: e6f27909e8ecb934e83945c70407c2ad,
         type: 3}
@@ -16919,7 +16967,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.7
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -19297,7 +19345,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -20816,7 +20864,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -21727,7 +21775,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -21763,7 +21811,6 @@ GameObject:
   - component: {fileID: 1705680671}
   - component: {fileID: 1705680670}
   - component: {fileID: 1705680672}
-  - component: {fileID: 1705680673}
   m_Layer: 0
   m_Name: Lobby
   m_TagString: Untagged
@@ -21895,35 +21942,6 @@ MonoBehaviour:
   - {fileID: 316871057}
   - {fileID: 381647681}
   - {fileID: 1170418193}
---- !u!114 &1705680673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705680669}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f09298445453e74a87decdedf1825ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spaceInteractionPrefab: {fileID: 0}
-  mouseInteractionPrefab: {fileID: 0}
-  interactionObj: {fileID: 0}
-  isActivated: 0
-  interactionMsg: 'S
-
-    P
-
-    A
-
-    C
-
-    E'
-  delayTillDoorOpen: 0.5
-  delayTillStageClear: 2
-  delayTillNextStage: 2.5
-  isOpened: 0
 --- !u!1001 &1709301368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22089,8 +22107,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1305981043}
   - {fileID: 2045876127}
+  - {fileID: 1305981043}
   - {fileID: 1463565469}
   - {fileID: 2045721250}
   m_Father: {fileID: 0}
@@ -24043,7 +24061,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 0.51041293, g: 0.57596654, b: 0.5849056, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c95ea6c29df5bd4c9142fc35d11aa042e53b647b
   m_LightCookieSprite: {fileID: 0}
@@ -25213,7 +25231,7 @@ PrefabInstance:
     - target: {fileID: 386332898101329152, guid: 3667949e87ccb2a4399a2732e697ea6e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 386332898101329152, guid: 3667949e87ccb2a4399a2732e697ea6e,
         type: 3}
@@ -25444,7 +25462,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1712923846}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

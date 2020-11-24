@@ -12,7 +12,8 @@ public enum Narrate
     Manual,
     Automatic,
     Both,
-    VoiceOver
+    VoiceOver,
+    VoiceOverManual
 }
 public enum Scene
 {
@@ -96,27 +97,31 @@ public class Narration : MonoBehaviour
             {
                 subtitle.SetActive(false);
             }
+            else
+            {
+                ttsAudio[index].source.Play();
+            }
             Debug.Log("LobbyOnce = " + PlayerPrefs.GetInt("LobbyOnce"));
         }
         if(sceneID == Scene.Stage && howToConvey == Narrate.VoiceOver)
         {
-            if (index < ttsAudio.Length)
+            if (index < ttsAudio.Length && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex + "stars") == 0)
             {
                 ttsAudio[index].source.Play();
             }
             
         }
         Debug.Log(gameObject.name + " index is " + index);
-        
+        if(sceneID == Scene.Stage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex+ "stars") != 0)
+        {
+            subtitle.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(sceneID == Scene.Stage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex+ "stars") != 0)
-        {
-            subtitle.SetActive(false);
-        }
+        
         //if(SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
         //{
         //    Debug.Log("failedAudio");
@@ -186,6 +191,8 @@ public class Narration : MonoBehaviour
                         }
                         else
                         {
+                            
+
                             PlayerPrefs.SetInt("TTSIndex" + SceneManager.GetActiveScene().buildIndex, index);
                         }
                         timeTillNextSentence = 0f;
@@ -199,7 +206,10 @@ public class Narration : MonoBehaviour
 
         if (index == sentences.Length)
         {
-            subtitle.SetActive(false);
+            if (sceneID == Scene.Stage && !Door.isAllOpen)
+            {
+                subtitle.SetActive(false);
+            }
             if (sceneID == Scene.Memory)
             {
                 memoryPlaying.SetActive(false);
@@ -214,7 +224,7 @@ public class Narration : MonoBehaviour
             //
         }
 
-        if (isThisSceneStage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex + "stars") == 0)
+        if (sceneID == Scene.Stage && PlayerPrefs.GetInt("" + SceneManager.GetActiveScene().buildIndex + "stars") == 0)
         {
             if (Door.isAllOpen && whenSucceeded != "")
             {
@@ -297,7 +307,7 @@ public class Narration : MonoBehaviour
     }
     void InitializeTTS()
     {
-        if (sceneID == Scene.Stage)
+        //if (sceneID == Scene.Stage)
         {
             foreach (Sound s in ttsAudio)
             {

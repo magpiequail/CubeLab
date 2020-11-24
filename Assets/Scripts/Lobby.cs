@@ -47,7 +47,7 @@ public class Lobby : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerPrefs.SetInt("LobbyOnce", 1);
+        
     }
 
     /*public void LoadStage1()
