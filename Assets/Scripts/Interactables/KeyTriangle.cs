@@ -90,7 +90,7 @@ public class KeyTriangle : Key
     public override void StartInteraction()
     {
         base.StartInteraction();
-        if (isActivated && CharactersMovement.isInputAllowed)
+        if (isActivated && CharactersMovement.isInputAllowed && characterObj.GetComponent<Character>().isUnitMoveAllowed)
         {
             GetKey();
         }

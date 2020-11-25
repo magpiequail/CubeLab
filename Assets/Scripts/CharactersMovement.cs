@@ -57,6 +57,7 @@ public class CharactersMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("is input allowed = " + isInputAllowed);
         if (Door.isAllOpen)
         {
             isInputAllowed = false;
@@ -255,6 +256,7 @@ public class CharactersMovement : MonoBehaviour
                     
                     else
                     {
+                        isInputAllowed = true;
                         isPfMoveDone = true;
                     }
                     
@@ -440,6 +442,7 @@ public class CharactersMovement : MonoBehaviour
     
     IEnumerator Delay()
     {
+        isInputAllowed = false;
         isPfMoveDone = false;
 
         for (int i = path.Count; i >= 2; i--)
@@ -473,9 +476,9 @@ public class CharactersMovement : MonoBehaviour
                         audioManager.PlayCharacterFootstep();
                     }
                     if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
-                        {
-                            yield break;
-                        }
+                    {
+                        yield break;
+                    }
                 }
                 //SE
                 else if (pathFindingFloor.charOnFloor.currPos.y > path[i - 2].GetComponent<BlockStat>().blockCharPos.y)
@@ -499,9 +502,9 @@ public class CharactersMovement : MonoBehaviour
                         audioManager.PlayCharacterFootstep();
                     }
                     if (SceneController.gameState == GameState.Died || SceneController.gameState == GameState.GameOver)
-                        {
-                            yield break;
-                        }
+                    {
+                        yield break;
+                    }
                 }
             }
             else if (pathFindingFloor.charOnFloor.currPos.x > path[i - 2].GetComponent<BlockStat>().blockCharPos.x)
@@ -567,6 +570,7 @@ public class CharactersMovement : MonoBehaviour
             if (i == 2)
             {
                 isPfMoveDone = true;
+                isInputAllowed = true;
             }
 
             yield return new WaitForSeconds(delayTime);
